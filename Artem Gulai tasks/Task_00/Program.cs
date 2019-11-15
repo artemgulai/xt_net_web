@@ -43,6 +43,7 @@ namespace Task_00
                 if (i == N / 2)
                 {
                     Console.WriteLine(gapString);
+                    continue;
                 }
                 Console.WriteLine(fullString);
             }
@@ -120,27 +121,123 @@ namespace Task_00
 
         static void ArrayDisplay(int[][] array)
         {
+            Console.Write("{");
             for(int i = 0; i < array.Length; i++)
             {
+                Console.Write("{");
                 for (int j = 0; j < array[i].Length; j++)
                 {
-                    Console.Write($"{array[i][j]} ");
+                    Console.Write($"{array[i][j]},");
                 }
-                Console.WriteLine();
+                Console.Write("},");
             }
+            Console.Write("}");
         }
 
-        
+        static void PressEnterWait()
+        {
+            Console.WriteLine("Нажмите enter.");
+            Console.ReadLine();
+        }
 
         static void Main(String[] args)
         {
-            //int[][] array = ArrayCreation();
-            Array array = MultiDimArray.ArrayCreation();
-            MultiDimArray.ArrayDisplay(array);
-            MultiDimArray.ArraySorting(array);
-            Console.WriteLine();
-            MultiDimArray.ArrayDisplay(array);
-            Console.ReadKey();
+            int select = -1;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Выберите номер задания для проверки:");
+                Console.WriteLine("Задание 1. Последовательность чисел.");
+                Console.WriteLine("Задание 2. Проверка простоты числа.");
+                Console.WriteLine("Задание 3. Квадрат с пустым центром.");
+                Console.WriteLine("Задание 4. Создание, заполнение и сортировка массива.");
+                Console.WriteLine("Нажмите 0 для выхода.");
+
+                try
+                {
+                    select = int.Parse(Console.ReadLine());
+                } catch (FormatException) {
+                    Console.WriteLine("Что-то пошло не так. Попробуйте снова.");
+                    PressEnterWait();
+                    continue;
+                }
+                switch (select)
+                {
+                    case 1:
+                        Console.WriteLine("\nЗадание 1. Последовательность чисел.");
+                        Console.WriteLine("Введите целое положительное число:");
+                        int number = int.Parse(Console.ReadLine());
+                        if (number <= 0)
+                        {
+                            Console.WriteLine("Введено неверное число.\n");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Строка-результат: " + Sequence(number));
+                        }
+                        PressEnterWait();
+                        break;
+                    case 2:
+                        Console.WriteLine("\nЗадание 2. Проверка простоты числа.");
+                        Console.WriteLine("Введите целое положительное число:");
+                        int isSimple = int.Parse(Console.ReadLine());
+                        if (isSimple <= 0)
+                        {
+                            Console.WriteLine("Введено неверное число.");
+                            PressEnterWait();
+                            break;
+                        }
+                        
+                        if (Simple(isSimple))
+                        {
+                            Console.WriteLine($"Число {isSimple} является простым.");
+                        } else
+                        {
+                            Console.WriteLine($"Число {isSimple} не является простым.");
+                        }
+                        PressEnterWait();
+                        break;
+                    case 3:
+                        Console.WriteLine("\nЗадание 3. Квадрат с пустым центром.");
+                        Console.WriteLine("Введите целое нечетное положительное число:");
+                        int oddNumber = int.Parse(Console.ReadLine());
+                        if (oddNumber % 2 != 1)
+                        {
+                            Console.WriteLine("Введено неверное число.");
+                        } else
+                        {
+                            Square(oddNumber);
+                        }
+                        PressEnterWait();
+                        break;
+                    case 4:
+                        Console.WriteLine("\nЗадание 4. Создание, заполнение и сортировка массива.");
+                        Console.WriteLine('\n' + new String('*',20));
+                        Console.WriteLine("Создание массива");
+                        int[][] array = ArrayCreation();
+                        Console.WriteLine("Созданный массив:");
+                        ArrayDisplay(array);
+                        Console.WriteLine();
+                        PressEnterWait();
+                        Console.WriteLine(new String('*',20));
+                        Console.WriteLine("Нажмите enter для сортировки массива.");
+                        Console.ReadLine();
+                        ArraySorting(array);
+                        Console.WriteLine("Отсортированный массив:");
+                        ArrayDisplay(array);
+                        Console.WriteLine();
+                        PressEnterWait();
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        Console.WriteLine("Введено неверное число.");
+                        Console.WriteLine("Нажмите enter.");
+                        Console.ReadLine();
+                        break;
+                }
+            } while (select != 0);
         }
     }
 }
