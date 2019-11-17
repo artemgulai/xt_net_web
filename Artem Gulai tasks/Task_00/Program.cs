@@ -54,7 +54,7 @@ namespace Task_00
             Console.WriteLine("Введите число размерностей массива");
             int arrayDim = int.Parse(Console.ReadLine());
             int[][] array = new int[arrayDim][];
-            Random random = new Random(42);
+            Random random = new Random();
 
             for (int i = 0; i < arrayDim; i++)
             {
@@ -63,7 +63,7 @@ namespace Task_00
                 array[i] = new int[dim];
                 for (int j = 0; j < dim; j++)
                 {
-                    array[i][j] = random.Next(0,100);
+                    array[i][j] = random.Next(0,101);
                 }
             }
             return array;
