@@ -9,23 +9,225 @@ namespace Task_01
     class CSharpLanguage
     {
         /// <summary>
+        /// Generates 1D array of integers for ArrayProcessing1_7 and NonNegativeSum1_9.
+        /// </summary>
+        /// <returns>1D array of integers</returns>
+        public static int[] Generate1DArray()
+        {
+            int length = -1;
+
+            do
+            {
+                Console.WriteLine("Enter the length of an array.");
+                if (Int32.TryParse(Console.ReadLine(),out length))
+                {
+                    if (length > 0) break;
+                    Console.WriteLine("Length cannot be less than 1. Try again.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                }
+            }
+            while (true);
+
+            int[] array = new int[length];
+
+            Random rand = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                array[i] = rand.Next(-500,500);
+            }
+
+            return array;
+        }
+
+        /// <summary>
+        /// Displays 1D array.
+        /// </summary>
+        /// <param name="array">1D array</param>
+        public static void Display1DArray<T>(T[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write("{0} ",array[i]);
+            }
+        }
+
+        /// <summary>
+        /// Generates 2D array of integers for NonNegativeSum1_9.
+        /// </summary>
+        /// <returns>2D array of integers</returns>
+        public static int[,] Generate2DArray()
+        {
+            int dim1 = -1, dim2 = -1;
+            do
+            {
+                Console.WriteLine("Enter the length of the first dimension.");
+                if (Int32.TryParse(Console.ReadLine(),out dim1))
+                {
+                    if (dim1 > 0) break;
+                    Console.WriteLine("Length cannot be less than 1. Try again.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                }
+            }
+            while (true);
+
+            do
+            {
+                Console.WriteLine("Enter the length of the second dimension.");
+                if (Int32.TryParse(Console.ReadLine(),out dim2))
+                {
+                    if (dim2 > 0) break;
+                    Console.WriteLine("Length cannot be less than 1. Try again.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                }
+            }
+            while (true);
+
+            int[,] array = new int[dim1,dim2];
+
+            Random rand = new Random();
+            for (int i = 0; i < dim1; i++)
+            {
+                for (int j = 0; j < dim2; j++)
+                {
+                    array[i,j] = rand.Next(-500,500);
+                }
+            }
+
+            return array;
+        }
+
+        /// <summary>
+        /// Displays 2D array.
+        /// </summary>
+        /// <param name="array">2D array</param>
+        public static void Display2DArray<T>(T[,] array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write("{0}\t",array[i,j]);
+                }
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Generates 3D array of integers for NoPositive_1_8.
+        /// </summary>
+        /// <returns>3D array of integers</returns>
+        public static int[,,] Generate3DArray()
+        {
+            int dim1 = -1, dim2 = -1, dim3 = -1;
+            do
+            {
+                Console.WriteLine("Enter the length of the first dimension.");
+                if (Int32.TryParse(Console.ReadLine(),out dim1))
+                {
+                    if (dim1 > 0) break;
+                    Console.WriteLine("Length cannot be less than 1. Try again.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                }
+            }
+            while (true);
+
+            do
+            {
+                Console.WriteLine("Enter the length of the second dimension.");
+                if (Int32.TryParse(Console.ReadLine(),out dim2))
+                {
+                    if (dim2 > 0) break;
+                    Console.WriteLine("Length cannot be less than 1. Try again.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                }
+            }
+            while (true);
+
+            do
+            {
+                Console.WriteLine("Enter the length of the first dimension.");
+                if (Int32.TryParse(Console.ReadLine(),out dim3))
+                {
+                    if (dim3 > 0) break;
+                    Console.WriteLine("Length cannot be less than 1. Try again.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Try again.");
+                }
+            }
+            while (true);
+
+            int[,,] array = new int[dim1,dim2,dim3];
+
+            Random rand = new Random();
+            for (int i = 0; i < dim1; i++)
+            {
+                for (int j = 0; j < dim2; j++)
+                {
+                    for (int k = 0; k < dim3; k++)
+                    {
+                        array[i,j,k] = rand.Next(-500,500);
+                    }
+                }
+            }
+
+            return array;
+        }
+
+        /// <summary>
+        /// Displays 3D array.
+        /// </summary>
+        /// <param name="array">3D array</param>
+        public static void Display3DArray<T>(T[,,] array)
+        {
+            Console.Write("{");
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                Console.Write("{");
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write("{");
+                    for (int k = 0; k < array.GetLength(2) - 1; k++)
+                    {
+                        Console.Write("{0} ",array[i,j,k]);
+                    }
+                    Console.Write("{0}",array[i,j,array.GetLength(2) - 1]);
+                    Console.Write("}");
+                }
+                Console.Write("}");
+            }
+            Console.WriteLine("}");
+        }
+
+
+        /// <summary>
         /// Generates an array, find the minimum, maximum, sorts the array
         /// and prints the result (minimum, maximum, sorted array)
         /// </summary>
         public static void ArrayProcessing_1_7()
         {
-            int length = 100;
-            double[] array = new double[length];
-            Random rand = new Random();
-            for (var i = 0; i < array.Length; i++)
-            {
-                array[i] = rand.NextDouble()*400 - 200;
-            }
+            int[] array = Generate1DArray();
 
             // sorting
             for (int i = 0; i < array.Length - 1; i++)
             {
-                double min = double.MaxValue;
+                int min = int.MaxValue;
                 int minInd = i;
                 for (int j = i; j < array.Length; j++)
                 {
@@ -37,21 +239,17 @@ namespace Task_01
                 }
                 if (minInd != i)
                 {
-                    double temp = array[i];
+                    int temp = array[i];
                     array[i] = array[minInd];
                     array[minInd] = temp;
                 }
             }
 
             // printing results
-            Console.WriteLine("Min value: " + $"{array[0],0:N2}.");
-            Console.WriteLine("Min value: " + $"{array[array.Length-1],0:N2}.");
-            Console.Write("Sorted array: \n{");
-            for (var i = 0; i < array.Length - 1; i++)
-            {
-                Console.Write($"{array[i],0:N2}, ");
-            }
-            Console.WriteLine($"{array[array.Length-1],0:N2}" + "}");
+            Console.WriteLine("Min value: " + $"{array[0]}.");
+            Console.WriteLine("Min value: " + $"{array[array.Length-1]}.");
+            Console.WriteLine("Sorted array:");
+            Display1DArray(array);
             Console.ReadLine();
         }
 
@@ -71,7 +269,7 @@ namespace Task_01
                     }
                 }
             }
-        }
+        } 
 
         /// <summary>
         /// Returns the sum of non-negative elements of 1-dimensional array.

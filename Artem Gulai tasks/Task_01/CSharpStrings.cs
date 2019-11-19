@@ -38,7 +38,6 @@ namespace Task_01
             {
                 words[i] = words[i].Trim(punctuation.ToArray());
                 wordsLength += words[i].Length;
-                Console.WriteLine(words[i]);
             }
 
             Console.WriteLine("Average word length is {0, 0:N2}", (double)wordsLength / words.Length);

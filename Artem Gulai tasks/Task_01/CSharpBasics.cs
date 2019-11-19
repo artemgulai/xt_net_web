@@ -13,7 +13,6 @@ namespace Task_01
         /// </summary>
         public static void Rectangle_1_1()
         {
-            Console.WriteLine("Calculating the area of a rectangle with sides equal a and b.");
             int a = 0, b = 0;
             bool flagA = false, flagB = false;
             while (!flagA)
@@ -49,8 +48,6 @@ namespace Task_01
 
             int area = a * b;
             Console.WriteLine("The area of the rectangle equals to " + area + ".");
-            Console.WriteLine("Press enter to exit.");
-            Console.ReadLine();
         }
 
         /// <summary>
@@ -58,7 +55,6 @@ namespace Task_01
         /// </summary>
         public static void Triangle_1_2()
         {
-            Console.WriteLine("Drawing a rectangular triangle with sides equal to N.");
             int n = 0;
             while (true)
             {
@@ -85,7 +81,6 @@ namespace Task_01
                     Console.WriteLine("Incorrect input. Try again.");
                 }
             }
-            Console.ReadLine();
         }
 
         /// <summary>
@@ -93,7 +88,6 @@ namespace Task_01
         /// </summary>
         public static void AnotherTriangle_1_3()
         {
-            Console.WriteLine("Drawing an isosceles triangle with sides equal to N.");
             int n = 0;
             while (true)
             {
@@ -127,7 +121,6 @@ namespace Task_01
                     Console.WriteLine("Incorrect input. Try again.");
                 }
             }
-            Console.ReadLine();
         }
 
         /// <summary>
@@ -135,7 +128,6 @@ namespace Task_01
         /// </summary>
         public static void XmasTree_1_4()
         {
-            Console.WriteLine("Drawing an isosceles triangle with sides equal to N.");
             int n = 0;
             while (true)
             {
@@ -174,7 +166,6 @@ namespace Task_01
                     Console.WriteLine("Incorrect input. Try again.");
                 }
             }
-            Console.ReadLine();
         }
 
         /// <summary>
@@ -195,7 +186,6 @@ namespace Task_01
                 }
             }
             Console.WriteLine("Sum of numbers less than 1000 and multiple of 3 or 5: " + sum);
-            Console.ReadLine();
         }
 
         /// <summary>
@@ -249,7 +239,6 @@ namespace Task_01
                 if (numberOfIterations == 10)
                 {
                     Console.WriteLine("Enough!");
-                    Console.ReadLine();
                 }
             }
         }
