@@ -55,9 +55,9 @@ namespace Task_01
             {
                 doubledLine.Append(c);
                 // this line of code is for a case when punctuation chars should not be doubled
-                //if (line2.Contains(c) && !Char.IsPunctuation(c) && !Char.IsSeparator(c))
+                if ((line2.Contains(Char.ToUpper(c)) || line2.Contains(Char.ToLower(c))) && !Char.IsPunctuation(c) && !Char.IsSeparator(c))
                 // this line of code is for a case when punctuation chars should be doubled
-                if (line2.Contains(c) && !Char.IsSeparator(c))
+                //if ((line2.Contains(Char.ToUpper(c)) || line2.Contains(Char.ToLower(c))) && !Char.IsSeparator(c))
                 {
                     doubledLine.Append(c);
                 }
