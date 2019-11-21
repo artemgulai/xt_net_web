@@ -50,20 +50,76 @@ namespace Task_01
             Console.WriteLine("Enter the second line");
             string line2 = Console.ReadLine();
 
-            StringBuilder doubledLine = new StringBuilder();
-            foreach(char c in line1)
+            StringBuilder doubledLineLettersDigitsNonCase = new StringBuilder();
+            StringBuilder doubledLineLettersDigitsCase = new StringBuilder();
+            StringBuilder doubledLineLettersDigitsPunctuationNonCase = new StringBuilder();
+            StringBuilder doubledLineLettersDigitsPunctuationCase = new StringBuilder();
+            StringBuilder doubledLineAllCase = new StringBuilder();
+
+            Console.WriteLine();
+
+            
+            // this line is used to perform non-case-sensitive doubling
+            string line3 = line2.ToLower();
+
+            foreach (char c in line1)
             {
-                doubledLine.Append(c);
-                // this line of code is for a case when punctuation chars should not be doubled
-                if ((line2.Contains(Char.ToUpper(c)) || line2.Contains(Char.ToLower(c))) && !Char.IsPunctuation(c) && !Char.IsSeparator(c))
-                // this line of code is for a case when punctuation chars should be doubled
-                //if ((line2.Contains(Char.ToUpper(c)) || line2.Contains(Char.ToLower(c))) && !Char.IsSeparator(c))
+                doubledLineLettersDigitsNonCase.Append(c);
+                doubledLineLettersDigitsCase.Append(c);
+                doubledLineLettersDigitsPunctuationNonCase.Append(c);
+                doubledLineLettersDigitsPunctuationCase.Append(c);
+                doubledLineAllCase.Append(c);
+
+                // this doubles only letters and digits (non-case-sensitive)
+                if (Char.IsLetterOrDigit(c) && line3.Contains(Char.ToLower(c)))
                 {
-                    doubledLine.Append(c);
+                    doubledLineLettersDigitsNonCase.Append(c);
+                }
+
+                // this doubles only letters and digits (case-sensitive)
+                if (Char.IsLetterOrDigit(c) && line2.Contains(c))
+                {
+                    doubledLineLettersDigitsCase.Append(c);
+                }
+
+                // this doubles letters, digits and punctuation (non-case-sensitive)
+                if ((Char.IsPunctuation(c) && line2.Contains(c)) || (Char.IsLetterOrDigit(c) && line3.Contains(Char.ToLower(c))))
+                {
+                    doubledLineLettersDigitsPunctuationNonCase.Append(c);
+                }
+
+                // this doubles letters, digits and punctuation (case-sensitive)
+                if ((Char.IsPunctuation(c) || Char.IsLetterOrDigit(c)) && line2.Contains(c))
+                {
+                    doubledLineLettersDigitsPunctuationCase.Append(c);
+                }
+
+                // this doubles all chars (case-sensitive)
+                if (line2.Contains(c))
+                {
+                    doubledLineAllCase.Append(c);
                 }
             }
 
-            Console.WriteLine(doubledLine);
+            Console.WriteLine("Doubled chars are letters and digits (non-case-sensitive):");
+            Console.WriteLine(doubledLineLettersDigitsNonCase);
+            Console.WriteLine();
+
+            Console.WriteLine("Doubled chars are letters and digits (case-sensitive):");
+            Console.WriteLine(doubledLineLettersDigitsCase);
+            Console.WriteLine();
+
+            Console.WriteLine("Doubled chars are letters, digits and punctuation (non-case-sensitive):");
+            Console.WriteLine(doubledLineLettersDigitsPunctuationNonCase);
+            Console.WriteLine();
+
+            Console.WriteLine("Doubled chars are letters, digits and punctuation (case-sensitive):");
+            Console.WriteLine(doubledLineLettersDigitsPunctuationCase);
+            Console.WriteLine();
+
+            Console.WriteLine("Doubled chars are all chars (case-sensitive):");
+            Console.WriteLine(doubledLineAllCase);
+            Console.WriteLine();
         }
     }
 }

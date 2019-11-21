@@ -43,6 +43,33 @@ namespace Task_01
         }
 
         /// <summary>
+        /// Sorts 1D array of integers.
+        /// </summary>
+        /// <param name="array">1D array of integers</param>
+        public static void Sort1DArray(int[] array)
+        {
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                int min = int.MaxValue;
+                int minInd = i;
+                for (int j = i; j < array.Length; j++)
+                {
+                    if (array[j] < min)
+                    {
+                        min = array[j];
+                        minInd = j;
+                    }
+                }
+                if (minInd != i)
+                {
+                    int temp = array[i];
+                    array[i] = array[minInd];
+                    array[minInd] = temp;
+                }
+            }
+        }
+
+        /// <summary>
         /// Displays 1D array.
         /// </summary>
         /// <param name="array">1D array</param>
@@ -215,37 +242,19 @@ namespace Task_01
             Console.WriteLine("}");
         }
 
-
         /// <summary>
         /// Generates an array, find the minimum, maximum, sorts the array
-        /// and prints the result (minimum, maximum, sorted array)
+        /// and prints the result (minimum, maximum, sorted array).
         /// </summary>
         public static void ArrayProcessing_1_7()
         {
             int[] array = Generate1DArray();
+            Console.WriteLine("Unsorted Array:");
+            Display1DArray(array);
+            Console.WriteLine();
 
-            // sorting
-            for (int i = 0; i < array.Length - 1; i++)
-            {
-                int min = int.MaxValue;
-                int minInd = i;
-                for (int j = i; j < array.Length; j++)
-                {
-                    if (array[j] < min)
-                    {
-                        min = array[j];
-                        minInd = j;
-                    }
-                }
-                if (minInd != i)
-                {
-                    int temp = array[i];
-                    array[i] = array[minInd];
-                    array[minInd] = temp;
-                }
-            }
+            Sort1DArray(array);
 
-            // printing results
             Console.WriteLine("Min value: " + $"{array[0]}.");
             Console.WriteLine("Min value: " + $"{array[array.Length-1]}.");
             Console.WriteLine("Sorted array:");
@@ -254,7 +263,7 @@ namespace Task_01
         }
 
         /// <summary>
-        /// Replaces all positive elements in 3D array by 0
+        /// Replaces all positive elements in 3D array by 0.
         /// </summary>
         public static void NoPositive_1_8(int[,,] array)
         {

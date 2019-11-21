@@ -63,6 +63,18 @@ namespace Task_01
                 {
                     if (n > 0)
                     {
+                        Console.WriteLine("Using two for-loops:");
+                        for (int i = 0; i < n; i++)
+                        {
+                            for (int j = 0; j<= i; j++)
+                            {
+                                Console.Write('*');
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine();
+
+                        Console.WriteLine("Using StringBuilder:");
                         StringBuilder sb = new StringBuilder();
                         for (int i = 1; i <= n; i++)
                         {
@@ -96,6 +108,22 @@ namespace Task_01
                 {
                     if (n > 0)
                     {
+                        Console.WriteLine("Using for-loops:");
+                        for (int i = 1; i <= n; i++)
+                        {
+                            for (int j = 0; j < n-i; j++)
+                            {
+                                Console.Write(' ');
+                            }
+                            for (int k = 0; k < 2*i-1; k++)
+                            {
+                                Console.Write('*');
+                            }
+                            Console.WriteLine();
+                        }
+                        Console.WriteLine();
+
+                        Console.WriteLine("Using StringBuilder:");
                         StringBuilder sbSpace = new StringBuilder();
                         for (int i = 1; i < n; i++)
                         {
@@ -136,6 +164,25 @@ namespace Task_01
                 {
                     if (n > 0)
                     {
+                        Console.WriteLine("Using for-loops (complex way):");
+                        for (int l = 1; l <= n; l++)
+                        {
+                            for (int i = 1; i <= l; i++)
+                            {
+                                for (int j = 0; j < n - i; j++)
+                                {
+                                    Console.Write(' ');
+                                }
+                                for (int k = 0; k < 2 * i - 1; k++)
+                                {
+                                    Console.Write('*');
+                                }
+                                Console.WriteLine();
+                            }
+                        }
+                        Console.WriteLine();
+
+                        Console.WriteLine("Using String Builder (simpler way):");
                         StringBuilder sbTree = new StringBuilder();
                         StringBuilder sbAsterisk = new StringBuilder();
 
@@ -151,7 +198,7 @@ namespace Task_01
                             Console.WriteLine(sbTree);
                             sbAsterisk.Append("**");
                             sbAsterisk.Remove(0,1);
-                            sbTree.Append('\n');
+                            sbTree.Append(Environment.NewLine);
                         }
 
                         break;
@@ -173,6 +220,7 @@ namespace Task_01
         /// </summary>
         public static void SumOfNumbers_1_5()
         {
+            Console.WriteLine("Using two loops (check for 3 in one (from 3 to 999 inc by 3) and for 5 in another(from 5 to 999 inc by 5)).");
             int sum = 0;
             for (int i = 3; i < 1000; i += 3)
             {
@@ -185,7 +233,20 @@ namespace Task_01
                     sum += i;
                 }
             }
-            Console.WriteLine("Sum of numbers less than 1000 and multiple of 3 or 5: " + sum);
+            Console.WriteLine("Sum of numbers less than 1000 and multiple of 3 or 5: {0}", sum);
+            Console.WriteLine();
+
+            Console.WriteLine("Using one loop (check for 3 and 5 (from 3 to 999 inc by 1))");
+            sum = 0;
+            for (int i = 3; i < 1000; i++)
+            {
+                if (i % 3 == 0 || i % 5 == 0)
+                {
+                    sum += i;
+                }
+            }
+            Console.WriteLine("Sum of numbers less than 1000 and multiple of 3 or 5: {0}" ,sum);
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -195,9 +256,9 @@ namespace Task_01
         enum FontStyle : byte
         {
             None = 0,
-            Bold = 1,
-            Italic = 2,
-            Underline = 4,
+            Bold = 0x01,
+            Italic = 0x02,
+            Underline = 0x04,
         }
 
         /// <summary>
@@ -222,14 +283,7 @@ namespace Task_01
                         Console.WriteLine("Incorrect number.");
                         continue;
                     }
-                    if (fs.HasFlag((FontStyle)Math.Pow(2,enter-1)))
-                    {
-                        fs ^= (FontStyle)Math.Pow(2,enter - 1);
-                    }
-                    else
-                    {
-                        fs |= (FontStyle)Math.Pow(2,enter - 1);
-                    }
+                    fs ^= (FontStyle)Math.Pow(2,enter - 1);
                 }
                 else
                 {
