@@ -34,13 +34,16 @@ namespace Task_01
             string[] words = textLine.Split(separators.ToArray());
 
             int wordsLength = 0;
+            int emptyWordsCorrection = 0;
             for (int i = 0; i < words.Length; i++)
             {
                 words[i] = words[i].Trim(punctuation.ToArray());
+                words[i] = words[i].Trim(separators.ToArray());
                 wordsLength += words[i].Length;
+                if (words[i].Length == 0) emptyWordsCorrection--;
             }
 
-            Console.WriteLine("Average word length is {0, 0:N2}", (double)wordsLength / words.Length);
+            Console.WriteLine("Average word length is {0, 0:N2}", (double)wordsLength / (words.Length + emptyWordsCorrection));
         }
 
         public static void CharDoubler_1_12()
