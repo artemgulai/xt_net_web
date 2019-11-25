@@ -8,7 +8,6 @@ namespace Task_02
 {
     class MyString
     {
-        private const Int32 INIT_CAPACITY = 0;
         private Char[] _myString;
         private StringBuilder _sb;
         private Int32 _length;
@@ -23,17 +22,18 @@ namespace Task_02
             get => _myString.Length;
         }
 
-        public String Value
+        /// <summary>
+        /// Returns MyString as System.String.
+        /// </summary>
+        /// <returns></returns>
+        public String GetAsString()
         {
-            get
+            _sb.Clear();
+            foreach (Char c in _myString)
             {
-                _sb.Clear();
-                foreach (Char c in _myString)
-                {
-                    _sb.Append(c);
-                }
-                return _sb.ToString();
+                _sb.Append(c);
             }
+            return _sb.ToString();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Task_02
         /// <summary>
         /// MyString with default initial capacity.
         /// </summary>
-        public MyString() : this(INIT_CAPACITY)
+        public MyString() : this(0)
         {
         }
 
@@ -81,7 +81,7 @@ namespace Task_02
         {
         }
 
-        public override string ToString() => Value;
+        public override string ToString() => GetAsString();
 
         /// <summary>
         /// Represents MyString as an array of Char.
@@ -250,8 +250,6 @@ namespace Task_02
         /// <returns>Char at index or '\0' if the index is out of bounds.</returns>
         public Char CharAt(Int32 index)
         {
-            if (index < 0 || index > Length - 1)
-                return '\0';
             return _myString[index];
         }
 
@@ -271,7 +269,7 @@ namespace Task_02
 
             for (int i = 0; i < mstr1.Length; i++)
             {
-                if (mstr1.CharAt(i) != mstr2.CharAt(i))
+                if (mstr1[i] != mstr2[i])
                     return false;
             }
             return true;
@@ -283,6 +281,11 @@ namespace Task_02
         /// <param name="value"></param>
         /// <returns></returns>
         public static MyString FromCharArray(Char[] value)
+        {
+            return new MyString(value);
+        }
+
+        public static MyString FromString(String value)
         {
             return new MyString(value);
         }
@@ -331,6 +334,14 @@ namespace Task_02
             return new MyString(lowerMyString);
         }
 
+        public override int GetHashCode()
+        {
+            var hashCode = -5890885;
+            hashCode = hashCode * -1521134295 + EqualityComparer<char[]>.Default.GetHashCode(_myString);
+            hashCode = hashCode * -1521134295 + _length.GetHashCode();
+            return hashCode;
+        }
+
         public static Boolean operator==(MyString mstr1, MyString mstr2)
         {
             return Equals(mstr1,mstr2);
@@ -345,13 +356,24 @@ namespace Task_02
         {
             return Concat(mstr1,mstr2);
         }
+
+        public Char this[int index]
+        {
+            get { return _myString[index]; }
+            set { _myString[index] = value; }
+        }
     }
 
     class MyStringDemo
     {
         public static void Demo()
         {
-            // Will be later.
+            MyString m1 = MyString.FromString("Hello, ") + MyString.FromString("Wolrd!");
+            Console.WriteLine(m1);
+            Console.WriteLine(m1.GetType());
+            Console.WriteLine(m1.ToString().GetType());
+            Console.WriteLine(m1[1]);
+            Console.ReadLine();
         }
     }
 }

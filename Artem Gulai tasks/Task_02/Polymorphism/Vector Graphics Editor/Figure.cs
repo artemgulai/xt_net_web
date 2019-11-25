@@ -8,7 +8,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
     abstract class Figure
     {
-        protected Color LineColor { get; set; }
+        public Color LineColor { get; set; }
 
         protected Figure()
         {

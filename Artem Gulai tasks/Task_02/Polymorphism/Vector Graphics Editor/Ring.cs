@@ -12,7 +12,12 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
         public Double SecondRadius
         {
             get => _secondRadius;
-            set => _secondRadius = Math.Abs(value);
+            set
+            {
+                if (value == 0)
+                    throw new ArgumentException("Radius should be greater than 0.");
+                _secondRadius = value;
+            }
         }
 
         protected Ring(Point center,Double radius,Double secondRadius) : base(center,radius)
@@ -27,7 +32,8 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 
         public override void ShowInfo()
         {
-            Console.WriteLine($"Ring. Center = {Center}, Radius = {Radius}, SecondRadius = {SecondRadius}, "
+            Console.WriteLine("Ring." + Environment.NewLine
+                + $"Center = {Center}, FirstRadius = {Radius}, SecondRadius = {SecondRadius}, "
                 + $"LineColor = {LineColor}, FillColor = {FillColor}.");
         }
     }

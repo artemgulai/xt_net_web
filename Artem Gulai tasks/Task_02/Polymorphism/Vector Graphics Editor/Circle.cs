@@ -20,6 +20,8 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             get => _radius; 
             set
             {
+                if (value == 0)
+                    throw new ArgumentException("Radius should be greater than 0.");
                 _radius = Math.Abs(value);
             }
         }

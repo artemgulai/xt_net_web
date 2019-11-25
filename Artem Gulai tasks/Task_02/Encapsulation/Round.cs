@@ -38,7 +38,7 @@ namespace Task_02
                 if (value != 0)
                     _radius = Math.Abs(value);
                 else
-                    Console.WriteLine("Radius should be greater than 0.");
+                    throw new ArgumentException("Radius should be greater than 0.");
             }
             get => _radius;
         }
