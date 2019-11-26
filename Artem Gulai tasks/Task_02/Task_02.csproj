@@ -47,6 +47,7 @@
     <Compile Include="Encapsulation\MyString.cs" />
     <Compile Include="Polymorphism\Game\Bonuses\Apple.cs" />
     <Compile Include="Polymorphism\Game\Bonuses\Banana.cs" />
+    <Compile Include="Polymorphism\Game\Game.cs" />
     <Compile Include="Polymorphism\Game\Monsters\Bear.cs" />
     <Compile Include="Polymorphism\Game\Bonuses\Bonus.cs" />
     <Compile Include="Polymorphism\Game\Bonuses\Cherry.cs" />

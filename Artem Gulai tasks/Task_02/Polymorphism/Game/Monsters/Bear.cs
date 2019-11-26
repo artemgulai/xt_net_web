@@ -9,19 +9,6 @@ namespace Task_02.Polymorphism.Game.Monsters
 {
     class Bear : Monster
     {
-        public Bear()
-        {
-            Speed = 10;
-        }
-
-        public override void Move() { /* moves like bear */ }
-
-        public override void Hit(IMovable movable) 
-        {
-            if (movable.GetType() == typeof(Player))
-            {
-                /* decrease player's health*/
-            }
-        }
+        public Bear(Int32 speed = 10) : base(speed) { }
     }
 }

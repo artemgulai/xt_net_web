@@ -8,6 +8,10 @@ namespace Task_02.Polymorphism.Game.Bonuses
 {
     class Cherry : Bonus
     {
-        public override void GiveBonus(Player player) { /* increase mana by 10 */ }
+        public override void GiveBonus(Player player)
+        {
+            Console.WriteLine(this.GetType() + " increases mana by 10");
+            player.Mana += 10;
+        }
     }
 }

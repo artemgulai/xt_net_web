@@ -17,7 +17,8 @@ namespace Task_02
             //MyStringDemo.Demo();
             //RoundDemo.Demo();
             //RingDemo.Demo();
-            Polymorphism.Vector_Graphics_Editor.Editor.Demo();
+            //Polymorphism.Vector_Graphics_Editor.Editor.Demo();
+            Polymorphism.Game.GameDemo.Demo();
         }
     }
 }

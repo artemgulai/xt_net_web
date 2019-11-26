@@ -9,19 +9,6 @@ namespace Task_02.Polymorphism.Game.Monsters
 {
     class Wolf : Monster
     {
-        public Wolf()
-        {
-            Speed = 20;
-        }
-
-        public override void Move() { /* moves like Wolf */ }
-
-        public override void Hit(IMovable movable) 
-        {
-            if (movable.GetType() == typeof(Player))
-            {
-                /* decrease player's health*/
-            }
-        }
+        public Wolf(Int32 speed = 20 ) : base(speed) { }
     }
 }

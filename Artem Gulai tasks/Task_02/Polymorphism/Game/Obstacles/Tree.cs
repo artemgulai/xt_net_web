@@ -9,6 +9,16 @@ namespace Task_02.Polymorphism.Game.Obstacles
 {
     class Tree : Obstacle
     {
-        public override void Hit(IMovable movable) { /* decrease player's health by 10 and kills enemy */ }
+        public override void Hit(IMovable movable)
+        {
+            if (movable is Player)
+            {
+                Console.WriteLine(this.GetType() + " hits " + movable.GetType() + " by 10 health points.");
+            }
+            else
+            {
+                Console.WriteLine(this.GetType() + " kills " + movable.GetType());
+            }
+        }
     }
 }

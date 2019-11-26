@@ -9,6 +9,6 @@ namespace Task_02.Polymorphism.Game.Obstacles
 {
     abstract class Obstacle : GameObject, IHittable
     {
-        abstract public void Hit(IMovable movable); //Hits player and kills enemy
+        public abstract void Hit(IMovable movable);
     }
 }

@@ -8,13 +8,24 @@ namespace Task_02.Polymorphism.Game
 {
     class Field
     {
-        public Field(Int32 width, Int32 heigth)
+        private static Field field = null;
+
+        private Field()
         {
-            Width = width;
-            Height = heigth;
+            Width = 30;
+            Height = 30;
         }
 
-        public Int32 Width { get; set; }
-        public Int32 Height { get; set; }
+        public static Field GetField()
+        {
+            if (field == null)
+            {
+                field = new Field();
+            }
+            return field;
+        }
+
+        public Int32 Width { get; private set; }
+        public Int32 Height { get; private set; }
     }
 }

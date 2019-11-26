@@ -8,6 +8,10 @@ namespace Task_02.Polymorphism.Game.Bonuses
 {
     class Banana : Bonus
     {
-        public override void GiveBonus(Player player) { /* increase speed by 1 */ }
+        public override void GiveBonus(Player player)
+        {
+            Console.WriteLine(this.GetType() + " increases speed by 1");
+            player.Speed += 1;
+        }
     }
 }
