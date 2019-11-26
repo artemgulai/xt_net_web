@@ -96,6 +96,281 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             }
         }
 
+        private static Round AddRound()
+        {
+            while (true)
+            {
+                Round round = null;
+                Console.WriteLine("Enter xCenter:");
+                Double xCenter;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter yCenter:");
+                Double yCenter;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter radius:");
+                Double radius;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out radius))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                try
+                {
+                    round = Round.Create(new Point(xCenter,yCenter),radius);
+                    Console.WriteLine("Round created. Press enter to select colors.");
+                    Console.ReadLine();
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select line Color.");
+                int colorNumber;
+                while (true)
+                {
+                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        round.LineColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "LineColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select fill Color.");
+                while (true)
+                {
+                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        round.FillColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "FillColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                return round;
+            }
+        }
+
+        private static Line AddLine()
+        {
+            while (true)
+            {
+                Line line = null;
+                Console.WriteLine("Enter xP1:");
+                Double xP1;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xP1))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter yP1:");
+                Double yP1;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yP1))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter xP2:");
+                Double xP2;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xP2))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter yP2:");
+                Double yP2;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yP2))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                try
+                {
+                    line = Line.Create(new Point(xP1,yP1),new Point(xP2,yP2));
+                    Console.WriteLine("Line created. Press enter to select color.");
+                    Console.ReadLine();
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select line Color.");
+                int colorNumber;
+                while (true)
+                {
+                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        line.LineColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "LineColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                return line;
+            }
+        }
+
+
+        private static Rectangle AddRectangle()
+        {
+            while (true)
+            {
+                Rectangle rectangle = null;
+                Console.WriteLine("Enter xTopLeft:");
+                Double xTopLeft;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xTopLeft))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter yTopLeft:");
+                Double yTopLeft;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yTopLeft))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter xBottomRight:");
+                Double xBottomRight;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xBottomRight))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter yBottomRight:");
+                Double yBottomRight;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yBottomRight))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                try
+                {
+                    rectangle = Rectangle.Create(new Point(xTopLeft,yTopLeft),new Point(xBottomRight,yBottomRight));
+                    Console.WriteLine("Rectangle created. Press enter to select colors.");
+                    Console.ReadLine();
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select line Color.");
+                int colorNumber;
+                while (true)
+                {
+                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        rectangle.LineColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "LineColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select fill Color.");
+                while (true)
+                {
+                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        rectangle.FillColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "FillColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                return rectangle;
+            }
+        }
+
+        private static Circle AddCircle()
+        {
+            while (true)
+            {
+                Circle circle = null;
+                Console.WriteLine("Enter xCenter:");
+                Double xCenter;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter yCenter:");
+                Double yCenter;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter radius:");
+                Double radius;
+                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out radius))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                try
+                {
+                    circle = Circle.Create(new Point(xCenter,yCenter),radius);
+                    Console.WriteLine("Round created. Press enter to select color.");
+                    Console.ReadLine();
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select line Color.");
+                int colorNumber;
+                while (true)
+                {
+                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        circle.LineColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "LineColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                return circle;
+            }
+        }
+
+
+
         public static void Demo()
         {
             List<Figure> figures = new List<Figure>();
@@ -127,9 +402,29 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 switch (select)
                 {
                     case 1:
+                        figures.Add(AddLine());
+                        Console.Clear();
+                        Console.WriteLine("Line added. Press enter to continue.");
+                        Console.ReadLine();
+                        break;
                     case 2:
+                        figures.Add(AddCircle());
+                        Console.Clear();
+                        Console.WriteLine("Circle added. Press enter to continue.");
+                        Console.ReadLine();
+                        break;
                     case 3:
+                        figures.Add(AddRectangle());
+                        Console.Clear();
+                        Console.WriteLine("Rectangle added. Press enter to continue.");
+                        Console.ReadLine();
+                        break;
                     case 4:
+                        figures.Add(AddRound());
+                        Console.Clear();
+                        Console.WriteLine("Round added. Press enter to continue.");
+                        Console.ReadLine();
+                        break;
                     case 5:
                         figures.Add(AddRing());
                         Console.Clear();

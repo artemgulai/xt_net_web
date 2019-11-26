@@ -22,7 +22,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 
         public override void ShowInfo()
         {
-            Console.WriteLine($"Round. Center = {Center}, Radius = {Radius}, "
+            Console.WriteLine("Round." + Environment.NewLine + $"Center = {Center}, Radius = {Radius}, "
                 + $"LineColor = {LineColor}, FillColor = {FillColor}.");
         }
     }

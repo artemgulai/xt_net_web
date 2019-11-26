@@ -28,7 +28,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 
         public override void ShowInfo()
         {
-            Console.WriteLine($"Circle. Center = {Center}, Radius = {Radius}, LineColor = {LineColor}.");
+            Console.WriteLine("Circle." + Environment.NewLine + $"Center = {Center}, Radius = {Radius}, LineColor = {LineColor}.");
         }
 
         public static Circle Create(Point center, Double radius) 

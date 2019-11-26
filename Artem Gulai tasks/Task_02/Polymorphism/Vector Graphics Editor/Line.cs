@@ -19,7 +19,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 
         public override void ShowInfo()
         {
-            Console.WriteLine($"Line. P1 = {P1}, P2 = {P2}, LineColor = {LineColor}.");
+            Console.WriteLine("Line." + Environment.NewLine + $"P1 = {P1}, P2 = {P2}, LineColor = {LineColor}.");
         }
 
         public static Line Create(Point p1,Point p2)

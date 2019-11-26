@@ -26,7 +26,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 
         public override void ShowInfo()
         {
-            Console.WriteLine($"Rectangle. TopLeft = {TopLeft}, BottomRight = {BottomRight}, LineColor = {LineColor}, " +
+            Console.WriteLine("Rectangle." + Environment.NewLine + $"TopLeft = {TopLeft}, BottomRight = {BottomRight}, LineColor = {LineColor}, " +
                 $"FillColor = {FillColor}.");
         }
     }

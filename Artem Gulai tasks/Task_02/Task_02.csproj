@@ -45,6 +45,22 @@
   <ItemGroup>
     <Compile Include="Inheritance\Employee.cs" />
     <Compile Include="Encapsulation\MyString.cs" />
+    <Compile Include="Polymorphism\Game\Bonuses\Apple.cs" />
+    <Compile Include="Polymorphism\Game\Bonuses\Banana.cs" />
+    <Compile Include="Polymorphism\Game\Monsters\Bear.cs" />
+    <Compile Include="Polymorphism\Game\Bonuses\Bonus.cs" />
+    <Compile Include="Polymorphism\Game\Bonuses\Cherry.cs" />
+    <Compile Include="Polymorphism\Game\Field.cs" />
+    <Compile Include="Polymorphism\Game\GameObject.cs" />
+    <Compile Include="Polymorphism\Game\Interfaces\IHittable.cs" />
+    <Compile Include="Polymorphism\Game\Interfaces\IMovable.cs" />
+    <Compile Include="Polymorphism\Game\Monsters\Monster.cs" />
+    <Compile Include="Polymorphism\Game\Obstacles\Obstacle.cs" />
+    <Compile Include="Polymorphism\Game\Obstacles\Pit.cs" />
+    <Compile Include="Polymorphism\Game\Player.cs" />
+    <Compile Include="Polymorphism\Game\Obstacles\Stone.cs" />
+    <Compile Include="Polymorphism\Game\Obstacles\Tree.cs" />
+    <Compile Include="Polymorphism\Game\Monsters\Wolf.cs" />
     <Compile Include="Polymorphism\Vector Graphics Editor\Circle.cs" />
     <Compile Include="Polymorphism\Vector Graphics Editor\Color.cs" />
     <Compile Include="Polymorphism\Vector Graphics Editor\Editor.cs" />
@@ -64,5 +80,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
