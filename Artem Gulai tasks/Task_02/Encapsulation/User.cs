@@ -58,7 +58,7 @@ namespace Task_02
                 }
                 else
                 {
-                    Console.WriteLine("Wrong last name.");
+                    throw new ArgumentException("Wrong last name.");
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace Task_02
                 }
                 else
                 {
-                    Console.WriteLine("Wrong first name.");
+                    throw new ArgumentException("Wrong first name.");
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace Task_02
                 }
                 else
                 {
-                    Console.WriteLine("Wrong patronymic.");
+                    throw new ArgumentException("Wrong patronymic.");
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace Task_02
                 }
                 else
                 {
-                    Console.WriteLine("Wrong date of birth.");
+                    throw new ArgumentException("Wrong date of birth.");
                 }
             }
         }
@@ -144,11 +144,32 @@ namespace Task_02
 
             Console.WriteLine(Environment.NewLine + $"Changing {type}'s last name.");
             Console.Write("Trying to change last name to null: ");
-            user.LastName = null;
+            try
+            {
+                user.LastName = null;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change last name to empty string: ");
-            user.LastName = "";
+            try
+            {
+                user.LastName = "";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change last name to Mayakovskiy: ");
-            user.LastName = "Mayakovskiy";
+            try
+            {
+                user.LastName = "Mayakovskiy";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine($"{typeUpper}'s last name changed.");
             Console.WriteLine(user);
             Console.WriteLine("Press enter to continue.");
@@ -162,11 +183,32 @@ namespace Task_02
 
             Console.WriteLine(Environment.NewLine + $"Changing {type}'s first name.");
             Console.Write("Trying to change first name to null: ");
-            user.FirstName = null;
+            try
+            {
+                user.FirstName = null;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change first name to empty string: ");
-            user.FirstName = "";
+            try
+            {
+                user.FirstName = "";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change first name to Vladimir: ");
-            user.FirstName = "Vladimir";
+            try
+            {
+                user.FirstName = "Vladimir";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine($"{typeUpper}'s first name changed: ");
             Console.WriteLine(user);
             Console.WriteLine("Press enter to continue.");
@@ -180,11 +222,32 @@ namespace Task_02
 
             Console.WriteLine(Environment.NewLine + $"Changing {type}'s patronymic.");
             Console.Write("Trying to change patronymic to null: ");
-            user.Patronymic = null;
+            try
+            {
+                user.Patronymic = null;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change patronymic to empty string: ");
-            user.Patronymic = "";
+            try
+            {
+                user.Patronymic = "";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change patronymic to Vladimirovich: ");
-            user.Patronymic = "Vladimirovich";
+            try
+            {
+                user.Patronymic = "Vladimirovich";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine($"{typeUpper}'s patronymic changed.");
             Console.WriteLine(user);
             Console.WriteLine("Press enter to continue.");
@@ -198,9 +261,23 @@ namespace Task_02
 
             Console.WriteLine(Environment.NewLine + $"Changing {type}'s date of birth.");
             Console.Write("Trying to change date of birth to the future date: ");
-            user.BirthDate = DateTime.Parse("07 01 2021");
+            try
+            {
+                user.BirthDate = DateTime.Parse("07 01 2021");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change date of birth to another correct date: ");
-            user.BirthDate = DateTime.Parse("19 07 1893");
+            try
+            {
+                user.BirthDate = DateTime.Parse("19 07 1893");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine($"{typeUpper}'s date of birth changed.");
             Console.WriteLine(user);
             Console.WriteLine("Press enter to continue.");

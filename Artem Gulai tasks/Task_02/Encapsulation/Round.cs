@@ -91,7 +91,14 @@ namespace Task_02
         private static void ChangeRound(Round round)
         {
             Console.WriteLine("Trying to change Radius to 0:");
-            round.Radius = 0;
+            try
+            {
+                round.Radius = 0;
+            } 
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine("Trying to change Radius to Radius * 2:");
             round.Radius = round.Radius * 2;
             Console.WriteLine(round);

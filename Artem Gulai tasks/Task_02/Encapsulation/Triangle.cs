@@ -16,6 +16,7 @@ namespace Task_02
         {
             set
             {
+                CheckInequality(Math.Abs(value),_b,_c);
                 _a = Math.Abs(value);
             }
             get => _a;
@@ -25,6 +26,7 @@ namespace Task_02
         {
             set
             {
+                CheckInequality(_a,Math.Abs(value),_c);
                 _b = Math.Abs(value);
             }
             get => _b;
@@ -34,6 +36,7 @@ namespace Task_02
         {
             set
             {
+                CheckInequality(_a,_b,Math.Abs(value));
                 _c = Math.Abs(value);
             }
             get => _c;
@@ -41,9 +44,16 @@ namespace Task_02
 
         public Triangle(double a, double b, double c)
         {
-            A = a;
-            B = b;
-            C = c;
+            CheckInequality(a,b,c);
+            _a = a;
+            _b = b;
+            _c = c;
+        }
+
+        private void CheckInequality(Double a, Double b, Double c)
+        {
+            if (!(a < (b + c) && b < (a + c) && c < (a + b)))
+                throw new ArgumentException("Triangle inequality error!");
         }
 
         public Double Perimeter
@@ -60,17 +70,51 @@ namespace Task_02
         public override string ToString()
         {
             return $"Triangle. a = {_a}, b = {_b}, c = {_c}." + Environment.NewLine
-                + $"Area = {Area:N2}, Perimeter = {Perimeter}.";
+                + $"Area = {Area:N2}, Perimeter = {Perimeter:N2}.";
         }
     }
 
     class TriangleDemo
     {
+        private static void ChangeTriangle(Triangle triangle)
+        {
+            Console.WriteLine("Trying to change A to 0");
+            try
+            {
+                triangle.A = 0;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine("Trying to change B to 0");
+            try
+            {
+                triangle.B = 0;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine("Trying to change C to 0");
+            try
+            {
+                triangle.C = 0;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public static void Demo()
         {
             Double a;
             Double b;
             Double c;
+            Triangle triangle = null;
             Console.WriteLine("Enter lengths of triangle sides. If a negative value is entered, the absolute value is used.");
             Console.WriteLine("(If the input is wrong, you will have to enter one more time.)" + Environment.NewLine);
 
@@ -94,15 +138,23 @@ namespace Task_02
                 } while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,
                         CultureInfo.InvariantCulture,out c));
 
-                // Checking the triangle inequality
-                if (a < (b + c) && b < (a + c) && c < (a + b))
+                try
                 {
+                    triangle = new Triangle(a,b,c);
+                    Console.WriteLine("Triangle has been created.");
                     break;
                 }
-                Console.WriteLine("The triangle inequality error. Try again.");
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             } while (true);
 
-            Triangle triangle = new Triangle(a,b,c);
+            Console.WriteLine(triangle);
+            Console.ReadLine();
+
+            ChangeTriangle(triangle);
             Console.WriteLine(triangle);
             Console.ReadLine();
         }

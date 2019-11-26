@@ -368,12 +368,92 @@ namespace Task_02
     {
         public static void Demo()
         {
-            MyString m1 = MyString.FromString("Hello, ") + MyString.FromString("Wolrd!");
-            Console.WriteLine(m1);
-            Console.WriteLine(m1.GetType());
-            Console.WriteLine(m1.ToString().GetType());
-            Console.WriteLine(m1[1]);
+            Console.WriteLine("Enter two non-empty strings for demonstration.");
+            string string1 = Console.ReadLine();
+            string string2 = Console.ReadLine();
+            Console.WriteLine();
+
+            Console.WriteLine("Creating MyString from System.String:");
+            MyString myString1 = new MyString(string1);
+            Console.WriteLine("mystring1 = " + myString1);
+
+            Console.WriteLine("Creating MyString from Char[]:");
+            MyString myString2 = new MyString(string2.ToCharArray());
+            Console.WriteLine("mystring2 = " + myString2);
+
+            Console.WriteLine("Get length of MyString:");
+            Console.WriteLine("myString1.Length = " + myString1.Length);
+            Console.WriteLine("myString2.Length = " + myString2.Length + Environment.NewLine);
+
+            Console.WriteLine("Concatenate two MyString:");
+            MyString myString3 = myString1 + myString2;
+            Console.WriteLine("myString3 = " + myString3);
+            Console.WriteLine();
+
+            Console.WriteLine("Enter a char to search for in myString3:");
+            char search;
+            while (true)
+            {
+                try
+                {
+                    search = Console.ReadLine()[0];
+                    break;
+                } 
+                catch (IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine("Enter at least one char.");
+                }
+            }
+            Console.WriteLine($"myString3 contains \'{search}\': {myString3.Contains(search)}");
+            Console.WriteLine($"Index of \'{search}\' in myString3: {myString3.IndexOf(search)}'");
+            Console.WriteLine($"Last index of \'{search}\' in myString3: {myString3.LastIndexOf(search)}'");
+
+            Console.WriteLine("To upper case and to lower case:");
+            Console.WriteLine(myString3 = myString3.ToUpper());
+            Console.WriteLine(myString3 = myString3.ToLower());
             Console.ReadLine();
+
+            Console.WriteLine("Get substring from myString, length of 5 from index 2:");
+            Console.WriteLine(myString3.Substring(2,5));
+            Console.WriteLine("Get substring from myString, from index 2 to the end:");
+            Console.WriteLine(myString3.Substring(2));
+
+            Console.WriteLine("Get char by index. Enter index:");
+            int index;
+            while (true)
+            {
+                if (!Int32.TryParse(Console.ReadLine(),out index))
+                {
+                    Console.WriteLine("Wrong input. Enter number.");
+                    continue;
+                }
+                if (index >= 0)
+                {
+                    try
+                    {
+                        Console.WriteLine(myString3[index]);
+                        break;
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Console.WriteLine("Wrong index.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Index should be greater than or equal to 0.");
+                }
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Equality of two MyStrings:");
+            Console.WriteLine("Enter the first MyString to compare:");
+            myString1 = new MyString(Console.ReadLine());
+            Console.WriteLine("Enter the second MyString to compare:");
+            myString2 = new MyString(Console.ReadLine());
+
+            Console.WriteLine("MyStrigs are equal: " + (myString1 == myString2));
+
         }
     }
 }

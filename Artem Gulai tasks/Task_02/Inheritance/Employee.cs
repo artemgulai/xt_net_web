@@ -44,7 +44,7 @@ namespace Task_02
                 }
                 else
                 {
-                    Console.WriteLine("Wrong post.");
+                    throw new ArgumentException("Wrong post.");
                 }
             }
         }
@@ -56,11 +56,11 @@ namespace Task_02
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("Experience cannot be less than 0.");
+                    throw new ArgumentException("Experience cannot be less than 0.");
                 }
                 else if (value > Age)
                 {
-                    Console.WriteLine("Experience cannot be greater than age.");
+                    throw new ArgumentException("Experience cannot be greater than age.");
                 }
                 else
                 {
@@ -93,11 +93,32 @@ namespace Task_02
 
             Console.WriteLine(Environment.NewLine + $"Changing {type}'s post.");
             Console.Write("Trying to change post to null: ");
-            employee.Post = null;
+            try
+            {
+                employee.Post = null;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change post to empty string: ");
-            employee.Post = "";
+            try
+            {
+                employee.Post = "";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change patronymic to Senior Developer: ");
-            employee.Post = "Senior Developer";
+            try
+            {
+                employee.Post = "Senior Developer";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine($"{typeUpper}'s post changed.");
             Console.WriteLine(employee);
             Console.WriteLine("Press enter to continue.");
@@ -111,11 +132,32 @@ namespace Task_02
 
             Console.WriteLine(Environment.NewLine + $"Changing {type}'s experience.");
             Console.Write("Trying to change experience to -5: ");
-            employee.Experience = -5;
+            try
+            {
+                employee.Experience = -5;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change experience to 150 (greater than age): ");
-            employee.Experience = 150;
+            try
+            {
+                employee.Experience = 150;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.Write("Trying to change experience to 25: ");
-            employee.Experience = 25;
+            try
+            {
+                employee.Experience = 25;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine($"{typeUpper}'s experience changed.");
             Console.WriteLine(employee);
             Console.WriteLine("Press enter to exit.");
