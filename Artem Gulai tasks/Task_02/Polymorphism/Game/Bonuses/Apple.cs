@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Game.Bonuses
 {
+    /// <summary>
+    /// Apple increase player's health.
+    /// </summary>
     class Apple : Bonus
     {
         public override void GiveBonus(Player player) 

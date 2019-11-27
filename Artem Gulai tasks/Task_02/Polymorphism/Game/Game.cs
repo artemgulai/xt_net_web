@@ -10,10 +10,13 @@ using Task_02.Polymorphism.Game.Obstacles;
 
 namespace Task_02.Polymorphism.Game
 {
+    /// <summary>
+    /// Main class of the Game
+    /// </summary>
     class Game
     {
-        private Player player;
         private Field field;
+        private Player player;
         private List<Monster> monsters;
         private List<Obstacle> obstacles;
         private List<Bonus> bonuses;
@@ -46,6 +49,9 @@ namespace Task_02.Polymorphism.Game
             Console.WriteLine("The game is set up.");
         }
 
+        /// <summary>
+        /// Demonstration: monsters hit player.
+        /// </summary>
         public void HitPlayerByMonster()
         {
             foreach (Monster monster in monsters)
@@ -54,12 +60,18 @@ namespace Task_02.Polymorphism.Game
             }
         }
 
+        /// <summary>
+        /// Demonstration: monsters hit monsters.
+        /// </summary>
         public void HitMonsterByMonster()
         {
             monsters[0].Hit(monsters[1]);
             monsters[1].Hit(monsters[0]);
         }
 
+        /// <summary>
+        /// Demonstration: player hits monsters and player.
+        /// </summary>
         public void PlayerHit()
         {
             foreach (Monster monster in monsters)
@@ -69,6 +81,9 @@ namespace Task_02.Polymorphism.Game
             player.Hit(player);
         }
 
+        /// <summary>
+        /// Demonstration. Player collects bonuses.
+        /// </summary>
         public void PlayerCollectBonus()
         {
             foreach (Bonus bonus in bonuses)
@@ -78,6 +93,9 @@ namespace Task_02.Polymorphism.Game
             Console.WriteLine(player);
         }
 
+        /// <summary>
+        /// Demonstration: monsters move.
+        /// </summary>
         public void MonsterMove()
         {
             foreach(Monster monster in monsters)
@@ -86,6 +104,9 @@ namespace Task_02.Polymorphism.Game
             }
         }
 
+        /// <summary>
+        /// Demonstration: all move.
+        /// </summary>
         public void EveryoneMove()
         {
             List<IMovable> movables = new List<IMovable>();
@@ -101,6 +122,9 @@ namespace Task_02.Polymorphism.Game
             }
         }
 
+        /// <summary>
+        /// Demonstration: hittables hit movables.
+        /// </summary>
         public void EveryoneHit()
         {
             List<IMovable> movables = new List<IMovable>();

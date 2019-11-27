@@ -9,6 +9,10 @@ namespace Task_02.Polymorphism.Game.Obstacles
 {
     class Pit : Obstacle
     {
+        /// <summary>
+        /// Pit kills player and monsters.
+        /// </summary>
+        /// <param name="movable"></param>
         public override void Hit(IMovable movable) 
         {
             Console.WriteLine(this.GetType() + " kills " + movable.GetType());

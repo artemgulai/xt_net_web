@@ -9,6 +9,10 @@ namespace Task_02.Polymorphism.Game.Obstacles
 {
     class Tree : Obstacle
     {
+        /// <summary>
+        /// Tree hits player and kills monsters.
+        /// </summary>
+        /// <param name="movable"></param>
         public override void Hit(IMovable movable)
         {
             if (movable is Player)

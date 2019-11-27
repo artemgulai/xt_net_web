@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Game.Bonuses
 {
+    /// <summary>
+    /// Banana increases player's speed.
+    /// </summary>
     class Banana : Bonus
     {
         public override void GiveBonus(Player player)

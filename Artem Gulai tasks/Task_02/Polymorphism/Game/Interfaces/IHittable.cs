@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Game.Interfaces
 {
+    /// <summary>
+    /// Interface for objects which can hit movables.
+    /// </summary>
     interface IHittable
     {
         void Hit(IMovable movable);

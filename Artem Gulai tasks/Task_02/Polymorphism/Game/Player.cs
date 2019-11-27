@@ -8,6 +8,9 @@ using Task_02.Polymorphism.Game.Interfaces;
 
 namespace Task_02.Polymorphism.Game
 {
+    /// <summary>
+    /// Player class.
+    /// </summary>
     class Player : GameObject, IMovable, IHittable
     {
         public Int32 Mana { get; set; }
@@ -26,6 +29,10 @@ namespace Task_02.Polymorphism.Game
             Console.WriteLine(this.GetType() + $" moves according to user's commands with the speed of {Speed}.");
         }
        
+        /// <summary>
+        /// Hitting costs 5 mana points.
+        /// </summary>
+        /// <param name="movable"></param>
         public void Hit(IMovable movable) 
         { 
             if (movable is Player)
@@ -35,6 +42,7 @@ namespace Task_02.Polymorphism.Game
             else
             {
                 Console.WriteLine(this.GetType() + " hit " + movable.GetType());
+                Mana -= 5;
             }
         }
 

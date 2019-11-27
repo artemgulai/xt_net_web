@@ -7,6 +7,9 @@ using Task_02.Polymorphism.Game.Interfaces;
 
 namespace Task_02.Polymorphism.Game.Monsters
 {
+    /// <summary>
+    /// Base class for monsters. A monster can move and hit player.
+    /// </summary>
     abstract class Monster : GameObject, IMovable, IHittable
     {
         public Monster(Int32 speed)

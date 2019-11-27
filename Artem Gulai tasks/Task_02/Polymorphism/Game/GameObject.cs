@@ -7,8 +7,14 @@ using Task_02.Polymorphism.Vector_Graphics_Editor;
 
 namespace Task_02.Polymorphism.Game
 {
+    /// <summary>
+    /// Base class for all objects in the Game (player, monsters, obstacles and bonuses).
+    /// </summary>
     abstract class GameObject
     {
+        /// <summary>
+        /// Generates GameObject at random position.
+        /// </summary>
         protected GameObject()
         {
             Random random = new Random();
