@@ -140,7 +140,7 @@ namespace Task_00
             Console.ReadLine();
         }
 
-        static void Main(String[] args)
+        static void Main(string[] args)
         {
             int select = -1;
 
@@ -213,14 +213,14 @@ namespace Task_00
                         break;
                     case 4:
                         Console.WriteLine("\nЗадание 4. Создание, заполнение и сортировка массива.");
-                        Console.WriteLine('\n' + new String('*',20));
+                        Console.WriteLine('\n' + new string('*',20));
                         Console.WriteLine("Создание массива");
                         int[][] array = ArrayCreation();
                         Console.WriteLine("Созданный массив:");
                         ArrayDisplay(array);
                         Console.WriteLine();
                         PressEnterWait();
-                        Console.WriteLine(new String('*',20));
+                        Console.WriteLine(new string('*',20));
                         Console.WriteLine("Нажмите enter для сортировки массива.");
                         Console.ReadLine();
                         ArraySorting(array);

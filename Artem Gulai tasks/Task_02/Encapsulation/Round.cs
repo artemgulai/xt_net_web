@@ -9,7 +9,7 @@ namespace Task_02
 {
     class Round
     {
-        private Double _radius;
+        private double _radius;
 
         public Round()
         {
@@ -18,7 +18,7 @@ namespace Task_02
             _radius = 1;
         }
 
-        public Round(Double xCenter,Double yCenter,Double radius)
+        public Round(double xCenter,double yCenter,double radius)
         {
             XCenter = xCenter;
             YCenter = yCenter;
@@ -27,11 +27,11 @@ namespace Task_02
             Radius = radius;
         }
 
-        public Double XCenter { set; get; }
+        public double XCenter { set; get; }
 
-        public Double YCenter { set; get; }
+        public double YCenter { set; get; }
 
-        public Double Radius
+        public double Radius
         {
             set
             {
@@ -43,12 +43,12 @@ namespace Task_02
             get => _radius;
         }
 
-        public Double Area
+        public double Area
         {
             get => Math.PI * Math.Pow(_radius,2);
         }
 
-        public Double Length
+        public double Length
         {
             get => 2 * Math.PI * _radius;
         }
@@ -58,19 +58,19 @@ namespace Task_02
             Console.WriteLine($"x: {XCenter}, y: {YCenter}");
         }
 
-        public void MoveTo(Double x, Double y)
+        public void MoveTo(double x,double y)
         {
             XCenter = x;
             YCenter = y;
         }
 
-        public void MoveToRel(Double dx, Double dy)
+        public void MoveToRel(double dx,double dy)
         {
             XCenter += dx;
             YCenter += dy;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return $"xCenter = {XCenter}, yCenter = {YCenter}, radius = {Radius}" +
                 Environment.NewLine + $"Area = {Area}, Length = {Length}.";
@@ -109,23 +109,23 @@ namespace Task_02
             Round round = null;
             while (true)
             {
-                Double xCenter;
+                double xCenter;
                 Console.WriteLine("Enter the XCenter:");
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,CultureInfo.InvariantCulture,out xCenter))
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,CultureInfo.InvariantCulture,out xCenter))
                 {
                     Console.WriteLine("Wrong input. Try again.");
                 }
 
-                Double yCenter;
+                double yCenter;
                 Console.WriteLine("Enter the YCenter:");
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,CultureInfo.InvariantCulture,out yCenter))
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,CultureInfo.InvariantCulture,out yCenter))
                 {
                     Console.WriteLine("Wrong input. Try again.");
                 }
 
-                Double radius;
+                double radius;
                 Console.WriteLine("Enter the radius:");
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,CultureInfo.InvariantCulture,out radius))
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,CultureInfo.InvariantCulture,out radius))
                 {
                     Console.WriteLine("Wrong input. Try again.");
                 }

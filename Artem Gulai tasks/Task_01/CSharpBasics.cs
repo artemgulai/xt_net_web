@@ -18,7 +18,7 @@ namespace Task_01
             while (!flagA)
             {
                 Console.WriteLine("Enter a:");
-                if (Int32.TryParse(Console.ReadLine(),out a))
+                if (int.TryParse(Console.ReadLine(),out a))
                 {
                     if (a <= 0)
                     {
@@ -33,7 +33,7 @@ namespace Task_01
             while (!flagB)
             {
                 Console.WriteLine("Enter b:");
-                if (Int32.TryParse(Console.ReadLine(),out b))
+                if (int.TryParse(Console.ReadLine(),out b))
                 {
                     if (b <= 0)
                     {
@@ -59,7 +59,7 @@ namespace Task_01
             while (true)
             {
                 Console.WriteLine("Enter N.");
-                if (Int32.TryParse(Console.ReadLine(),out n))
+                if (int.TryParse(Console.ReadLine(),out n))
                 {
                     if (n > 0)
                     {
@@ -104,7 +104,7 @@ namespace Task_01
             while (true)
             {
                 Console.WriteLine("Enter N.");
-                if (Int32.TryParse(Console.ReadLine(),out n))
+                if (int.TryParse(Console.ReadLine(),out n))
                 {
                     if (n > 0)
                     {
@@ -160,7 +160,7 @@ namespace Task_01
             while (true)
             {
                 Console.WriteLine("Enter N.");
-                if (Int32.TryParse(Console.ReadLine(),out n))
+                if (int.TryParse(Console.ReadLine(),out n))
                 {
                     if (n > 0)
                     {
@@ -276,7 +276,7 @@ namespace Task_01
                 Console.WriteLine("\t1: bold");
                 Console.WriteLine("\t2: italic");
                 Console.WriteLine("\t3: underline");
-                if (Byte.TryParse(Console.ReadLine(), out enter))
+                if (byte.TryParse(Console.ReadLine(), out enter))
                 {
                     if (enter < 1 || enter > 3)
                     {

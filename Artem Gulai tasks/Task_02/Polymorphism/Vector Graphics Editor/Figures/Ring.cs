@@ -8,8 +8,8 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
     class Ring : Round
     {
-        private Double _secondRadius;
-        public Double SecondRadius
+        private double _secondRadius;
+        public double SecondRadius
         {
             get => _secondRadius;
             set
@@ -20,12 +20,12 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             }
         }
 
-        protected Ring(Point center,Double radius,Double secondRadius) : base(center,radius)
+        protected Ring(Point center,double radius,double secondRadius) : base(center,radius)
         {
             SecondRadius = secondRadius;
         }
 
-        public static Ring Create(Point center,Double radius,Double secondRadius)
+        public static Ring Create(Point center,double radius,double secondRadius)
         {
             return new Ring(center,radius,secondRadius);
         }

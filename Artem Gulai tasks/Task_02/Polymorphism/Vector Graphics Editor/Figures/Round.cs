@@ -10,12 +10,12 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     {
         public Color FillColor {get; set;}
 
-        protected Round(Point center, Double radius) : base(center,radius)
+        protected Round(Point center,double radius) : base(center,radius)
         {
             FillColor = Color.Black;
         }
 
-        public new static Round Create(Point center, Double radius)
+        public new static Round Create(Point center,double radius)
         {
             return new Round(center,radius);
         }

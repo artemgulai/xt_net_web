@@ -27,7 +27,7 @@ namespace Task_02
                 Console.WriteLine("8. Game.");
                 Console.WriteLine("0. Exit.");
 
-                if (Int32.TryParse(Console.ReadLine(),out select))
+                if (int.TryParse(Console.ReadLine(),out select))
                 {
                     switch (select)
                     {

@@ -8,16 +8,16 @@ namespace Task_02
 {
     class MyString
     {
-        private Char[] _myString;
+        private char[] _myString;
         private StringBuilder _sb;
-        private Int32 _length;
+        private int _length;
 
-        public Int32 Length
+        public int Length
         {
             get => _length;
         }
 
-        public Int32 Capacity
+        public int Capacity
         {
             get => _myString.Length;
         }
@@ -26,10 +26,10 @@ namespace Task_02
         /// Returns MyString as System.String.
         /// </summary>
         /// <returns></returns>
-        public String GetAsString()
+        public string GetAsString()
         {
             _sb.Clear();
-            foreach (Char c in _myString)
+            foreach (char c in _myString)
             {
                 _sb.Append(c);
             }
@@ -40,9 +40,9 @@ namespace Task_02
         /// MyString with arbitrary initial capacity.
         /// </summary>
         /// <param name="initCapacity">Initial capacity.</param>
-        public MyString(Int32 initCapacity)
+        public MyString(int initCapacity)
         {
-            _myString = new Char[initCapacity];
+            _myString = new char[initCapacity];
             _sb = new StringBuilder();
         }
 
@@ -57,7 +57,7 @@ namespace Task_02
         /// MyString with System.String as parameter.
         /// </summary>
         /// <param name="value">Input String.</param>
-        public MyString(String value) : this(value.Length)
+        public MyString(string value) : this(value.Length)
         {
             value.ToCharArray().CopyTo(_myString,0);
             _length = value.Length;
@@ -67,7 +67,7 @@ namespace Task_02
         /// MyString with array of Char as parameter.
         /// </summary>
         /// <param name="value">Array of chars.</param>
-        public MyString(Char[] value) : this(value.Length)
+        public MyString(char[] value) : this(value.Length)
         {
             value.CopyTo(_myString,0);
             _length = value.Length;
@@ -87,9 +87,9 @@ namespace Task_02
         /// Represents MyString as an array of Char.
         /// </summary>
         /// <returns>Array of chars.</returns>
-        public Char[] ToCharArray()
+        public char[] ToCharArray()
         {
-            Char[] myStringAsCharArray = new Char[Length];
+            char[] myStringAsCharArray = new char[Length];
             for (int i = 0; i < Length; i++)
             {
                 myStringAsCharArray[i] = _myString[i];
@@ -105,14 +105,14 @@ namespace Task_02
         /// <returns>Concatenated MyString.</returns>
         public static MyString Concat(MyString mstr1, MyString mstr2)
         {
-            Char[] concatMyString = new Char[mstr1.Length + mstr2.Length];
-            Char[] mstr = mstr1.ToCharArray();
+            char[] concatMyString = new char[mstr1.Length + mstr2.Length];
+            char[] mstr = mstr1.ToCharArray();
             for (int i = 0; i < mstr.Length; i++)
             {
                 concatMyString[i] = mstr[i];
             }
 
-            Int32 shift = mstr.Length;
+            int shift = mstr.Length;
             mstr = mstr2.ToCharArray();
             for (int i = 0; i < mstr2.Length; i++)
             {
@@ -128,15 +128,15 @@ namespace Task_02
         /// <returns>Concatenated MyString.</returns>
         public static MyString Concat(params MyString[] mstr)
         {
-            Int32 length = 0;
+            int length = 0;
             foreach (MyString myString in mstr)
             {
                 length += myString.Length;
             }
 
-            Char[] concatMyString = new Char[length];
+            char[] concatMyString = new char[length];
 
-            Int32 shift = 0;
+            int shift = 0;
             foreach (MyString myString in mstr)
             {
                 myString.ToCharArray().CopyTo(concatMyString,shift);
@@ -152,12 +152,12 @@ namespace Task_02
         /// <param name="mstr1"></param>
         /// <param name="mstr2"></param>
         /// <returns>-1, 0, 1 depending on lexicographical order.</returns>
-        public static Int32 Compare(MyString mstr1, MyString mstr2)
+        public static int Compare(MyString mstr1, MyString mstr2)
         {
             int minLength = mstr1.Length < mstr2.Length ? mstr1.Length : mstr2.Length;
 
-            Char[] mstrChar1 = mstr1.ToCharArray();
-            Char[] mstrChar2 = mstr2.ToCharArray();
+            char[] mstrChar1 = mstr1.ToCharArray();
+            char[] mstrChar2 = mstr2.ToCharArray();
 
             for (int i = 0; i < minLength; i++)
             {
@@ -175,7 +175,7 @@ namespace Task_02
         /// </summary>
         /// <param name="c"></param>
         /// <returns>True if MyString contains c, else false.</returns>
-        public Boolean Contains(Char c)
+        public bool Contains(char c)
         {
             for (int i = 0; i < Length; i++)
             {
@@ -190,7 +190,7 @@ namespace Task_02
         /// </summary>
         /// <param name="c"></param>
         /// <returns>Index of the first entry of c, -1 if c is not found.</returns>
-        public Int32 IndexOf(Char c)
+        public int IndexOf(char c)
         {
             for (int i = 0; i < Length; i++)
             {
@@ -205,7 +205,7 @@ namespace Task_02
         /// </summary>
         /// <param name="c"></param>
         /// <returns>Index of the last entry of c, -1 if c is not found.</returns>
-        public Int32 LastIndexOf(Char c)
+        public int LastIndexOf(char c)
         {
             for (int i = Length - 1; i >= 0; i--)
             {
@@ -221,11 +221,11 @@ namespace Task_02
         /// <param name="startIndex"></param>
         /// <param name="numberOfElements"></param>
         /// <returns>MyString or null if length is greater than number of available elements.</returns>
-        public MyString Substring(Int32 startIndex, Int32 length)
+        public MyString Substring(int startIndex,int length)
         {
             if (startIndex > Length - 1 || startIndex + length > Length)
                 return null;
-            Char[] subString = new Char[length];
+            char[] subString = new char[length];
             for (int i = 0; i < length; i++)
             {
                 subString[i] = _myString[i + startIndex];
@@ -238,7 +238,7 @@ namespace Task_02
         /// </summary>
         /// <param name="startIndex"></param>
         /// <returns></returns>
-        public MyString Substring(Int32 startIndex)
+        public MyString Substring(int startIndex)
         {
             return Substring(startIndex,Length - startIndex);
         }
@@ -248,7 +248,7 @@ namespace Task_02
         /// </summary>
         /// <param name="index"></param>
         /// <returns>Char at index or '\0' if the index is out of bounds.</returns>
-        public Char CharAt(Int32 index)
+        public char CharAt(int index)
         {
             return _myString[index];
         }
@@ -259,7 +259,7 @@ namespace Task_02
         /// <param name="mstr1"></param>
         /// <param name="mstr2"></param>
         /// <returns>True if MyStrings are equal, else false.</returns>
-        public static Boolean Equals(MyString mstr1, MyString mstr2)
+        public static bool Equals(MyString mstr1, MyString mstr2)
         {
             if (ReferenceEquals(mstr1,mstr2))
                 return true;
@@ -280,12 +280,17 @@ namespace Task_02
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static MyString FromCharArray(Char[] value)
+        public static MyString FromCharArray(char[] value)
         {
             return new MyString(value);
         }
 
-        public static MyString FromString(String value)
+        /// <summary>
+        /// Converts a string into MyString.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static MyString FromString(string value)
         {
             return new MyString(value);
         }
@@ -312,10 +317,10 @@ namespace Task_02
         /// <returns></returns>
         public MyString ToUpper()
         {
-            Char[] upperMyString = new Char[Length];
+            char[] upperMyString = new char[Length];
             for (int i = 0; i < Length; i++)
             {
-                upperMyString[i] = Char.ToUpper(_myString[i]);
+                upperMyString[i] = char.ToUpper(_myString[i]);
             }
             return new MyString(upperMyString);
         }
@@ -326,10 +331,10 @@ namespace Task_02
         /// <returns></returns>
         public MyString ToLower()
         {
-            Char[] lowerMyString = new Char[Length];
+            char[] lowerMyString = new char[Length];
             for (int i = 0; i < Length; i++)
             {
-                lowerMyString[i] = Char.ToLower(_myString[i]);
+                lowerMyString[i] = char.ToLower(_myString[i]);
             }
             return new MyString(lowerMyString);
         }
@@ -342,12 +347,12 @@ namespace Task_02
             return hashCode;
         }
 
-        public static Boolean operator==(MyString mstr1, MyString mstr2)
+        public static bool operator ==(MyString mstr1, MyString mstr2)
         {
             return Equals(mstr1,mstr2);
         }
 
-        public static Boolean operator !=(MyString mstr1,MyString mstr2)
+        public static bool operator !=(MyString mstr1,MyString mstr2)
         {
             return !Equals(mstr1,mstr2);
         }
@@ -357,7 +362,7 @@ namespace Task_02
             return Concat(mstr1,mstr2);
         }
 
-        public Char this[int index]
+        public char this[int index]
         {
             get { return _myString[index]; }
             set { _myString[index] = value; }
@@ -399,7 +404,7 @@ namespace Task_02
                     search = Console.ReadLine()[0];
                     break;
                 } 
-                catch (IndexOutOfRangeException ex)
+                catch (IndexOutOfRangeException)
                 {
                     Console.WriteLine("Enter at least one char.");
                 }
@@ -422,7 +427,7 @@ namespace Task_02
             int index;
             while (true)
             {
-                if (!Int32.TryParse(Console.ReadLine(),out index))
+                if (!int.TryParse(Console.ReadLine(),out index))
                 {
                     Console.WriteLine("Wrong input. Enter number.");
                     continue;

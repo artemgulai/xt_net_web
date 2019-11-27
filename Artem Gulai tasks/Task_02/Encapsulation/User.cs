@@ -9,14 +9,14 @@ namespace Task_02
 {
     class User
     {
-        private String _lastName;
-        private String _firstName;
-        private String _patronymic;
+        private string _lastName;
+        private string _firstName;
+        private string _patronymic;
         private DateTime _birthDate;
 
-        public User(String lastName,String firstName,String patronymic,DateTime birthDate)
+        public User(string lastName,string firstName,string patronymic,DateTime birthDate)
         {
-            String errorMessage = CheckFields(lastName,firstName,patronymic,birthDate);
+            string errorMessage = CheckFields(lastName,firstName,patronymic,birthDate);
             Console.Write("Checking fields.");
             for (int i = 0; i < 10; i++)
             {
@@ -33,7 +33,7 @@ namespace Task_02
             _birthDate = birthDate;
         }
 
-        private static String CheckFields(String lastName, String firstName, String patronymic, DateTime birthDate)
+        private static string CheckFields(string lastName,string firstName,string patronymic, DateTime birthDate)
         {
             StringBuilder errorMessage = new StringBuilder();
             if (lastName == null || lastName.Length == 0)
@@ -113,17 +113,17 @@ namespace Task_02
 
         public string FullName => $"{_lastName} {_firstName} {_patronymic}";
 
-        public Int32 Age
+        public int Age
         {
             get
             {
-                Int32 age = DateTime.Today.Year - _birthDate.Year;
+                int age = DateTime.Today.Year - _birthDate.Year;
                 if (DateTime.Today.AddYears(-age) < _birthDate) age--;
                 return age;
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return $"Fullname: {FullName}" + Environment.NewLine + "Date of Birth: " + _birthDate.ToString("d") + 
                 $", Age: {Age}";
@@ -132,9 +132,9 @@ namespace Task_02
 
     class UserDemo
     {
-        public static void ChangeUser(User user,String type)
+        public static void ChangeUser(User user,string type)
         {
-            String typeUpper = type.Substring(0,1).ToUpper() + type.Substring(1);
+            string typeUpper = type.Substring(0,1).ToUpper() + type.Substring(1);
 
             for (int i = 0; i < 10; i++)
             {
@@ -295,7 +295,7 @@ namespace Task_02
             Thread.Sleep(100);
             Console.WriteLine("Enter user's data. Note: you have to enter data until the input is correct.");
 
-            String lastName, firstName, patronymic;
+            string lastName, firstName, patronymic;
             DateTime birthDate;
             User user = null;
 

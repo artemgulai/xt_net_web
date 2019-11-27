@@ -13,11 +13,11 @@ namespace Task_02.Polymorphism.Game
     /// </summary>
     class Player : GameObject, IMovable, IHittable
     {
-        public Int32 Mana { get; set; }
-        public Int32 Speed { get; set; }
-        public Int32 Health { get; set; }
+        public int Mana { get; set; }
+        public int Speed { get; set; }
+        public int Health { get; set; }
 
-        public Player(Int32 health, Int32 mana, Int32 speed) : base()
+        public Player(int health,int mana,int speed) : base()
         {
             Health = health;
             Mana = mana;

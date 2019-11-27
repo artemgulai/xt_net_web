@@ -22,23 +22,23 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             {
                 Ring ring = null;
                 Console.WriteLine("Enter xCenter:");
-                Double xCenter;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
+                double xCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter yCenter:");
-                Double yCenter;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
+                double yCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter the first radius:");
-                Double firstRadius;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out firstRadius))
+                double firstRadius;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out firstRadius))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter the second radius:");
-                Double secondRadius;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out secondRadius))
+                double secondRadius;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out secondRadius))
                     Console.WriteLine("Wrong input. Try again.");
 
                 try
@@ -59,7 +59,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 int colorNumber;
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -78,7 +78,87 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 Console.WriteLine(Environment.NewLine + "Select fill Color.");
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        ring.FillColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "FillColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                return ring;
+            }
+        }
+
+        private static RingAggregation AddRingAggregation()
+        {
+            while (true)
+            {
+                RingAggregation ring = null;
+                Console.WriteLine("Enter xCenter:");
+                double xCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter yCenter:");
+                double yCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter inner radius:");
+                double innerRadius;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out innerRadius))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                Console.WriteLine("Enter outer radius:");
+                double outerRadius;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out outerRadius))
+                    Console.WriteLine("Wrong input. Try again.");
+
+                try
+                {
+                    ring = RingAggregation.Create(new Point(xCenter,yCenter),innerRadius, outerRadius);
+                    Console.WriteLine("Ring created. Press enter to select colors.");
+                    Console.ReadLine();
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    continue;
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select line Color.");
+                int colorNumber;
+                while (true)
+                {
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
+                    {
+                        Console.WriteLine("Wrong input. Try again.");
+                    }
+                    if (colorNumber > 0 && colorNumber <= 16)
+                    {
+                        ring.LineColor = (Color)colorNumber;
+                        Console.WriteLine(Environment.NewLine + "LineColor set to " + (Color)colorNumber);
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+
+                Console.Clear();
+                ShowColors();
+                Console.WriteLine(Environment.NewLine + "Select fill Color.");
+                while (true)
+                {
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -102,18 +182,18 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             {
                 Round round = null;
                 Console.WriteLine("Enter xCenter:");
-                Double xCenter;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
+                double xCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter yCenter:");
-                Double yCenter;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
+                double yCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter radius:");
-                Double radius;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out radius))
+                double radius;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out radius))
                     Console.WriteLine("Wrong input. Try again.");
 
                 try
@@ -134,7 +214,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 int colorNumber;
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -153,7 +233,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 Console.WriteLine(Environment.NewLine + "Select fill Color.");
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -177,23 +257,23 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             {
                 Line line = null;
                 Console.WriteLine("Enter xP1:");
-                Double xP1;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xP1))
+                double xP1;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xP1))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter yP1:");
-                Double yP1;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yP1))
+                double yP1;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yP1))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter xP2:");
-                Double xP2;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xP2))
+                double xP2;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xP2))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter yP2:");
-                Double yP2;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yP2))
+                double yP2;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yP2))
                     Console.WriteLine("Wrong input. Try again.");
 
                 try
@@ -214,7 +294,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 int colorNumber;
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -239,23 +319,23 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             {
                 Rectangle rectangle = null;
                 Console.WriteLine("Enter xTopLeft:");
-                Double xTopLeft;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xTopLeft))
+                double xTopLeft;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xTopLeft))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter yTopLeft:");
-                Double yTopLeft;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yTopLeft))
+                double yTopLeft;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yTopLeft))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter xBottomRight:");
-                Double xBottomRight;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xBottomRight))
+                double xBottomRight;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xBottomRight))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter yBottomRight:");
-                Double yBottomRight;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yBottomRight))
+                double yBottomRight;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yBottomRight))
                     Console.WriteLine("Wrong input. Try again.");
 
                 try
@@ -276,7 +356,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 int colorNumber;
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -295,7 +375,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 Console.WriteLine(Environment.NewLine + "Select fill Color.");
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -319,18 +399,18 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             {
                 Circle circle = null;
                 Console.WriteLine("Enter xCenter:");
-                Double xCenter;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
+                double xCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out xCenter))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter yCenter:");
-                Double yCenter;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
+                double yCenter;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out yCenter))
                     Console.WriteLine("Wrong input. Try again.");
 
                 Console.WriteLine("Enter radius:");
-                Double radius;
-                while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out radius))
+                double radius;
+                while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture,out radius))
                     Console.WriteLine("Wrong input. Try again.");
 
                 try
@@ -351,7 +431,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 int colorNumber;
                 while (true)
                 {
-                    while (!Int32.TryParse(Console.ReadLine(),out colorNumber))
+                    while (!int.TryParse(Console.ReadLine(),out colorNumber))
                     {
                         Console.WriteLine("Wrong input. Try again.");
                     }
@@ -390,11 +470,12 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                 Console.WriteLine("3. Add Rectangle.");
                 Console.WriteLine("4. Add Round.");
                 Console.WriteLine("5. Add Ring.");
-                Console.WriteLine("6. Show figures.");
+                Console.WriteLine("6. Add Ring (aggregation).");
+                Console.WriteLine("7. Show figures.");
                 Console.WriteLine("0. Exit.");
 
                 int select;
-                while (!Int32.TryParse(Console.ReadLine(), out select))
+                while (!int.TryParse(Console.ReadLine(), out select))
                 {
                     Console.WriteLine("Wrong input. Try again.");
                 }
@@ -432,6 +513,12 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
                         Console.ReadLine();
                         break;
                     case 6:
+                        figures.Add(AddRingAggregation());
+                        Console.Clear();
+                        Console.WriteLine("Ring (aggregation) added. Press enter to continue.");
+                        Console.ReadLine();
+                        break;
+                    case 7:
                         Console.Clear();
                         foreach (Figure figure in figures)
                         {

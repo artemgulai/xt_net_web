@@ -21,7 +21,7 @@ namespace Task_00
                 arrayLength[i] = int.Parse(Console.ReadLine());
             }
 
-            var array = System.Array.CreateInstance(typeof(Int32),arrayLength);
+            var array = System.Array.CreateInstance(typeof(int),arrayLength);
             Random random = new Random(42);
             int[] indices = new int[arrayDim];
 

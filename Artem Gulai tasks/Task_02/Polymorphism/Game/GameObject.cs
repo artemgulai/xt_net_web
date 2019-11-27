@@ -23,7 +23,7 @@ namespace Task_02.Polymorphism.Game
         }
         public Point Position { get; private set; }
 
-        public override String ToString()
+        public override string ToString()
         {
             return this.GetType().ToString() + Environment.NewLine +
                 $"Position: ({Position.X:N0}, {Position.Y:N0}).";

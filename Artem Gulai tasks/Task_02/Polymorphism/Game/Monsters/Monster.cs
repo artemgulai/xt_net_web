@@ -12,7 +12,7 @@ namespace Task_02.Polymorphism.Game.Monsters
     /// </summary>
     abstract class Monster : GameObject, IMovable, IHittable
     {
-        public Monster(Int32 speed)
+        public Monster(int speed)
         {
             Speed = speed;
         }

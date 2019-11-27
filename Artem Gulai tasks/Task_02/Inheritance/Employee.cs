@@ -9,13 +9,13 @@ namespace Task_02
 {
     class Employee : User
     {
-        private String _post;
-        private Int32 _experience;
+        private string _post;
+        private int _experience;
 
-        public Employee(String lastName,String firstName,String patronymic,DateTime birthDate, String post, Int32 experience) : 
+        public Employee(string lastName,string firstName,string patronymic,DateTime birthDate,string post,int experience) : 
             base(lastName, firstName, patronymic, birthDate)
         {
-            String error = CheckFields(post,experience);
+            string error = CheckFields(post,experience);
             if (error.Length != 0)
                 throw new ArgumentException(error);
 
@@ -23,7 +23,7 @@ namespace Task_02
             _experience = experience;
         }
 
-        private String CheckFields(String post, Int32 experience)
+        private string CheckFields(string post,int experience)
         {
             StringBuilder errorMessage = new StringBuilder();
             if (post == null || post.Length == 0)
@@ -33,7 +33,7 @@ namespace Task_02
             return errorMessage.ToString();
         }
 
-        public String Post
+        public string Post
         {
             get => _post;
             set
@@ -49,7 +49,7 @@ namespace Task_02
             }
         }
 
-        public Int32 Experience
+        public int Experience
         {
             get => _experience;
             set
@@ -71,7 +71,7 @@ namespace Task_02
 
         public override string ToString()
         {
-            String years = "years";
+            string years = "years";
             if (_experience == 1)
                 years = "year";
             return base.ToString() + Environment.NewLine + 
@@ -81,9 +81,9 @@ namespace Task_02
 
     class EmployeeDemo
     {
-        public static void ChangeEmployee(Employee employee, String type)
+        public static void ChangeEmployee(Employee employee,string type)
         {
-            String typeUpper = type.Substring(0,1).ToUpper() + type.Substring(1);
+            string typeUpper = type.Substring(0,1).ToUpper() + type.Substring(1);
 
             for (int i = 0; i < 10; i++)
             {
@@ -175,8 +175,8 @@ namespace Task_02
             Thread.Sleep(100);
             Console.WriteLine("Enter employee's data. Note: you have to enter data until the input is correct.");
 
-            String lastName, firstName, patronymic, post;
-            Int32 experience;
+            string lastName, firstName, patronymic, post;
+            int experience;
             DateTime birthDate;
             Employee employee = null;
 
@@ -243,7 +243,7 @@ namespace Task_02
                 Console.Write("Enter experience: ");
                 while (true)
                 {
-                    if (Int32.TryParse(Console.ReadLine(), out experience))
+                    if (int.TryParse(Console.ReadLine(), out experience))
                     {
                         if (experience >= 0)
                         {

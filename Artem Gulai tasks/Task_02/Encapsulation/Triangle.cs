@@ -9,10 +9,10 @@ namespace Task_02
 {
     class Triangle
     {
-        private Double _a;
-        private Double _b;
-        private Double _c;
-        public Double A
+        private double _a;
+        private double _b;
+        private double _c;
+        public double A
         {
             set
             {
@@ -22,7 +22,7 @@ namespace Task_02
             get => _a;
         }
 
-        public Double B
+        public double B
         {
             set
             {
@@ -32,7 +32,7 @@ namespace Task_02
             get => _b;
         }
 
-        public Double C
+        public double C
         {
             set
             {
@@ -50,18 +50,18 @@ namespace Task_02
             _c = c;
         }
 
-        private void CheckInequality(Double a, Double b, Double c)
+        private void CheckInequality(double a,double b,double c)
         {
             if (!(a < (b + c) && b < (a + c) && c < (a + b)))
                 throw new ArgumentException("Triangle inequality error!");
         }
 
-        public Double Perimeter
+        public double Perimeter
         {
             get => _a + _b + _c;
         }
 
-        public Double Area
+        public double Area
         {
             get => Math.Sqrt(Perimeter / 2 * (Perimeter / 2 - _a) * 
                 (Perimeter / 2 - _b) * (Perimeter / 2 - _c));
@@ -111,9 +111,9 @@ namespace Task_02
 
         public static void Demo()
         {
-            Double a;
-            Double b;
-            Double c;
+            double a;
+            double b;
+            double c;
             Triangle triangle = null;
             Console.WriteLine("Enter lengths of triangle sides. If a negative value is entered, the absolute value is used.");
             Console.WriteLine("(If the input is wrong, you will have to enter one more time.)" + Environment.NewLine);
@@ -123,19 +123,19 @@ namespace Task_02
                 do
                 {
                     Console.WriteLine("Enter a:");
-                } while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,
+                } while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,
                         CultureInfo.InvariantCulture,out a));
 
                 do
                 {
                     Console.WriteLine("Enter b:");
-                } while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,
+                } while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,
                         CultureInfo.InvariantCulture,out b));
 
                 do
                 {
                     Console.WriteLine("Enter c:");
-                } while (!Double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,
+                } while (!double.TryParse(Console.ReadLine(),System.Globalization.NumberStyles.Any,
                         CultureInfo.InvariantCulture,out c));
 
                 try

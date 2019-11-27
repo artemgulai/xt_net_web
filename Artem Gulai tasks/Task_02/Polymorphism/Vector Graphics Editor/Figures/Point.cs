@@ -20,8 +20,8 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             Y = value.Y;
         }
 
-        public Double X { get; set; }
-        public Double Y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
 
         public override string ToString()
         {

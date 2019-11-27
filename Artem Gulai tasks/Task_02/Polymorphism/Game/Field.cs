@@ -28,7 +28,7 @@ namespace Task_02.Polymorphism.Game
             return field;
         }
 
-        public Int32 Width { get; private set; }
-        public Int32 Height { get; private set; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
     }
 }

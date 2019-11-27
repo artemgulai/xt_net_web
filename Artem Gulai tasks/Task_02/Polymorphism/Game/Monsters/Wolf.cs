@@ -9,6 +9,6 @@ namespace Task_02.Polymorphism.Game.Monsters
 {
     class Wolf : Monster
     {
-        public Wolf(Int32 speed = 20 ) : base(speed) { }
+        public Wolf(int speed = 20 ) : base(speed) { }
     }
 }

@@ -21,11 +21,11 @@ namespace Task_01
             
             foreach (char c in alphabet)
             {
-                if (Char.IsSeparator(c))
+                if (char.IsSeparator(c))
                 {
                     separators.Add(c);
                 }
-                else if (Char.IsPunctuation(c))
+                else if (char.IsPunctuation(c))
                 {
                     punctuation.Add(c);
                 }
@@ -74,25 +74,25 @@ namespace Task_01
                 doubledLineAllCase.Append(c);
 
                 // this doubles only letters and digits (non-case-sensitive)
-                if (Char.IsLetterOrDigit(c) && line3.Contains(Char.ToLower(c)))
+                if (char.IsLetterOrDigit(c) && line3.Contains(char.ToLower(c)))
                 {
                     doubledLineLettersDigitsNonCase.Append(c);
                 }
 
                 // this doubles only letters and digits (case-sensitive)
-                if (Char.IsLetterOrDigit(c) && line2.Contains(c))
+                if (char.IsLetterOrDigit(c) && line2.Contains(c))
                 {
                     doubledLineLettersDigitsCase.Append(c);
                 }
 
                 // this doubles letters, digits and punctuation (non-case-sensitive)
-                if ((Char.IsPunctuation(c) && line2.Contains(c)) || (Char.IsLetterOrDigit(c) && line3.Contains(Char.ToLower(c))))
+                if ((char.IsPunctuation(c) && line2.Contains(c)) || (char.IsLetterOrDigit(c) && line3.Contains(char.ToLower(c))))
                 {
                     doubledLineLettersDigitsPunctuationNonCase.Append(c);
                 }
 
                 // this doubles letters, digits and punctuation (case-sensitive)
-                if ((Char.IsPunctuation(c) || Char.IsLetterOrDigit(c)) && line2.Contains(c))
+                if ((char.IsPunctuation(c) || char.IsLetterOrDigit(c)) && line2.Contains(c))
                 {
                     doubledLineLettersDigitsPunctuationCase.Append(c);
                 }

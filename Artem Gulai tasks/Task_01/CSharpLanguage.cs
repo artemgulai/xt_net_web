@@ -19,7 +19,7 @@ namespace Task_01
             do
             {
                 Console.WriteLine("Enter the length of an array.");
-                if (Int32.TryParse(Console.ReadLine(),out length))
+                if (int.TryParse(Console.ReadLine(),out length))
                 {
                     if (length > 0) break;
                     Console.WriteLine("Length cannot be less than 1. Try again.");
@@ -91,7 +91,7 @@ namespace Task_01
             do
             {
                 Console.WriteLine("Enter the length of the first dimension.");
-                if (Int32.TryParse(Console.ReadLine(),out dim1))
+                if (int.TryParse(Console.ReadLine(),out dim1))
                 {
                     if (dim1 > 0) break;
                     Console.WriteLine("Length cannot be less than 1. Try again.");
@@ -106,7 +106,7 @@ namespace Task_01
             do
             {
                 Console.WriteLine("Enter the length of the second dimension.");
-                if (Int32.TryParse(Console.ReadLine(),out dim2))
+                if (int.TryParse(Console.ReadLine(),out dim2))
                 {
                     if (dim2 > 0) break;
                     Console.WriteLine("Length cannot be less than 1. Try again.");
@@ -158,7 +158,7 @@ namespace Task_01
             do
             {
                 Console.WriteLine("Enter the length of the first dimension.");
-                if (Int32.TryParse(Console.ReadLine(),out dim1))
+                if (int.TryParse(Console.ReadLine(),out dim1))
                 {
                     if (dim1 > 0) break;
                     Console.WriteLine("Length cannot be less than 1. Try again.");
@@ -173,7 +173,7 @@ namespace Task_01
             do
             {
                 Console.WriteLine("Enter the length of the second dimension.");
-                if (Int32.TryParse(Console.ReadLine(),out dim2))
+                if (int.TryParse(Console.ReadLine(),out dim2))
                 {
                     if (dim2 > 0) break;
                     Console.WriteLine("Length cannot be less than 1. Try again.");
@@ -188,7 +188,7 @@ namespace Task_01
             do
             {
                 Console.WriteLine("Enter the length of the first dimension.");
-                if (Int32.TryParse(Console.ReadLine(),out dim3))
+                if (int.TryParse(Console.ReadLine(),out dim3))
                 {
                     if (dim3 > 0) break;
                     Console.WriteLine("Length cannot be less than 1. Try again.");

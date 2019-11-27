@@ -9,6 +9,6 @@ namespace Task_02.Polymorphism.Game.Monsters
 {
     class Bear : Monster
     {
-        public Bear(Int32 speed = 10) : base(speed) { }
+        public Bear(int speed = 10) : base(speed) { }
     }
 }

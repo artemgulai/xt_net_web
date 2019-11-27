@@ -31,7 +31,7 @@ namespace Task_01
                 Console.WriteLine("12. Char Doubler.");
                 Console.WriteLine("0. Exit.");
 
-                if (Int32.TryParse(Console.ReadLine(), out select))
+                if (int.TryParse(Console.ReadLine(), out select))
                 {
                     switch (select)
                     {

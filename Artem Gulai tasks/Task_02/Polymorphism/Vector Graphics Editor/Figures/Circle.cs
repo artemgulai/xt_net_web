@@ -8,14 +8,14 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
     class Circle : Figure
     {
-        protected Double _radius;
-        protected Circle(Point center,Double radius) : base()
+        protected double _radius;
+        protected internal Circle(Point center,double radius) : base()
         {
             Center = new Point(center);
             Radius = radius;
         }
         public Point Center { get; set; }
-        public Double Radius 
+        public double Radius 
         {
             get => _radius; 
             set
@@ -31,7 +31,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             Console.WriteLine("Circle." + Environment.NewLine + $"Center = {Center}, Radius = {Radius}, LineColor = {LineColor}.");
         }
 
-        public static Circle Create(Point center, Double radius) 
+        public static Circle Create(Point center,double radius) 
         {
             return new Circle(center,radius);
         }
