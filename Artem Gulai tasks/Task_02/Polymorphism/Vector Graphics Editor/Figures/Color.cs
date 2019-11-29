@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
+    /// <summary>
+    /// Enumeration for choosing colors of figures.
+    /// </summary>
     enum Color
     {
         Aqua = 1,

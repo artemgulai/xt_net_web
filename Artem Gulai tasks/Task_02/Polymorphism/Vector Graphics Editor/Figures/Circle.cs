@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
+    /// <summary>
+    /// A Circle is defined by a center point and a radius.
+    /// </summary>
     class Circle : Figure
     {
         protected double _radius;
-        protected internal Circle(Point center,double radius) : base()
+        public Circle(Point center,double radius) : base()
         {
             Center = new Point(center);
             Radius = radius;
@@ -29,11 +32,6 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
         public override void ShowInfo()
         {
             Console.WriteLine("Circle." + Environment.NewLine + $"Center = {Center}, Radius = {Radius}, LineColor = {LineColor}.");
-        }
-
-        public static Circle Create(Point center,double radius) 
-        {
-            return new Circle(center,radius);
         }
     }
 }

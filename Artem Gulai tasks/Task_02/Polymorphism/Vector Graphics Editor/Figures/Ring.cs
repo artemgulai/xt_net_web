@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
+    /// <summary>
+    /// Ring is defined by Round with one more radius.
+    /// </summary>
     class Ring : Round
     {
         private double _secondRadius;
@@ -20,14 +23,9 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
             }
         }
 
-        protected Ring(Point center,double radius,double secondRadius) : base(center,radius)
+        public Ring(Point center,double radius,double secondRadius) : base(center,radius)
         {
             SecondRadius = secondRadius;
-        }
-
-        public static Ring Create(Point center,double radius,double secondRadius)
-        {
-            return new Ring(center,radius,secondRadius);
         }
 
         public override void ShowInfo()

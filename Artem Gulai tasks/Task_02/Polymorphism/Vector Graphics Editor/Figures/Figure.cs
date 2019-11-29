@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
+    /// <summary>
+    /// Base class for all figures.
+    /// </summary>
     abstract class Figure
     {
         public Color LineColor { get; set; }

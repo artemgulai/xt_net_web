@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
+    /// <summary>
+    /// Round is defined by its base circle and Fill color.
+    /// </summary>
     class Round : Circle
     {
         public Color FillColor {get; set;}
 
-        protected Round(Point center,double radius) : base(center,radius)
+        public Round(Point center,double radius) : base(center,radius)
         {
             FillColor = Color.Black;
-        }
-
-        public new static Round Create(Point center,double radius)
-        {
-            return new Round(center,radius);
         }
 
         public override void ShowInfo()

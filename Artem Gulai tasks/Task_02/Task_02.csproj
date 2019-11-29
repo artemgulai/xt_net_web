@@ -62,6 +62,13 @@
     <Compile Include="Polymorphism\Game\Obstacles\Stone.cs" />
     <Compile Include="Polymorphism\Game\Obstacles\Tree.cs" />
     <Compile Include="Polymorphism\Game\Monsters\Wolf.cs" />
+    <Compile Include="Polymorphism\Vector Graphics Editor\Figure Factories\CircleFactory.cs" />
+    <Compile Include="Polymorphism\Vector Graphics Editor\Figure Factories\FigureFactory.cs" />
+    <Compile Include="Polymorphism\Vector Graphics Editor\Figure Factories\LineFactory.cs" />
+    <Compile Include="Polymorphism\Vector Graphics Editor\Figure Factories\RectangleFactory.cs" />
+    <Compile Include="Polymorphism\Vector Graphics Editor\Figure Factories\RingAggregationFactory.cs" />
+    <Compile Include="Polymorphism\Vector Graphics Editor\Figure Factories\RingFactory.cs" />
+    <Compile Include="Polymorphism\Vector Graphics Editor\Figure Factories\RoundFactory.cs" />
     <Compile Include="Polymorphism\Vector Graphics Editor\Figures\Circle.cs" />
     <Compile Include="Polymorphism\Vector Graphics Editor\Figures\Color.cs" />
     <Compile Include="Polymorphism\Vector Graphics Editor\Editor.cs" />

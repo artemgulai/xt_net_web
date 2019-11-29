@@ -15,7 +15,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
         private Circle _outerCircle;
         public Point Center { get; set; }
 
-        private RingAggregation(Point center,double innerRadius,double outerRadius)
+        public RingAggregation(Point center,double innerRadius,double outerRadius)
         {
             Center = center;
             if (innerRadius >= outerRadius)
@@ -40,11 +40,6 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
 
             }
             FillColor = Color.Black;
-        }
-
-        public static RingAggregation Create(Point center,double innerRadius,double outerRadius)
-        {
-            return new RingAggregation(center,innerRadius,outerRadius);
         }
 
         public double InnerRadius 
