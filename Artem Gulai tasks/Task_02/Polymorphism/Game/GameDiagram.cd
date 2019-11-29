@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Task_02.Polymorphism.Game.Bonuses.Apple" Collapsed="true">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Polymorphism\Game\Bonuses\Apple.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Bonuses.Banana" Collapsed="true">
+    <Position X="9.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Polymorphism\Game\Bonuses\Banana.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Bonuses.Bonus" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Polymorphism\Game\Bonuses\Bonus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Bonuses.Cherry" Collapsed="true">
+    <Position X="12" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Polymorphism\Game\Bonuses\Cherry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Field" Collapsed="true">
+    <Position X="23.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAhAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Field.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Game" Collapsed="true">
+    <Position X="25.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CACAUAAAQAAAAAkAAAAAAAAABAAAIAABAAAAAAIAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.GameDemo" Collapsed="true">
+    <Position X="23.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.GameObject" Collapsed="true">
+    <Position X="16.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Player" Collapsed="true">
+    <Position X="16.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAIAAAAAEAAIAAAABAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Monsters.Bear" Collapsed="true">
+    <Position X="11" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Monsters\Bear.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Monsters.Monster" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAEAAIAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Monsters\Monster.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Monsters.Wolf" Collapsed="true">
+    <Position X="13.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Monsters\Wolf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Obstacles.Obstacle" Collapsed="true">
+    <Position X="21.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Obstacles\Obstacle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Obstacles.Pit" Collapsed="true">
+    <Position X="19.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Obstacles\Pit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Obstacles.Stone" Collapsed="true">
+    <Position X="21.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Obstacles\Stone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task_02.Polymorphism.Game.Obstacles.Tree" Collapsed="true">
+    <Position X="23.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Obstacles\Tree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Task_02.Polymorphism.Game.Interfaces.IHittable" Collapsed="true">
+    <Position X="23.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Interfaces\IHittable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task_02.Polymorphism.Game.Interfaces.IMovable" Collapsed="true">
+    <Position X="25.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Polymorphism\Game\Interfaces\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
