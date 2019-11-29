@@ -27,7 +27,6 @@ namespace Task_02.Polymorphism.Game
         {
             return this.GetType().ToString() + Environment.NewLine +
                 $"Position: ({Position.X:N0}, {Position.Y:N0}).";
-            // TODO: Override ToString() for all game classes
         }
     }
 }
