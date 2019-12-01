@@ -43,18 +43,18 @@ namespace Task_01
         }
 
         /// <summary>
-        /// Sorts 1D array of integers.
+        /// Sorts 1D array of IComparables.
         /// </summary>
-        /// <param name="array">1D array of integers</param>
-        public static void Sort1DArray(int[] array)
+        /// <param name="array">1D array of IComparables</param>
+        public static void Sort1DArray<T>(T[] array) where T : IComparable<T>
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
-                int min = int.MaxValue;
+                T min = array[i];
                 int minInd = i;
                 for (int j = i; j < array.Length; j++)
                 {
-                    if (array[j] < min)
+                    if (array[j].CompareTo(min) < 0)
                     {
                         min = array[j];
                         minInd = j;
@@ -62,7 +62,7 @@ namespace Task_01
                 }
                 if (minInd != i)
                 {
-                    int temp = array[i];
+                    T temp = array[i];
                     array[i] = array[minInd];
                     array[minInd] = temp;
                 }
@@ -253,7 +253,7 @@ namespace Task_01
             Display1DArray(array);
             Console.WriteLine();
 
-            Sort1DArray(array);
+            Sort1DArray<int>(array);
 
             Console.WriteLine("Min value: " + $"{array[0]}.");
             Console.WriteLine("Min value: " + $"{array[array.Length-1]}.");
