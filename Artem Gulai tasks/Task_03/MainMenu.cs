@@ -18,7 +18,7 @@ namespace Task_03
                 Console.WriteLine("Task 03. Collections.");
                 Console.WriteLine("Select the number of a task to check.");
                 Console.WriteLine("1. Lost.");
-                //Console.WriteLine("2. Triangle.");
+                Console.WriteLine("2. Word Frequency.");
                 //Console.WriteLine("3. User.");
                 //Console.WriteLine("4. My String.");
                 //Console.WriteLine("5. Employee.");
@@ -32,19 +32,11 @@ namespace Task_03
                     switch (select)
                     {
                         case 1:
-                            Console.Clear();
-                            Console.WriteLine("Task 3.1. Lost.");
-                            Lost.LostDemo() ;
-                            Console.WriteLine("Press enter to continue.");
-                            Console.ReadLine();
+                            Lost.Lost.LostDemo();
                             break;
-                        //case 2:
-                        //    Console.Clear();
-                        //    Console.WriteLine("Task 2.2. Triangle.");
-                        //    TriangleDemo.Demo();
-                        //    Console.WriteLine("Press enter to continue.");
-                        //    Console.ReadLine();
-                        //    break;
+                        case 2:
+                            WordFrequency.WordFrequency.WordFrequencyDemo();
+                            break;
                         //case 3:
                         //    Console.Clear();
                         //    Console.WriteLine("Task 2.3. User.");

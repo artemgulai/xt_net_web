@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lost.cs" />
+    <Compile Include="Lost\Lost.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WordFrequency.cs" />
+    <Compile Include="WordFrequency\WordFrequency.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

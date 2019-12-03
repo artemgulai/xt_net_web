@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_03
+namespace Task_03.Lost
 {
     class Lost
     {
@@ -69,6 +69,7 @@ namespace Task_03
                 try
                 {
                     Lost_3_1(numOfPeople,eachNToRemove);
+                    Console.WriteLine("Press enter to continue.");
                 } 
                 catch (ArgumentException ex)
                 {
