@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Task_03
 {
-    class Program
+    class WordFrequency
     {
-        static void Main(string[] args)
-        {
-            MainMenu.Menu();
-        }
+
+    }
+
+    class WordFrequencyDemo
+    {
+
     }
 }
