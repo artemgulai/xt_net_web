@@ -17,21 +17,21 @@ namespace Task_03.Lost
             if (eachN < 1)
                 throw new ArgumentException("The number of human to remove cannot be less than 1.", "eachN");
 
-            // Initial set of numbered people.
+            // Initial set of people numbered from 1 to numOfPeople.
             List<int> people = new List<int>(numOfPeople);
             for (int i = 0; i < numOfPeople; i++)
             {
                 people.Add(i + 1);
             }
 
-
-            int indexToRemove = -1;
+            int indexToRemove = 0;
+            int indexShift = eachN - 1;
             int numOfPeopleLeft = numOfPeople;
 
             while (true)
             {
-                indexToRemove = (indexToRemove + eachN) % numOfPeopleLeft--;
-                people.RemoveAt(indexToRemove--);
+                indexToRemove = (indexToRemove + indexShift) % numOfPeopleLeft--;
+                people.RemoveAt(indexToRemove);
 
                 foreach (var item in people)
                 {
