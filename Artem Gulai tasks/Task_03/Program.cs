@@ -12,7 +12,7 @@ namespace Task_03
         static void Main(string[] args)
         {
             StartProgram();
-            //Lost.LostLinkedList.Lost(10,4);
+            //Lost.LostSinglyLinkedList.Lost(10,4);
         }
 
         static void StartProgram()

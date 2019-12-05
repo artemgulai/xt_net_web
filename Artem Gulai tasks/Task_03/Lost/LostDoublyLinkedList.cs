@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_03.Lost
 {
-    class LostLinkedList
+    class LostDoublyLinkedList
     {
         public static void Lost(int numOfPeople, int eachN)
         {
@@ -17,7 +17,7 @@ namespace Task_03.Lost
             if (eachN < 1)
                 throw new ArgumentException("The number of human to remove cannot be less than 1.","eachN");
 
-            MyLinkedList<int> list = new MyLinkedList<int>();
+            MyDoublyLinkedList<int> list = new MyDoublyLinkedList<int>();
 
             for (int i = 1; i <= numOfPeople; i++)
             {
@@ -34,21 +34,21 @@ namespace Task_03.Lost
         }
     }
 
-    class MyLinkedListNode<T>
+    class MyDoublyLinkedListNode<T>
     {   
-        public MyLinkedListNode<T> Next { get; set; }
-        public MyLinkedListNode<T> Previous { get; set; }
+        public MyDoublyLinkedListNode<T> Next { get; set; }
+        public MyDoublyLinkedListNode<T> Previous { get; set; }
 
         public T Value { get; private set; }
 
-        public MyLinkedListNode(T value, MyLinkedListNode<T> next, MyLinkedListNode<T> previous)
+        public MyDoublyLinkedListNode(T value,MyDoublyLinkedListNode<T> next,MyDoublyLinkedListNode<T> previous)
         {
             Value = value;
             Next = next;
             Previous = previous;
         }
 
-        public MyLinkedListNode(T value)
+        public MyDoublyLinkedListNode(T value)
         {
             Value = value;
             Next = this;
@@ -62,12 +62,12 @@ namespace Task_03.Lost
         }
     }
 
-    class MyLinkedList<T>
+    class MyDoublyLinkedList<T>
     {
-        public MyLinkedListNode<T> First { get; private set; }
-        public MyLinkedListNode<T> Last { get; private set; }
+        public MyDoublyLinkedListNode<T> First { get; private set; }
+        public MyDoublyLinkedListNode<T> Last { get; private set; }
 
-        public MyLinkedList()
+        public MyDoublyLinkedList()
         {
         }
 
@@ -75,7 +75,7 @@ namespace Task_03.Lost
         {
             if (First != null)
             {
-                var newNode = new MyLinkedListNode<T>(value,First,Last);
+                var newNode = new MyDoublyLinkedListNode<T>(value,First,Last);
                 Last.Next = newNode;
                 First.Previous = newNode;
                 newNode.Next = First;
@@ -85,7 +85,7 @@ namespace Task_03.Lost
             }
             if (First == null)
             {
-                var newNode = new MyLinkedListNode<T>(value);
+                var newNode = new MyDoublyLinkedListNode<T>(value);
                 Last = newNode; 
                 First = newNode;
                 return true;

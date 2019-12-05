@@ -53,7 +53,16 @@ namespace Task_03.Lost
                 Console.WriteLine($"Number of people: {numOfPeople}");
                 Console.WriteLine($"Each {eachNToRemove} is removed." + Environment.NewLine);
                 Console.WriteLine("Doubly linked list realization." + Environment.NewLine);
-                LostLinkedList.Lost(numOfPeople,eachNToRemove);
+                LostDoublyLinkedList.Lost(numOfPeople,eachNToRemove);
+                Console.WriteLine("Press enter to continue.");
+                Console.ReadLine();
+
+                Console.Clear();
+                Console.WriteLine("Task 3.1. Lost.");
+                Console.WriteLine($"Number of people: {numOfPeople}");
+                Console.WriteLine($"Each {eachNToRemove} is removed." + Environment.NewLine);
+                Console.WriteLine("Singly linked list realization." + Environment.NewLine);
+                LostSinglyLinkedList.Lost(numOfPeople,eachNToRemove);
                 Console.WriteLine("Press enter to continue.");
                 Console.ReadLine();
                 break;
