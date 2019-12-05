@@ -21,7 +21,7 @@ namespace Task_03.DynamicArray
         public static void CheckIndexOutOfRange<T>(int index, DynamicArray.DynamicArray<T> array)
         {
             if (index < 0 || index >= array.Length)
-                throw new IndexOutOfRangeException();
+                throw new ArgumentOutOfRangeException();
         }
     }
 }

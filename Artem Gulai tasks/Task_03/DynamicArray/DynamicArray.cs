@@ -146,7 +146,7 @@ namespace Task_03.DynamicArray
         /// <summary>
         /// Removes all entries of specified item.
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">Item to remove</param>
         /// <returns>True if item is removed, else false.</returns>
         public bool RemoveAll(T item)
         {
@@ -163,8 +163,8 @@ namespace Task_03.DynamicArray
         /// <summary>
         /// Removes an item at specified position.
         /// </summary>
-        /// <param name="index"></param>
-        public void RemoveAt(int index)
+        /// <param name="index">Position of an item to remove</param>
+        public bool RemoveAt(int index)
         {
             DynamicArrayService.CheckIndexOutOfRange(index, this);
 
@@ -173,6 +173,7 @@ namespace Task_03.DynamicArray
                 _array[i] = _array[i + 1];
             }
             _length--;
+            return true;
         }
 
         /// <summary>
@@ -245,6 +246,15 @@ namespace Task_03.DynamicArray
         public virtual IEnumerator GetEnumerator()
         {
             return new DynamicArrayEnumerator<T>(this);
+        }
+
+        /// <summary>
+        /// Shows the information about the instance.
+        /// </summary>
+        public void ShowInfo()
+        {
+            Console.WriteLine($"Length = {Length}. " +
+                $"Capacity = {Capacity}. Type = {this.GetType()}.");
         }
     }
 }

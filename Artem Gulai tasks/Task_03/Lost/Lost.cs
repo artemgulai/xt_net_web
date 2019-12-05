@@ -44,8 +44,11 @@ namespace Task_03.Lost
             }
             Console.ReadLine();
         }
+    }
 
-        public static void LostDemo()
+    public class LostDemo
+    {
+        public static void Demo()
         {
             while (true)
             {
@@ -68,9 +71,9 @@ namespace Task_03.Lost
 
                 try
                 {
-                    Lost_3_1(numOfPeople,eachNToRemove);
+                    Lost.Lost_3_1(numOfPeople,eachNToRemove);
                     Console.WriteLine("Press enter to continue.");
-                } 
+                }
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
