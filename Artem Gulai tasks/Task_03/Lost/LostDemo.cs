@@ -6,46 +6,6 @@ using System.Threading.Tasks;
 
 namespace Task_03.Lost
 {
-    class Lost
-    {
-        public static void Lost_3_1(int numOfPeople, int eachN)
-        {
-            // check values of parameters
-            if (numOfPeople < 2)
-                throw new ArgumentException("Number of people cannot be less than 2.","numOfPeople");
-
-            if (eachN < 1)
-                throw new ArgumentException("The number of human to remove cannot be less than 1.", "eachN");
-
-            // Initial set of people numbered from 1 to numOfPeople.
-            List<int> people = new List<int>(numOfPeople);
-            for (int i = 0; i < numOfPeople; i++)
-            {
-                people.Add(i + 1);
-            }
-
-            int indexToRemove = 0;
-            int indexShift = eachN - 1;
-            int numOfPeopleLeft = numOfPeople;
-
-            while (true)
-            {
-                indexToRemove = (indexToRemove + indexShift) % numOfPeopleLeft--;
-                people.RemoveAt(indexToRemove);
-
-                foreach (var item in people)
-                {
-                    Console.Write(item + " ");
-                }
-                Console.WriteLine();
-
-                if (numOfPeopleLeft == 1)
-                    break;
-            }
-            Console.ReadLine();
-        }
-    }
-
     public class LostDemo
     {
         public static void Demo()
@@ -71,8 +31,14 @@ namespace Task_03.Lost
 
                 try
                 {
-                    Lost.Lost_3_1(numOfPeople,eachNToRemove);
+                    Console.Clear();
+                    Console.WriteLine("Task 3.1. Lost.");
+                    Console.WriteLine($"Number of people: {numOfPeople}");
+                    Console.WriteLine($"Each {eachNToRemove} is removed." + Environment.NewLine);
+                    Console.WriteLine("List realization." + Environment.NewLine);
+                    LostList.Lost(numOfPeople,eachNToRemove);
                     Console.WriteLine("Press enter to continue.");
+                    Console.ReadLine();
                 }
                 catch (ArgumentException ex)
                 {
@@ -81,6 +47,15 @@ namespace Task_03.Lost
                     Console.ReadLine();
                     continue;
                 }
+
+                Console.Clear();
+                Console.WriteLine("Task 3.1. Lost.");
+                Console.WriteLine($"Number of people: {numOfPeople}");
+                Console.WriteLine($"Each {eachNToRemove} is removed." + Environment.NewLine);
+                Console.WriteLine("Doubly linked list realization." + Environment.NewLine);
+                LostLinkedList.Lost(numOfPeople,eachNToRemove);
+                Console.WriteLine("Press enter to continue.");
+                Console.ReadLine();
                 break;
             }
         }

@@ -50,7 +50,9 @@
     <Compile Include="DynamicArray\DynamicArrayEnumerator.cs" />
     <Compile Include="DynamicArray\DynamicArrayHardcore.cs" />
     <Compile Include="DynamicArray\DynamicArrayService.cs" />
-    <Compile Include="Lost\Lost.cs" />
+    <Compile Include="Lost\LostList.cs" />
+    <Compile Include="Lost\LostDemo.cs" />
+    <Compile Include="Lost\LostLinkedList.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
