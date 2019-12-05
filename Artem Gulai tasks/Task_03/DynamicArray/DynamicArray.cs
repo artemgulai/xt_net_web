@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task_03.DynamicArray
 {
+    /// <summary>
+    /// Generic dynamic array.
+    /// </summary>
     class DynamicArray<T> : IEnumerable<T>, IEnumerable
     {
         protected T[] _array;
@@ -200,6 +201,9 @@ namespace Task_03.DynamicArray
             return true;
         }
 
+        /// <summary>
+        /// Provides an access to items of DynamicArray by index.
+        /// </summary>
         public virtual T this[int index]
         {
             get 

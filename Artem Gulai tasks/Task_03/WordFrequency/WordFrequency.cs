@@ -15,7 +15,7 @@ namespace Task_03.WordFrequency
         /// <param name="word">A word.</param>
         public static void WordCount(string text, string word)
         {
-            List<string> words = new List<string>(text.Split(new char[] { ' ', ',', '.' }));
+            List<string> words = new List<string>(text.Split(new char[] { ' ', ',', '.', '\n' }));
             int numOfOccurences = 0;
             foreach (string wordInText in words)
             {

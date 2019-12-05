@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Task_03.DynamicArray
@@ -11,7 +12,7 @@ namespace Task_03.DynamicArray
         {
             #region Creating DynamicArray
             Console.Clear();
-            Console.WriteLine("Task 3.4. Dynamic Array." + Environment.NewLine);
+            Console.WriteLine("Task 3.3. Dynamic Array." + Environment.NewLine);
          
             Console.WriteLine("Creating DynamicArray in 3 ways." + Environment.NewLine);
             Console.WriteLine("Creating empty DynamicArray of ints with default capacity.");
@@ -262,12 +263,146 @@ namespace Task_03.DynamicArray
 
         public static void HardcoreDemo()
         {
+            Console.Clear();
+            Console.WriteLine("Task 3.4. Dynamic Array (Hardcore mode)." + Environment.NewLine);
 
+            Console.WriteLine("Let's create DynamicArrayHardcore, containing the Fibonacci sequence (several members)");
+            DynamicArrayHardcore<int> dArr = new DynamicArrayHardcore<int>(new List<int>() { 1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711 });
+            dArr.ShowInfo();
+            Console.WriteLine(dArr);
+
+            #region Negative index
+            Console.WriteLine(Environment.NewLine + "Press enter to access DynamicArray elements from the end by negative indices.");
+            Console.ReadLine();
+
+            for (int i = -1; i >= -dArr.Length; i--)
+            {
+                Console.Write(dArr[i] + " ");
+            }
+            Console.WriteLine(Environment.NewLine + Environment.NewLine + "Press enter to go to Capacity changing demonstration.");
+            Console.ReadLine();
+            #endregion
+
+            #region Capacity changing
+            Console.Clear();
+            Console.WriteLine("Task 3.4. Dynamic Array (Hardcore mode)." + Environment.NewLine);
+            Console.WriteLine("Manual capacity changing demonstration." + Environment.NewLine);
+            Console.WriteLine(dArr);
+            dArr.ShowInfo();
+
+            Console.WriteLine(Environment.NewLine + "Press enter to change Capacity to 15.");
+            Console.ReadLine();
+
+            dArr.Capacity = 15;
+            Console.WriteLine(dArr);
+            dArr.ShowInfo();
+
+            Console.WriteLine(Environment.NewLine + "Press enter to change Capacity to 0.");
+            Console.ReadLine();
+
+            try
+            {
+                dArr.Capacity = 0;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine(Environment.NewLine + "Press enter to change Capacity to -10.");
+            Console.ReadLine();
+
+            try
+            {
+                dArr.Capacity = -10;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine(Environment.NewLine + "Dynamic array is not changed:");
+            Console.WriteLine(dArr);
+            dArr.ShowInfo();
+
+            Console.WriteLine(Environment.NewLine + "Press enter to go to ICloneable demonstration.");
+            Console.ReadLine();
+            #endregion
+
+            #region ICloneable 
+            Console.Clear();
+            Console.WriteLine("Task 3.4. Dynamic Array (Hardcore mode)." + Environment.NewLine);
+            Console.WriteLine("ICloneable demonstration." + Environment.NewLine);
+            Console.WriteLine(dArr);
+            dArr.ShowInfo();
+            Console.WriteLine();
+
+            Console.WriteLine("Let's create another DynamicArray which is a clone of our DynamicArray." + Environment.NewLine);
+            var dArr2 = dArr.Clone() as DynamicArray<int>;
+
+            Console.WriteLine("Our DynamicArray:");
+            Console.WriteLine(dArr);
+            dArr.ShowInfo();
+            Console.WriteLine();
+
+            Console.WriteLine("New DynamicArray:");
+            Console.WriteLine(dArr2);
+            dArr2.ShowInfo();
+            Console.WriteLine();
+
+            Console.WriteLine("These two DynamicArrays are different objects. Let's check the reference equality.");
+            Console.WriteLine($"References are equal: {ReferenceEquals(dArr, dArr2)}");
+
+            Console.WriteLine(Environment.NewLine + "Press enter to ToArray demonstration.");
+            Console.ReadLine();
+            #endregion
+
+            #region ToArray demonstration
+            Console.Clear();
+            Console.WriteLine("Task 3.4. Dynamic Array (Hardcore mode)." + Environment.NewLine);
+            Console.WriteLine("ToArray demonstration." + Environment.NewLine);
+            Console.WriteLine(dArr);
+            dArr.ShowInfo();
+            Console.WriteLine();
+
+            Console.WriteLine("Press enter to get an array containing DynamicArray items.");
+            int[] array = dArr.ToArray();
+            Console.WriteLine(Environment.NewLine + "New simple array:");
+            Console.WriteLine(array.GetType());
+            foreach (var item in array)
+            {
+                Console.Write(item + " ");
+            }
+
+            Console.WriteLine(Environment.NewLine + Environment.NewLine + "Press enter to exit.");
+            Console.ReadLine();
+            #endregion
         }
 
         public static void CycledDemo()
         {
+            Console.Clear();
+            Console.WriteLine("Task 3.4. Cycled Dynamic Array." + Environment.NewLine);
 
+            Console.WriteLine("Let's create CycledDynamicArray, containing the Fibonacci sequence (several members)");
+            CycledDynamicArray<int> dArr = new CycledDynamicArray<int>(new List<int>() { 1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711 });
+            dArr.ShowInfo();
+            Console.WriteLine(dArr);
+
+            Console.WriteLine(Environment.NewLine + "Press enter to jump into the infinite foreach loop. (but it will stop after 150 iterations :) )");
+            Console.ReadLine();
+
+            int numOfIteration = 0;
+            foreach (var item in dArr)
+            {
+                Console.Write(item + " ");
+                Thread.Sleep(100);
+                if (++numOfIteration == 150)
+                    break;
+            }
+
+            Console.WriteLine(Environment.NewLine + "Press enter to exit.");
+            Console.ReadLine();
         }
     }
 }

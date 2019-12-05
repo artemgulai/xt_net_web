@@ -29,7 +29,7 @@ namespace Task_03.DynamicArray
 
         protected override T[] ReallocateArray(int newCapacity)
         {
-            if (newCapacity >= Capacity)
+            if (newCapacity >= Capacity || newCapacity <= 0)
                 return base.ReallocateArray(newCapacity);
 
             T[] newArray = new T[newCapacity];

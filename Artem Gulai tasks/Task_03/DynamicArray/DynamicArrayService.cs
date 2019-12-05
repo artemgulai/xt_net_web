@@ -8,6 +8,11 @@ namespace Task_03.DynamicArray
 {
     class DynamicArrayService
     {
+        /// <summary>
+        /// Counts the number of items in specified collection
+        /// </summary>
+        /// <param name="collection">A collection for which the number of items is count.</param>
+        /// <returns>The number of items.</returns>
         public static int GetCollectionLength<T>(IEnumerable<T> collection)
         {
             int collectionLength = 0;
@@ -18,6 +23,9 @@ namespace Task_03.DynamicArray
             return collectionLength;
         }
 
+        /// <summary>
+        /// Checks the index of DynamicArray for being in the range of the underlying array.
+        /// </summary>
         public static void CheckIndexOutOfRange<T>(int index, DynamicArray.DynamicArray<T> array)
         {
             if (index < 0 || index >= array.Length)

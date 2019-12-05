@@ -43,20 +43,12 @@ namespace Task_03
                         case 3:
                             DynamicArray.DynamicArrayDemo.SimpleDemo();
                             break;
-                        //case 4:
-                        //    Console.Clear();
-                        //    Console.WriteLine("Task 2.4. My String.");
-                        //    MyStringDemo.Demo();
-                        //    Console.WriteLine("Press enter to continue.");
-                        //    Console.ReadLine();
-                        //    break;
-                        //case 5:
-                        //    Console.Clear();
-                        //    Console.WriteLine("Task 2.5. Employee.");
-                        //    EmployeeDemo.Demo();
-                        //    Console.WriteLine("Press enter to continue.");
-                        //    Console.ReadLine();
-                        //    break;
+                        case 4:
+                            DynamicArray.DynamicArrayDemo.HardcoreDemo();
+                            break;
+                        case 5:
+                            DynamicArray.DynamicArrayDemo.CycledDemo();
+                            break;
                         //case 6:
                         //    Console.Clear();
                         //    Console.WriteLine("Task 2.6. Ring.");
