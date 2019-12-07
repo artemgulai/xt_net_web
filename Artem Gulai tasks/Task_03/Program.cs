@@ -50,27 +50,6 @@ namespace Task_03
                         case 5:
                             DynamicArray.DynamicArrayDemo.CycledDemo();
                             break;
-                        //case 6:
-                        //    Console.Clear();
-                        //    Console.WriteLine("Task 2.6. Ring.");
-                        //    RingDemo.Demo();
-                        //    Console.WriteLine("Press enter to continue.");
-                        //    Console.ReadLine();
-                        //    break;
-                        //case 7:
-                        //    Console.Clear();
-                        //    Console.WriteLine("Task 2.7. Vector Graphics Editor.");
-                        //    Polymorphism.Vector_Graphics_Editor.Editor.Demo();
-                        //    Console.WriteLine("Press enter to continue.");
-                        //    Console.ReadLine();
-                        //    break;
-                        //case 8:
-                        //    Console.Clear();
-                        //    Console.WriteLine("Task 2.8. Game.");
-                        //    Polymorphism.Game.GameDemo.Demo();
-                        //    Console.WriteLine("Press enter to continue.");
-                        //    Console.ReadLine();
-                        //    break;
                         case 0:
                             Console.WriteLine("Good luck!");
                             Console.WriteLine("Press enter to exit.");
