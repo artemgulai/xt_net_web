@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_01
 {
-    class CSharpLanguage
+    public class CSharpLanguage
     {
         /// <summary>
         /// Generates 1D array of integers for ArrayProcessing1_7 and NonNegativeSum1_9.
@@ -75,9 +75,19 @@ namespace Task_01
         /// <param name="array">1D array</param>
         public static void Display1DArray<T>(T[] array)
         {
-            for (int i = 0; i < array.Length; i++)
+            if (typeof(T).ToString() != "System.Double")
             {
-                Console.Write("{0} ",array[i]);
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.Write("{0} ",array[i]);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.Write("{0:N2} ",array[i]);
+                }
             }
         }
 
