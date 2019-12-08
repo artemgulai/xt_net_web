@@ -79,57 +79,5 @@ namespace Task_04
 
             Console.ReadLine();
         }
-
-        static void Iseekyou()
-        {
-            var rnd = new Random();
-            var array = new int[100];
-
-            for (int i = 0; i < 100; i++)
-            {
-                array[i] = rnd.Next(-500,501);
-            }
-
-            IEnumerable<int> positivesDirect = ISeekYou.GetPositiveItemsDirectSearch(array);
-            Console.WriteLine("Positives by direct search.");
-            foreach (var item in positivesDirect)
-            {
-                Console.Write($"{item}, ");
-            }
-            Console.ReadLine();
-
-            IEnumerable<int> positivesDelegate = ISeekYou.GetPositiveItemsByPredicate(array,new Func<int,bool>(x => x > 0));
-            Console.WriteLine(Environment.NewLine + "Positives by delegate instance.");
-            foreach (var item in positivesDelegate)
-            {
-                Console.Write($"{item}, ");
-            }
-            Console.ReadLine();
-
-            IEnumerable<int> positivesAnonymous = ISeekYou.GetPositiveItemsByPredicate(array, delegate(int x) { return x > 0; });
-            Console.WriteLine(Environment.NewLine + "Positives by anonymous method delegate.");
-            foreach (var item in positivesAnonymous)
-            {
-                Console.Write($"{item}, ");
-            }
-            Console.ReadLine();
-
-            IEnumerable<int> positivesLambda = ISeekYou.GetPositiveItemsByPredicate(array, x => x > 0 );
-            Console.WriteLine(Environment.NewLine + "Positives by lambda delegate.");
-            foreach (var item in positivesLambda)
-            {
-                Console.Write($"{item}, ");
-            }
-            Console.ReadLine();
-
-            IEnumerable<int> positivesLinq = ISeekYou.GetPositiveItemsLinq(array);
-            Console.WriteLine(Environment.NewLine + "Positives by LINQ.");
-            foreach (var item in positivesLinq)
-            {
-                Console.Write($"{item}, ");
-            }
-            Console.ReadLine();
-
-        }
     }
 }
