@@ -113,6 +113,8 @@ namespace Task_04.Exts
 
         public static bool IsPositiveInt(this string value)
         {
+            if (value == null || value.Length == 0)
+                return false;
             string trimmedString = value.Trim();
             if (trimmedString.Length == 0) return false;
             if (trimmedString.Length == 1 && trimmedString[0] == '0') return false;
@@ -126,7 +128,7 @@ namespace Task_04.Exts
 
         public static bool IsInt(this string value)
         {
-            if (value.Length == 0)
+            if (value == null || value.Length == 0)
                 return false;
             string trimmedString = value.Trim();
             if (trimmedString.Length == 1 && !Char.IsDigit(trimmedString[0])) return false;

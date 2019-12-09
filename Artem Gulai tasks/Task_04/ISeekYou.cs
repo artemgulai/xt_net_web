@@ -9,8 +9,22 @@ namespace Task_04
 {
     class ISeekYou
     {
+        private static void CheckArray(int[] array)
+        {
+            if (array == null)
+                throw new ArgumentException("Array is null");
+        }
+
+        private static void CheckDelegate(Func<int,bool> condition)
+        {
+            if (condition == null)
+                throw new ArgumentException("Delegate is null");
+        }
+
         public static IEnumerable<int> GetPositiveItemsDirectSearch(int[] collection)
         {
+            CheckArray(collection);
+
             List<int> positives = new List<int>();
             foreach (var item in collection)
             {
@@ -22,6 +36,9 @@ namespace Task_04
 
         public static IEnumerable<int> GetPositiveItemsByPredicate(int[] collection, Func<int, bool> condition)
         {
+            CheckArray(collection);
+            CheckDelegate(condition);
+
             List<int> positives = new List<int>();
             foreach (var item in collection)
             {
@@ -33,6 +50,7 @@ namespace Task_04
 
         public static IEnumerable<int> GetPositiveItemsLinq(int[] collection)
         {
+            CheckArray(collection);
             return collection.Where(a => a > 0);
         }
     }
@@ -45,7 +63,7 @@ namespace Task_04
 
             var rnd = new Random();
             int numOfItems = 10000;
-            int numOfMeasures = 61;
+            int numOfMeasures = 1001;
             var array = new int[numOfItems];
 
             for (int i = 0; i < numOfItems; i++)

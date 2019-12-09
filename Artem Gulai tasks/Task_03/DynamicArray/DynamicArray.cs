@@ -26,10 +26,8 @@ namespace Task_03.DynamicArray
         /// <summary>
         /// Creates an array with default capacity.
         /// </summary>
-        public DynamicArray()
+        public DynamicArray() : this (8)
         {
-            _array = new T[8];
-            _length = 0;
         }
 
         /// <summary>
@@ -38,6 +36,8 @@ namespace Task_03.DynamicArray
         /// <param name="initialCapacity">Initial capacity.</param>
         public DynamicArray(int initialCapacity)
         {
+            if (initialCapacity <= 0)
+                throw new ArgumentOutOfRangeException("initialCapacity","Capacity cannot be less than 1");
             _array = new T[initialCapacity];
             _length = 0;
         }
@@ -48,14 +48,22 @@ namespace Task_03.DynamicArray
         /// <param name="collection"></param>
         public DynamicArray(IEnumerable<T> collection)
         {
-            int collectionLength = DynamicArrayService.GetCollectionLength(collection);
-            _array = new T[collectionLength];
-            _length = collectionLength;
-
-            int index = 0;
-            foreach (T item in collection)
+            if (collection != null)
             {
-                _array[index++] = item;
+                int collectionLength = DynamicArrayService.GetCollectionLength(collection);
+                _array = new T[collectionLength];
+                _length = collectionLength;
+
+                int index = 0;
+                foreach (T item in collection)
+                {
+                    _array[index++] = item;
+                }
+            }
+            else
+            {
+                _array = new T[8];
+                _length = 0;
             }
         }
 
@@ -91,20 +99,26 @@ namespace Task_03.DynamicArray
         /// Adds an item to the end of an array.
         /// </summary>
         /// <param name="item"></param>
-        public void Add(T item)
+        public bool Add(T item)
         {
+            if (item == null)
+                return false;
             if (Length == Capacity)
                 DoubleCapacity();
 
             _array[_length++] = item;
+            return true;
         }
 
         /// <summary>
         /// Adds all elements of specified collection to the end of array.
         /// </summary>
         /// <param name="collection">Collection to add.</param>
-        public void AddRange(IEnumerable<T> collection)
+        public bool AddRange(IEnumerable<T> collection)
         {
+            if (collection == null)
+                return false;
+
             int collectionLength = DynamicArrayService.GetCollectionLength(collection);
 
             if (Length + collectionLength > Capacity)
@@ -114,6 +128,8 @@ namespace Task_03.DynamicArray
             {
                 _array[_length++] = item;
             }
+
+            return true;
         }
 
         /// <summary>
@@ -123,6 +139,9 @@ namespace Task_03.DynamicArray
         /// <returns>True if item is removed, else false.</returns>
         public bool Remove(T item)
         {
+            if (item == null)
+                return false;
+
             int indexToRemove = -1;
             for (int i = 0; i < _length; i++)
             {
@@ -185,6 +204,9 @@ namespace Task_03.DynamicArray
         /// <returns>True if an item is inserted, else false.</returns>
         public bool Insert(T item, int index)
         {
+            if (item == null)
+                return false;
+
             DynamicArrayService.CheckIndexOutOfRange<T>(index,this);
 
             if (_length == _array.Length)

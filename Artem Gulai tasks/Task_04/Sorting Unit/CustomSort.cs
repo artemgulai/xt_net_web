@@ -19,6 +19,12 @@ namespace Task_04.Sorting_Unit
         /// comparing two items.</param>
         public void SortArray<T>(T[] array, Func<T,T,bool> comparator)
         {
+            if (comparator == null)
+                throw new ArgumentException("Comparing method is null");
+
+            if (array == null)
+                throw new ArgumentException("Array is null");
+
             for (int i = 0; i < array.Length - 1; i++)
             {
                 int changeIndex = i;
@@ -67,7 +73,7 @@ namespace Task_04.Sorting_Unit
             int threadId = ++_threadID;
             new Thread(() => {
                 SortArray(array,comparator);
-                OnSortIsFinished.Invoke($"Sorting is finished in Thread with ID {threadId}.");
+                OnSortIsFinished?.Invoke($"Sorting is finished in Thread with ID {threadId}.");
             }).Start(); 
         }
 
