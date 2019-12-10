@@ -16,16 +16,22 @@ namespace Task_03.WordFrequency
         public static void WordCount(string text, string word)
         {
             if (text == null || text.Length == 0)
+            {
                 throw new ArgumentException("Text cannot be null or empty");
+            }
             if (word == null || word.Length == 0)
+            {
                 throw new ArgumentException("Word cannot be null or empty");
+            }
 
             List<string> words = new List<string>(text.Split(new char[] { ' ', ',', '.', '\n' }));
             int numOfOccurences = 0;
             foreach (string wordInText in words)
             {
                 if (wordInText.Equals(word, StringComparison.OrdinalIgnoreCase))
+                {
                     numOfOccurences++;
+                }
             }
             Console.WriteLine($"The word {word} occures {numOfOccurences} times.");
         }
@@ -37,7 +43,9 @@ namespace Task_03.WordFrequency
         public static SortedDictionary<string,int> WordsCount(string text)
         {
             if (text == null || text.Length == 0)
+            {
                 throw new ArgumentException("Text cannot be null or empty");
+            }
 
             List<string> words = new List<string>(text.Split(new char[] { ' ', ',', '.', '\n' }));
             SortedDictionary<string, int> wordsOccurences = new SortedDictionary<string, int>();
@@ -47,7 +55,9 @@ namespace Task_03.WordFrequency
                 string wordToLower = word.ToLower();
                 
                 if (string.IsNullOrWhiteSpace(wordToLower))
+                {
                     continue;
+                }
 
                 string.Intern(wordToLower);
                 if (wordsOccurences.ContainsKey(wordToLower))

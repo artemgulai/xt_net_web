@@ -20,17 +20,24 @@ namespace Task_03.DynamicArray
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentException("Capacity should be a positive integer.");
+                }
+
                 _array = ReallocateArray(value);
                 if (_length > value)
+                {
                     _length = value;
+                }
             }
         }
 
         protected override T[] ReallocateArray(int newCapacity)
         {
             if (newCapacity >= Capacity || newCapacity <= 0)
+            {
                 return base.ReallocateArray(newCapacity);
+            }
 
             T[] newArray = new T[newCapacity];
             for (int i = 0; i < newCapacity; i++)
@@ -84,7 +91,5 @@ namespace Task_03.DynamicArray
         {
             return ReallocateArray(_length);
         }
-
-
     }
 }

@@ -125,14 +125,18 @@ namespace Task_04.Exts
         public static bool IsPositiveInt(this string value)
         {
             if (value == null || value.Length == 0)
+            {
                 return false;
+            }
             string trimmedString = value.Trim();
             if (trimmedString.Length == 0) return false;
             if (trimmedString.Length == 1 && trimmedString[0] == '0') return false;
             foreach (var item in trimmedString)
             {
                 if (!Char.IsDigit(item))
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -140,15 +144,22 @@ namespace Task_04.Exts
         public static bool IsInt(this string value)
         {
             if (value == null || value.Length == 0)
+            {
                 return false;
+            }
             string trimmedString = value.Trim();
-            if (trimmedString.Length == 1 && !Char.IsDigit(trimmedString[0])) return false;
+            if (trimmedString.Length == 1 && !Char.IsDigit(trimmedString[0]))
+            {
+                return false;
+            }
             else
             {
                 for (int i = 1; i < trimmedString.Length; i++)
                 {
                     if (!Char.IsDigit(trimmedString[i]))
+                    {
                         return false;
+                    }
                 }
                 return true;
             }
@@ -177,7 +188,9 @@ namespace Task_04.Exts
                         }
                     }
                     if (result > (long)int.MaxValue + 1)
+                    {
                         throw new OverflowException("The number is less than System.Int32.MinValue.");
+                    }
                     return (int)-result;
                 }
                 //parse positive integer
@@ -191,7 +204,9 @@ namespace Task_04.Exts
                         }
                     }
                     if (result > int.MaxValue)
+                    {
                         throw new OverflowException("The number is greater than System.Int32.MaxValue.");
+                    }
                     return (int)result;
                 }
             }
@@ -286,7 +301,9 @@ namespace Task_04.Exts
                 Console.WriteLine("Try again? y/n");
                 var again = Console.ReadLine();
                 if (again.Length != 0 && (Char.ToLower(again[0]) == 'y'))
+                {
                     continue;
+                }
                 break;
             }
 
@@ -308,7 +325,9 @@ namespace Task_04.Exts
                 Console.WriteLine("Try again? y/n");
                 var again = Console.ReadLine();
                 if (again.Length != 0 && (Char.ToLower(again[0]) == 'y'))
+                {
                     continue;
+                }
                 break;
             }
 

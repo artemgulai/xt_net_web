@@ -12,10 +12,14 @@ namespace Task_03.Lost
         {
             // check values of parameters
             if (numOfPeople < 2)
+            {
                 throw new ArgumentException("Number of people cannot be less than 2.","numOfPeople");
+            }
 
             if (eachN < 1)
+            {
                 throw new ArgumentException("The number of human to remove cannot be less than 1.","eachN");
+            }
 
             MyDoublyLinkedList<int> list = new MyDoublyLinkedList<int>();
 
@@ -107,15 +111,21 @@ namespace Task_03.Lost
                 else
                 {
                     if (nodeToRemove == First)
+                    {
                         First = nodeToRemove.Next;
+                    }
                     if (nodeToRemove == Last)
+                    {
                         Last = nodeToRemove.Previous;
+                    }
                     var tempNode = nodeToRemove.Next;
                     nodeToRemove.RemoveNodeFromList();
                     nodeToRemove = tempNode;
                     
                     if (nodeToRemove.Next == nodeToRemove)
+                    {
                         break;
+                    }
                     ShowList();
                     num = 1;
                 }

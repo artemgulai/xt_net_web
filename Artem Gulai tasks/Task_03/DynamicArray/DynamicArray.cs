@@ -37,7 +37,9 @@ namespace Task_03.DynamicArray
         public DynamicArray(int initialCapacity)
         {
             if (initialCapacity <= 0)
+            {
                 throw new ArgumentOutOfRangeException("initialCapacity","Capacity cannot be less than 1");
+            }
 
             _array = new T[initialCapacity];
             _length = 0;
@@ -50,7 +52,9 @@ namespace Task_03.DynamicArray
         public DynamicArray(IEnumerable<T> collection)
         {
             if (collection == null)
+            {
                 throw new ArgumentNullException("collection");
+            }
 
             int collectionLength = DynamicArrayService.GetCollectionLength(collection);
             _array = new T[collectionLength];
@@ -98,9 +102,14 @@ namespace Task_03.DynamicArray
         public bool Add(T item)
         {
             if (item == null)
+            {
                 return false;
+            }
+
             if (Length == Capacity)
+            {
                 DoubleCapacity();
+            }
 
             _array[_length++] = item;
             return true;
@@ -113,12 +122,16 @@ namespace Task_03.DynamicArray
         public bool AddRange(IEnumerable<T> collection)
         {
             if (collection == null)
+            {
                 return false;
+            }
 
             int collectionLength = DynamicArrayService.GetCollectionLength(collection);
 
             if (Length + collectionLength > Capacity)
+            {
                 ChangeCapacity(Length + collectionLength);
+            }
 
             foreach (T item in collection)
             {
@@ -136,7 +149,9 @@ namespace Task_03.DynamicArray
         public bool Remove(T item)
         {
             if (item == null)
+            {
                 return false;
+            }
 
             int indexToRemove = -1;
             for (int i = 0; i < _length; i++)
@@ -149,7 +164,9 @@ namespace Task_03.DynamicArray
             }
 
             if (indexToRemove == -1)
+            {
                 return false;
+            }
 
             for (int i = indexToRemove; i < _length - 1; i++)
             {
@@ -188,6 +205,7 @@ namespace Task_03.DynamicArray
             {
                 _array[i] = _array[i + 1];
             }
+
             _length--;
             return true;
         }
@@ -201,7 +219,9 @@ namespace Task_03.DynamicArray
         public bool Insert(T item, int index)
         {
             if (item == null)
+            {
                 return false;
+            }
 
             DynamicArrayService.CheckIndexOutOfRange<T>(index,this);
 
@@ -214,6 +234,7 @@ namespace Task_03.DynamicArray
             {
                 _array[i] = _array[i - 1];
             }
+
             _array[index] = item;
             _length++;
             return true;

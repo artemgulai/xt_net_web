@@ -389,7 +389,7 @@ namespace Task_03.DynamicArray
             dArr.ShowInfo();
             Console.WriteLine(dArr);
 
-            Console.WriteLine(Environment.NewLine + "Press enter to jump into the infinite foreach loop. (but it will stop after 150 iterations :) )");
+            Console.WriteLine(Environment.NewLine + "Press enter to jump into the infinite foreach loop. (but it will stop after 150 iterations)");
             Console.ReadLine();
 
             int numOfIteration = 0;
@@ -398,7 +398,9 @@ namespace Task_03.DynamicArray
                 Console.Write(item + " ");
                 Thread.Sleep(100);
                 if (++numOfIteration == 150)
+                {
                     break;
+                }
             }
 
             Console.WriteLine(Environment.NewLine + "Press enter to exit.");

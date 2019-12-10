@@ -18,7 +18,9 @@ namespace Task_03.DynamicArray
         {
             arrayEnum = new T[array.Length];
             for (int i = 0; i < array.Length; i++)
+            {
                 arrayEnum[i] = array[i];
+            }
 
             position = -1;
         }
@@ -27,7 +29,9 @@ namespace Task_03.DynamicArray
             get
             {
                 if (position == -1 || position >= arrayEnum.Length)
+                {
                     throw new InvalidOperationException();
+                }
                 return arrayEnum[position];
             }
         }
@@ -44,7 +48,9 @@ namespace Task_03.DynamicArray
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
 
         public void Reset()

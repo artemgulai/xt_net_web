@@ -15,6 +15,11 @@ namespace Task_03.DynamicArray
         /// <returns>The number of items.</returns>
         public static int GetCollectionLength<T>(IEnumerable<T> collection)
         {
+            if (collection == null)
+            {
+                return 0;
+            }
+
             int collectionLength = 0;
             foreach (T item in collection)
             {
@@ -26,10 +31,12 @@ namespace Task_03.DynamicArray
         /// <summary>
         /// Checks the index of DynamicArray for being in the range of the underlying array.
         /// </summary>
-        public static void CheckIndexOutOfRange<T>(int index, DynamicArray.DynamicArray<T> array)
+        public static void CheckIndexOutOfRange<T>(int index, DynamicArray<T> array)
         {
             if (index < 0 || index >= array.Length)
+            {
                 throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

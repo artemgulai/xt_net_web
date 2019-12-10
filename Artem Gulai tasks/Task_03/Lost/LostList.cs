@@ -17,14 +17,18 @@ namespace Task_03.Lost
             Console.WriteLine();
         }
 
-        public static void Lost(int numOfPeople, int eachN)
+        public static void Lost(int numOfPeople,int eachN)
         {
             // check values of parameters
             if (numOfPeople < 2)
+            {
                 throw new ArgumentException("Number of people cannot be less than 2.","numOfPeople");
+            }
 
             if (eachN < 1)
-                throw new ArgumentException("The number of human to remove cannot be less than 1.", "eachN");
+            {
+                throw new ArgumentException("The number of human to remove cannot be less than 1.","eachN");
+            }
 
             // Initial set of people numbered from 1 to numOfPeople.
             List<int> people = new List<int>(numOfPeople);
@@ -50,7 +54,9 @@ namespace Task_03.Lost
                 ShowList(people);
 
                 if (numOfPeopleLeft == 1)
+                {
                     break;
+                }
             }
             Console.ReadLine();
         }

@@ -20,10 +20,14 @@ namespace Task_04.Sorting_Unit
         public void SortArray<T>(T[] array, Func<T,T,bool> comparator)
         {
             if (comparator == null)
+            {
                 throw new ArgumentException("Comparing method is null");
+            }
 
             if (array == null)
+            {
                 throw new ArgumentException("Array is null");
+            }
 
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -173,11 +177,15 @@ namespace Task_04.Sorting_Unit
             new CustomSort().SortArray<string>(words,(a,b) =>
            {
                if (a.Length != b.Length)
+               {
                    return a.Length < b.Length;
+               }
                for (int i = 0; i < a.Length; i++)
                {
                    if (a[i] != b[i])
+                   {
                        return a[i] < b[i];
+                   }
                }
                return false;
            });

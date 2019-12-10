@@ -12,13 +12,17 @@ namespace Task_04
         private static void CheckArray(int[] array)
         {
             if (array == null)
+            {
                 throw new ArgumentException("Array is null");
+            }
         }
 
         private static void CheckDelegate(Func<int,bool> condition)
         {
             if (condition == null)
+            {
                 throw new ArgumentException("Delegate is null");
+            }
         }
 
         public static IEnumerable<int> GetPositiveItemsDirectSearch(int[] collection)
@@ -29,7 +33,9 @@ namespace Task_04
             foreach (var item in collection)
             {
                 if (item > 0)
+                {
                     positives.Add(item);
+                }
             }
             return positives;
         }
@@ -43,7 +49,9 @@ namespace Task_04
             foreach (var item in collection)
             {
                 if (item > 0)
+                {
                     positives.Add(item);
+                }
             }
             return positives;
         }
@@ -57,7 +65,9 @@ namespace Task_04
             foreach (var item in collection)
             {
                 if (condition(item))
+                {
                     positives.Add(item);
+                }
             }
             return positives;
         }

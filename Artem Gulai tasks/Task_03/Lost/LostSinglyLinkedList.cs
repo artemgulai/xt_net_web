@@ -12,10 +12,14 @@ namespace Task_03.Lost
         {
             // check values of parameters
             if (numOfPeople < 2)
+            {
                 throw new ArgumentException("Number of people cannot be less than 2.","numOfPeople");
+            }
 
             if (eachN < 1)
+            {
                 throw new ArgumentException("The number of human to remove cannot be less than 1.","eachN");
+            }
 
             MySinglyLinkedList<int> list = new MySinglyLinkedList<int>();
 
@@ -106,7 +110,9 @@ namespace Task_03.Lost
                     nodeToRemove.RemoveNodeFromList(previousNode);
                     nodeToRemove = previousNode.Next;
                     if (nodeToRemove == nodeToRemove.Next)
+                    {
                         break;
+                    }
                     ShowList();
                     num = 1;
                 }
