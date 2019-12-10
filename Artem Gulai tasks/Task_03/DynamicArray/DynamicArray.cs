@@ -38,6 +38,7 @@ namespace Task_03.DynamicArray
         {
             if (initialCapacity <= 0)
                 throw new ArgumentOutOfRangeException("initialCapacity","Capacity cannot be less than 1");
+
             _array = new T[initialCapacity];
             _length = 0;
         }
@@ -48,22 +49,17 @@ namespace Task_03.DynamicArray
         /// <param name="collection"></param>
         public DynamicArray(IEnumerable<T> collection)
         {
-            if (collection != null)
-            {
-                int collectionLength = DynamicArrayService.GetCollectionLength(collection);
-                _array = new T[collectionLength];
-                _length = collectionLength;
+            if (collection == null)
+                throw new ArgumentNullException("collection");
 
-                int index = 0;
-                foreach (T item in collection)
-                {
-                    _array[index++] = item;
-                }
-            }
-            else
+            int collectionLength = DynamicArrayService.GetCollectionLength(collection);
+            _array = new T[collectionLength];
+            _length = collectionLength;
+
+            int index = 0;
+            foreach (T item in collection)
             {
-                _array = new T[8];
-                _length = 0;
+                _array[index++] = item;
             }
         }
 
