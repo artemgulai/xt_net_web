@@ -10,6 +10,17 @@ namespace Task_04.Exts
     public static class MyExtensions
     {
         #region Array extensions
+        // Generic method with delegate providing summation rule
+        public static T MySum<T>(this T[] array, Func<T,T,T> summation)
+        {
+            T sum = default(T);
+            foreach (var item in array)
+            {
+                sum = summation(sum,item);
+            }
+            return sum;
+        }
+
         public static long MySum(this byte[] array)
         {
             long sum = 0;
