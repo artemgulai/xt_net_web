@@ -34,6 +34,20 @@ namespace Task_04
             return positives;
         }
 
+        // overloaded method for using in universal measuring method
+        public static IEnumerable<int> GetPositiveItemsDirectSearch(int[] collection,Func<int,bool> condition)
+        {
+            CheckArray(collection);
+
+            List<int> positives = new List<int>();
+            foreach (var item in collection)
+            {
+                if (item > 0)
+                    positives.Add(item);
+            }
+            return positives;
+        }
+
         public static IEnumerable<int> GetPositiveItemsByPredicate(int[] collection, Func<int, bool> condition)
         {
             CheckArray(collection);
@@ -49,6 +63,13 @@ namespace Task_04
         }
 
         public static IEnumerable<int> GetPositiveItemsLinq(int[] collection)
+        {
+            CheckArray(collection);
+            return collection.Where(a => a > 0);
+        }
+
+        // overloaded method for using in universal measuring method
+        public static IEnumerable<int> GetPositiveItemsLinq(int[] collection,Func<int,bool> condition)
         {
             CheckArray(collection);
             return collection.Where(a => a > 0);
@@ -71,86 +92,21 @@ namespace Task_04
                 array[i] = rnd.Next(-1000,1000);
             }
 
-            #region Measuring time of direct search
-            List<int> searchTimes = new List<int>(numOfMeasures);
-            IEnumerable<int> positivesDirect = ISeekYou.GetPositiveItemsDirectSearch(array);
-            for (int i = 0; i < numOfMeasures; i++)
-            {
-                stopWatch.Start();
-                positivesDirect = ISeekYou.GetPositiveItemsDirectSearch(array);
-                positivesDirect.Count();
-                stopWatch.Stop();
-                searchTimes.Add((int)stopWatch.ElapsedTicks);
-                stopWatch.Reset();
-            }
-            searchTimes.Sort();
-            int directSearchTime = searchTimes[numOfMeasures/2];
-            #endregion
+            // Measuring time of direct search
+            int directSearchTime = Measure(array,null,numOfMeasures,ISeekYou.GetPositiveItemsDirectSearch);
 
-            #region Measuring time of search by predicate using delegate instance
-            searchTimes.Clear();
+            // Measuring time of search by predicate using delegate instance
             Func<int,bool> deleg = new Func<int,bool>(x => x > 0);
-            IEnumerable<int> positivesDelegate = ISeekYou.GetPositiveItemsByPredicate(array,deleg);
-            for (int i = 0; i < numOfMeasures; i++)
-            {
-                stopWatch.Start();
-                positivesDelegate = ISeekYou.GetPositiveItemsByPredicate(array,deleg);
-                positivesDelegate.Count();
-                stopWatch.Stop();
-                searchTimes.Add((int)stopWatch.ElapsedTicks);
-                stopWatch.Reset();
-            }
-            searchTimes.Sort();
-            int delegateSearchTime = searchTimes[numOfMeasures/2];
-            #endregion
+            int delegateSearchTime = Measure(array,deleg,numOfMeasures,ISeekYou.GetPositiveItemsByPredicate);
 
-            #region Measuring time of search by predicate using anonymous method
-            searchTimes.Clear();
-            IEnumerable<int> positivesAnonymous = ISeekYou.GetPositiveItemsByPredicate(array,delegate (int x) { return x > 0; });
-            for (int i = 0; i < numOfMeasures; i++)
-            {
-                stopWatch.Start();
-                positivesAnonymous = ISeekYou.GetPositiveItemsByPredicate(array,delegate (int x) { return x > 0; });
-                positivesAnonymous.Count();
-                stopWatch.Stop();
-                searchTimes.Add((int)stopWatch.ElapsedTicks);
-                stopWatch.Reset();
-            }
-            searchTimes.Sort();
-            int anonymousSearchTime = searchTimes[numOfMeasures/2];
-            #endregion
+            // Measuring time of search by predicate using anonymous method
+            int anonymousSearchTime = Measure(array,delegate (int x) { return x > 0; },numOfMeasures,ISeekYou.GetPositiveItemsByPredicate);
 
-            #region Measuring time of search by predicate using lambda expression
-            searchTimes.Clear();
-            IEnumerable<int> positivesLambda = ISeekYou.GetPositiveItemsByPredicate(array,x => x > 0);
-            for (int i = 0; i < numOfMeasures; i++)
-            {
-                stopWatch.Start();
-                positivesLambda = ISeekYou.GetPositiveItemsByPredicate(array,x => x > 0);
-                positivesLambda.Count();
-                stopWatch.Stop();
-                searchTimes.Add((int)stopWatch.ElapsedTicks);
-                stopWatch.Reset();
-            }
-            searchTimes.Sort();
-            int lambdaSearchTime = searchTimes[numOfMeasures/2];
-            #endregion
+            // Measuring time of search by predicate using lambda expression
+            int lambdaSearchTime = Measure(array,x => x > 0,numOfMeasures,ISeekYou.GetPositiveItemsByPredicate);
 
-            #region Measuring time of search using LINQ
-            searchTimes.Clear();
-            IEnumerable<int> positivesLinq = ISeekYou.GetPositiveItemsLinq(array);
-            for (int i = 0; i < numOfMeasures; i++)
-            {
-                stopWatch.Start();
-                positivesLinq = ISeekYou.GetPositiveItemsLinq(array);
-                positivesLinq.Count();
-                stopWatch.Stop();
-                searchTimes.Add((int)stopWatch.ElapsedTicks);
-                stopWatch.Reset();
-            }
-            searchTimes.Sort();
-            int linqSearchTime = searchTimes[numOfMeasures/2];
-            #endregion
+            // Measuring time of search using LINQ
+            int linqSearchTime = Measure(array,null,numOfMeasures,ISeekYou.GetPositiveItemsLinq);
 
             Console.WriteLine(Environment.NewLine + "Search times:");
             Console.WriteLine($"Direct search: {directSearchTime} ticks.");
@@ -159,6 +115,25 @@ namespace Task_04
             Console.WriteLine($"Lambda method search: {lambdaSearchTime} ticks.");
             Console.WriteLine($"LINQ search: {linqSearchTime} ticks.");
             Console.ReadLine();
+        }
+
+
+        public static int Measure(int[] array, Func<int,bool> compare, int numOfMeasures, Func<int[],Func<int,bool>,IEnumerable<int>> searchFunction)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            List<int> searchTimes = new List<int>();
+            IEnumerable<int> positives = searchFunction?.Invoke(array, compare);
+            for (int i = 0; i < numOfMeasures; i++)
+            {
+                stopwatch.Start();
+                positives = searchFunction?.Invoke(array,compare);
+                positives.Count();
+                stopwatch.Stop();
+                searchTimes.Add((int)stopwatch.ElapsedTicks);
+                stopwatch.Reset();
+            }
+            searchTimes.Sort();
+            return searchTimes[numOfMeasures / 2];
         }
     }
 }
