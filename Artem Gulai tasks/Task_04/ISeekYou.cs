@@ -80,8 +80,6 @@ namespace Task_04
     {
         public static void Demo()
         {
-            var stopWatch = new Stopwatch();
-
             var rnd = new Random();
             int numOfItems = 10000;
             int numOfMeasures = 1001;

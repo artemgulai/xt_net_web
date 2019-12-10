@@ -13,7 +13,7 @@ namespace Task_04.Exts
         // Generic method with delegate providing summation rule
         public static T MySum<T>(this T[] array, Func<T,T,T> summation)
         {
-            T sum = default(T);
+            T sum = default;
             foreach (var item in array)
             {
                 sum = summation(sum,item);
