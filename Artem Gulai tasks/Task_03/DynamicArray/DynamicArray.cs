@@ -26,7 +26,7 @@ namespace Task_03.DynamicArray
         /// <summary>
         /// Creates an array with default capacity.
         /// </summary>
-        public DynamicArray() : this (8)
+        public DynamicArray() : this(8)
         {
         }
 
@@ -93,7 +93,7 @@ namespace Task_03.DynamicArray
         private void ChangeCapacity(int newCapacity)
         {
             _array = ReallocateArray(newCapacity);
-        } 
+        }
 
         /// <summary>
         /// Adds an item to the end of an array.
@@ -199,7 +199,7 @@ namespace Task_03.DynamicArray
         /// <param name="index">Position of an item to remove</param>
         public bool RemoveAt(int index)
         {
-            DynamicArrayService.CheckIndexOutOfRange(index, this);
+            DynamicArrayService.CheckIndexOutOfRange(index,this);
 
             for (int i = index; i < _length - 1; i++)
             {
@@ -216,7 +216,7 @@ namespace Task_03.DynamicArray
         /// <param name="item"></param>
         /// <param name="index">Index from 0 to Length-1.</param>
         /// <returns>True if an item is inserted, else false.</returns>
-        public bool Insert(T item, int index)
+        public bool Insert(T item,int index)
         {
             if (item == null)
             {
@@ -245,12 +245,12 @@ namespace Task_03.DynamicArray
         /// </summary>
         public virtual T this[int index]
         {
-            get 
+            get
             {
                 DynamicArrayService.CheckIndexOutOfRange<T>(index,this);
                 return _array[index];
             }
-            set 
+            set
             {
                 DynamicArrayService.CheckIndexOutOfRange<T>(index,this);
                 _array[index] = value;
@@ -273,6 +273,23 @@ namespace Task_03.DynamicArray
             sb.Append(_array[_length - 1].ToString());
             sb.Append('}');
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Implicit cast DynamicArray<T> to string.
+        /// </summary>
+        public static implicit operator string(DynamicArray<T> array)
+        {
+            return array.ToString();
+        }
+
+        /// <summary>
+        /// Implicit cast T[] to DynamicArray<T>
+        /// </summary>
+        /// <param name="array"></param>
+        public static implicit operator DynamicArray<T>(T[] array)
+        {
+            return new DynamicArray<T>(array);
         }
 
         /// <summary>
