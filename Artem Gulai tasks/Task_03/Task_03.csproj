@@ -54,7 +54,6 @@
     <Compile Include="Lost\LostDemo.cs" />
     <Compile Include="Lost\LostDoublyLinkedList.cs" />
     <Compile Include="Lost\LostSinglyLinkedList.cs" />
-    <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordFrequency\WordFrequency.cs" />
