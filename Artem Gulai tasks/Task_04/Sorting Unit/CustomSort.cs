@@ -198,6 +198,13 @@ namespace Task_04.Sorting_Unit
             Console.ReadLine();
         }
 
+        private static int _threadsNumber = 0;
+
+        public static void OnSortIsFinishedEventHandler(string obj)
+        {
+            Console.WriteLine('\r' + obj + Environment.NewLine);
+            _threadsNumber++;
+        }
         public static void ThreadsSortDemo()
         {
             Console.Clear();
@@ -213,13 +220,8 @@ namespace Task_04.Sorting_Unit
                 "The first one is of ints, the second one is of doubles.");
             
             var sortUnit = new CustomSort();
-            var numberOfElements = 100000;
-            int threadsNumber = 0;
-            sortUnit.OnSortIsFinished += (obj) =>
-            {
-                Console.WriteLine('\r' + obj + Environment.NewLine);
-                threadsNumber++;
-            };
+            var numberOfElements = 1000;
+            sortUnit.OnSortIsFinished += OnSortIsFinishedEventHandler;
 
             var arr1 = new int[numberOfElements];
             var arr2 = new double[numberOfElements];
@@ -242,16 +244,19 @@ namespace Task_04.Sorting_Unit
             Console.WriteLine("While the sorting is being performed in additional threads, " +
                 "we are seeing some activity in the main thread.");
 
-            while (threadsNumber != 2)
+            while (_threadsNumber != 2)
             {
                 Console.Write("\rSorting");
                 Thread.Sleep(500);
-                if (threadsNumber != 2)
+                if (_threadsNumber != 2)
                 {
                     Console.Write("\r       ");
                     Thread.Sleep(500);
                 }
             }
+            _threadsNumber = 0;
+
+            sortUnit.OnSortIsFinished -= OnSortIsFinishedEventHandler;
 
             Console.WriteLine("Press enter to show first and last 50 elements of sorted arrays:");
             Console.ReadLine();
