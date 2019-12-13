@@ -217,7 +217,7 @@ namespace Task_04.Sorting_Unit
             int threadsNumber = 0;
             sortUnit.OnSortIsFinished += (obj) =>
             {
-                Console.WriteLine(obj);
+                Console.WriteLine('\r' + obj + Environment.NewLine);
                 threadsNumber++;
             };
 
@@ -246,8 +246,11 @@ namespace Task_04.Sorting_Unit
             {
                 Console.Write("\rSorting");
                 Thread.Sleep(500);
-                Console.Write("\r       ");
-                Thread.Sleep(500);
+                if (threadsNumber != 2)
+                {
+                    Console.Write("\r       ");
+                    Thread.Sleep(500);
+                }
             }
 
             Console.WriteLine("Press enter to show first and last 50 elements of sorted arrays:");
