@@ -43,11 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backup System\BackupMode.cs" />
-    <Compile Include="Backup System\BackupSettingUp.cs" />
-    <Compile Include="Backup System\BackUpSystem.cs" />
-    <Compile Include="Backup System\BackupSystemListener.cs" />
-    <Compile Include="Backup System\BackupSystemRestorer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
