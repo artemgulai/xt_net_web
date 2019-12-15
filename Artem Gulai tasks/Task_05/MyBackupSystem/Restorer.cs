@@ -18,6 +18,10 @@ namespace Task_05.MyBackupSystem
             _pathToBackup = pathToBackup;
         }
 
+        /// <summary>
+        /// Delete existing files which are being restored
+        /// </summary>
+        /// <param name="directoryToRestore"></param>
         private void DeleteRestoringFiles(DirectoryInfo directoryToRestore)
         {
             DirectoryInfo[] subDirectories = directoryToRestore.GetDirectories();
@@ -36,6 +40,10 @@ namespace Task_05.MyBackupSystem
             }
         }
 
+        /// <summary>
+        /// Create subdirectories for restored files
+        /// </summary>
+        /// <param name="fileName"></param>
         private void CreateSubdirectory(string fileName)
         {
             for (int i = fileName.Length - 1; i > 0; i--)
@@ -49,13 +57,17 @@ namespace Task_05.MyBackupSystem
             }
         }
 
+        /// <summary>
+        /// Restore files at specified moment of time
+        /// </summary>
+        /// <param name="dateTimeOfRestoring">Date and time of restoring</param>
         public void RestoreFiles(DateTime dateTimeOfRestoring)
         {
             DeleteRestoringFiles(new DirectoryInfo(_pathToBackup));
             foreach (var changedFile in _changeHistory)
             {
                 List<Change> changes = changedFile.Value;
-                Change restorePoint = changes.LastOrDefault(a => a.ChangeTime < dateTimeOfRestoring);
+                Change restorePoint = changes.LastOrDefault(a => a.ChangeTime <= dateTimeOfRestoring);
                 // if restore point is null, check whether file existed at the very beginning of the history
                 if (restorePoint == null)
                 {

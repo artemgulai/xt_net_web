@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Task_05.MyBackupSystem
 {
+    /// <summary>
+    /// Class for (de)compression string
+    /// </summary>
     static class Compression
     {
+        /// <summary>
+        /// Compress string and convert to array of bytes
+        /// </summary>
+        /// <param name="strToCompress"></param>
+        /// <returns></returns>
         public static byte[] CompressString(string strToCompress)
         {
             byte[] bytesToCompress = Encoding.Unicode.GetBytes(strToCompress);
@@ -23,6 +31,11 @@ namespace Task_05.MyBackupSystem
             }
         }
 
+        /// <summary>
+        /// Decompress array of bytes and convert to string
+        /// </summary>
+        /// <param name="bytesToDecompress"></param>
+        /// <returns></returns>
         public static string DecompressBytes(byte[] bytesToDecompress)
         {
             using (MemoryStream inputStream = new MemoryStream(bytesToDecompress))

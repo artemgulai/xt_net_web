@@ -8,7 +8,9 @@ namespace Task_05.MyBackupSystem
 {
     enum MyBackupMode
     {
+        Exit = 0,
         Listen = 1,
-        Restore = 2
+        Restore = 2,
+        DeleteHistory = 3
     }
 }

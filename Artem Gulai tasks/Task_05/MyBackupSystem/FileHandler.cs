@@ -9,21 +9,13 @@ namespace Task_05.MyBackupSystem
 {
     sealed class FileHandler
     {
+        /// <summary>
+        /// Reading content of a text file
+        /// </summary>
+        /// <param name="path">Path to file</param>
+        /// <returns>Content of the text file</returns>
         public string GetFileContent(string path)
         {
-            // a crutch for waiting until the file is available
-            //while (true)
-            //{
-            //    try
-            //    {
-            //        using (FileStream readFileStream = new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.Read))
-            //        {}
-            //        break;
-            //    } 
-            //    catch (IOException)
-            //    {}
-            //}
-
             using (FileStream readFileStream = new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.ReadWrite))
             {
                 using (StreamReader read = new StreamReader(readFileStream, true))

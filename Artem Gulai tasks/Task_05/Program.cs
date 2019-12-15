@@ -28,51 +28,58 @@ namespace Task_05
                 Console.WriteLine("Wrong path. Try again.");
             }
 
-            int mode;
-            Console.WriteLine("Choose mode:" + Environment.NewLine + "1. Listen." + Environment.NewLine + "2. Restore."
-                       + Environment.NewLine + "3. Clear history." + Environment.NewLine + "0. Exit.");
+            MyBackupSystem.MyBackupSystem myBackupSystem = new MyBackupSystem.MyBackupSystem(path);
+
             while (true)
             {
-                if (!int.TryParse(Console.ReadLine(), out mode))
+                Console.WriteLine("Choose mode:" + Environment.NewLine +
+                                  "1. Listen." + Environment.NewLine + 
+                                  "2. Restore." + Environment.NewLine + 
+                                  "3. Clear history." + Environment.NewLine + 
+                                  "0. Exit.");
+
+                if (!int.TryParse(Console.ReadLine(), out int mode))
                 {
                     Console.WriteLine("Wrong input. Try again.");
                     continue;
                 }
 
-                if (mode == 0)
-                    return;
-
-                if (mode == 3)
-                {
-                    MyBackupSystem.MyBackupSystem.DeleteHistory(path);
-                    Console.ReadLine();
-                    return;
-                }
-
-                if (mode > 2 || mode < 1)
+                if (mode > 3 || mode < 0)
                 {
                     Console.WriteLine("Wrong number. Try again.");
                     continue;
                 }
-                break;
-            }
-            MyBackupSystem.MyBackupMode backupMode = (MyBackupSystem.MyBackupMode)mode;
-            MyBackupSystem.MyBackupSystem backupSystem = new MyBackupSystem.MyBackupSystem(path, (MyBackupSystem.MyBackupMode) backupMode);
 
-            if (backupMode == MyBackupSystem.MyBackupMode.Listen)
-            {
-                Console.WriteLine("Listening mode. Press enter to exit.");
+                MyBackupSystem.MyBackupMode backupMode = (MyBackupSystem.MyBackupMode)mode;
+                switch(backupMode)
+                {
+                    case MyBackupSystem.MyBackupMode.Listen:
+                        Console.WriteLine("Listening mode. Press enter to save history and exit mode.");
+                        myBackupSystem.SetMode(backupMode);
+                        Console.ReadLine();
+                        myBackupSystem.SaveHistory(path);
+                        Console.WriteLine("Press enter to exit mode.");
+                        break;
+                    case MyBackupSystem.MyBackupMode.Restore:
+                        Console.WriteLine("Restoring mode.");
+                        myBackupSystem.SetMode(backupMode);
+                        Console.WriteLine("Press enter to exit mode.");
+                        break;
+                    case MyBackupSystem.MyBackupMode.DeleteHistory:
+                        Console.WriteLine("Deleting history.");
+                        myBackupSystem.SetMode(backupMode);
+                        Console.WriteLine("Press enter to exit mode.");
+                        break;
+                    case MyBackupSystem.MyBackupMode.Exit:
+                        Console.WriteLine("Good luck. Press enter to exit.");
+                        Console.ReadLine();
+                        return;
+                    default:
+                        Console.WriteLine("Something went wrong. Press enter to try again.");
+                        break;
+                }
                 Console.ReadLine();
-                backupSystem.SaveHistory(path);
-                Console.WriteLine("Press enter to exit.");
             }
-            else
-            {
-                Console.WriteLine("Restoring mode.");
-                backupSystem.RestoreFiles();
-                Console.WriteLine("Press enter to exit.");
-            }
-            Console.ReadLine();
         }
     }
 }

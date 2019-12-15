@@ -11,7 +11,6 @@ namespace Task_05.MyBackupSystem
     sealed class Listener
     {
         private FileSystemWatcher _watcher;
-        //private DateTime _writeTime;
 
         public Listener(string pathToBackup)
         {
@@ -21,6 +20,9 @@ namespace Task_05.MyBackupSystem
         }
 
         #region Listener controls
+        /// <summary>
+        /// Set up FileSystemWatcher
+        /// </summary>
         private void SetUpWatcher()
         {
             _watcher.NotifyFilter = NotifyFilters.LastWrite
@@ -34,12 +36,18 @@ namespace Task_05.MyBackupSystem
             _watcher.IncludeSubdirectories = true;
         }
 
+        /// <summary>
+        /// Turn off FileSystemWatcher fire on events
+        /// </summary>
         public void TurnOffWatcher()
         {
             if (_watcher != null)
                 _watcher.EnableRaisingEvents = false;
         }
 
+        /// <summary>
+        /// Turn on FileSystemWatcher fire on events
+        /// </summary>
         public void TurnOnWatcher()
         {
             if (_watcher != null)
@@ -48,26 +56,36 @@ namespace Task_05.MyBackupSystem
         #endregion
 
         #region _watcher's event handlers
+        /// <summary>
+        /// Redirects FileWatcherEvents to subscribers
+        /// </summary>
         private void OnChangeEventHandler(object sender,FileSystemEventArgs args)
         {
-            Thread.Sleep(100);
-            //if ((DateTime.Now - _writeTime).TotalMilliseconds > 250)
+            // sleep is for wating until file is available
+            Thread.Sleep(200);
                 OnWatcherChangeEventRedirector?.Invoke(args);
-
-            //_writeTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Redirects FileWatcherEvents to subscribers
+        /// </summary>
         private void OnDeleteEventHandler(object sender,FileSystemEventArgs args)
         {
             OnWatcherDeleteEventRedirector?.Invoke(args);
         }
 
+        /// <summary>
+        /// Redirects FileWatcherEvents to subscribers
+        /// </summary>
         private void OnCreateEventHandler(object sender,FileSystemEventArgs args)
         {
             Thread.Sleep(100);
             OnWatcherCreateEventRedirector?.Invoke(args);
         }
 
+        /// <summary>
+        /// Redirects FileWatcherEvents to subscribers
+        /// </summary>
         private void OnRenameEventHandler(object sender,FileSystemEventArgs args)
         {
             OnWatcherDeleteEventRedirector?.Invoke(args);
@@ -76,7 +94,7 @@ namespace Task_05.MyBackupSystem
         #endregion
 
         #region Redirecting events
-        // Events, redirecting _watcher's events to BackupSystem
+        // Events redirecting _watcher's events to BackupSystem
         public event Action<FileSystemEventArgs> OnWatcherChangeEventRedirector;
         public event Action<FileSystemEventArgs> OnWatcherCreateEventRedirector;
         public event Action<FileSystemEventArgs> OnWatcherDeleteEventRedirector;

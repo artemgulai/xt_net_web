@@ -9,33 +9,17 @@ namespace Task_05.FileChangeInfo
 {
     class Change
     {
-        protected DateTime _timeOfChange;
-        protected ChangeType _typeOfChange;
-        protected byte[] _content;
-
-        public DateTime ChangeTime 
-        {
-            set { _timeOfChange = value; } 
-            get => _timeOfChange; 
-        }
-        public ChangeType ChangeType 
-        {
-            set { _typeOfChange = value; }  
-            get => _typeOfChange; 
-        }
-        public byte[] Content 
-        {
-            set { _content = value; }
-            get => _content; 
-        }
+        public DateTime ChangeTime { set; get; }
+        public ChangeType ChangeType { set; get; }
+        public byte[] Content { set; get; }
 
         public Change() { }
 
         public Change(DateTime timeOfChange, ChangeType typeOfChange, byte[] content = null)
         {
-            _timeOfChange = timeOfChange;
-            _typeOfChange = typeOfChange;
-            _content = content;
+            ChangeTime = timeOfChange;
+            ChangeType = typeOfChange;
+            Content = content;
         }
     }
 }

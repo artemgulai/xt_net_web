@@ -18,34 +18,74 @@ namespace Task_05.MyBackupSystem
         private SortedDictionary<string,List<Change>> _changeHistory;
         private FileHandler _fileHandler;
 
-        public MyBackupSystem(string pathToBackup, MyBackupMode mode)
+        public MyBackupSystem(string pathToBackup)
         {
             if (pathToBackup == null)
                 throw new ArgumentNullException("pathToBackup");
             _pathToBackup = pathToBackup;
 
-            _listener = new Listener(pathToBackup);
+            _fileHandler = new FileHandler();
 
+            LoadHistory(_pathToBackup);
+        }
+
+        #region Mode selection
+        public void SetMode(MyBackupMode mode)
+        {
             if (mode == MyBackupMode.Listen)
             {
-                _listener.TurnOnWatcher();
-                SubscribeListenerEvents();
+                ListenerMode();
+                return;
             }
-
             if (mode == MyBackupMode.Restore)
+            {
+                RestorerMode();
+                return;
+            }
+            if (mode == MyBackupMode.DeleteHistory)
+            {
+                DeleteHistory(_pathToBackup);
+                return;
+            }
+            throw new ArgumentException("Wrong mode");
+        }
+
+        /// <summary>
+        /// Configure MyBackupSystem to listen for changes
+        /// </summary>
+        private void ListenerMode()
+        {
+            if (_listener == null)
+            {
+                _listener = new Listener(_pathToBackup);
+            }
+            _listener.TurnOnWatcher();
+            SubscribeListenerEvents();
+        }
+
+        /// <summary>
+        /// Configure MyBackupSystem to restore files
+        /// </summary>
+        private void RestorerMode()
+        {
+            if (_restorer == null)
+            {
+                _restorer = new Restorer(_changeHistory,_pathToBackup);
+            }
+            
+            if (_listener != null)
             {
                 _listener.TurnOffWatcher();
                 UnsubscribeListenerEvents();
             }
-
-            _fileHandler = new FileHandler();
-
-            LoadHistory(_pathToBackup);
-
-            _restorer = new Restorer(_changeHistory, _pathToBackup);
+            RestoreFiles();
         }
+        #endregion
 
         #region Subscribe control
+        /// <summary>
+        /// Subscribe to _listener's events
+        /// </summary>
         private void SubscribeListenerEvents()
         {
             _listener.OnWatcherChangeEventRedirector += OnListenerChangeHandler;
@@ -53,6 +93,9 @@ namespace Task_05.MyBackupSystem
             _listener.OnWatcherDeleteEventRedirector += OnListenerDeleteHandler;
         }
 
+        /// <summary>
+        /// Unsibcribe from _listener's events
+        /// </summary>
         private void UnsubscribeListenerEvents()
         {
             _listener.OnWatcherChangeEventRedirector -= OnListenerChangeHandler;
@@ -62,7 +105,11 @@ namespace Task_05.MyBackupSystem
         #endregion
 
         #region History loading and saving
-        public static void DeleteHistory(string pathToBackup)
+        /// <summary>
+        /// Delete file containing history of changes
+        /// </summary>
+        /// <param name="pathToBackup">Path to backed up directory</param>
+        private void DeleteHistory(string pathToBackup)
         {
             string pathToHistory = GetPathToHistory(pathToBackup);
             if (File.Exists(pathToHistory))
@@ -71,13 +118,26 @@ namespace Task_05.MyBackupSystem
                 File.Delete(pathToHistory);
                 Console.WriteLine("History has been deleted.");
             }
-            Console.WriteLine("History is empty.");
+            else
+            {
+                Console.WriteLine("History is empty.");
+            }
         }
+
+        /// <summary>
+        /// Generate path to file with history of changes
+        /// </summary>
+        /// <param name="pathToBackup">Path to backed up directory</param>
+        /// <returns>Path to file containing history of changes</returns>
         private static string GetPathToHistory(string pathToBackup)
         {
             return pathToBackup[pathToBackup.Length - 1] == '\\' ? pathToBackup + ".backup.json" : pathToBackup + "\\.backup.json";
         }
 
+        /// <summary>
+        /// Read JSON from file and deserialize to _changeHistory object.
+        /// </summary>
+        /// <param name="pathToBackup">Path to backed up directory.</param>
         private void LoadHistory(string pathToBackup)
         {
             string pathToHistory = GetPathToHistory(pathToBackup);
@@ -91,45 +151,45 @@ namespace Task_05.MyBackupSystem
                 return;
             }
 
-            using (FileStream historyFileStream = new FileStream(pathToHistory,FileMode.Open,FileAccess.Read,FileShare.ReadWrite))
-            {
-                using (StreamReader historyReader = new StreamReader(historyFileStream))
-                {
-                    string historyContent = historyReader.ReadToEnd();
-                    if (string.IsNullOrEmpty(historyContent))
-                    {
-                        Console.WriteLine("History of changes is empty.");
-                        _changeHistory = new SortedDictionary<string,List<Change>>();
-                        return;
-                    }
+            string history = _fileHandler.GetFileContent(pathToHistory);
 
-                    try
-                    {
-                        _changeHistory = JsonConvert.DeserializeObject<SortedDictionary<string,List<Change>>>(historyContent);
-                        Console.WriteLine("History has been loaded.");
-                    }
-                    catch (JsonSerializationException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine("Can't read history of changes.");
-                        Console.WriteLine("Create empty history.");
-                        _changeHistory = new SortedDictionary<string,List<Change>>();
-                    }
-                }
+            if (string.IsNullOrEmpty(history))
+            {
+                Console.WriteLine("History of changes is empty.");
+                _changeHistory = new SortedDictionary<string,List<Change>>();
+                return;
+            }
+
+            try
+            {
+                _changeHistory = JsonConvert.DeserializeObject<SortedDictionary<string,List<Change>>>(history);
+                Console.WriteLine("History has been loaded.");
+            }
+            catch (JsonSerializationException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Can't read history of changes.");
+                Console.WriteLine("Create empty history.");
+                _changeHistory = new SortedDictionary<string,List<Change>>();
+                InitializeHistory(new DirectoryInfo(pathToBackup));
             }
         }
 
+        /// <summary>
+        ///  History of changes initialization with existing files
+        /// </summary>
+        /// <param name="directoryToInit">Directory containing files</param>
         private void InitializeHistory(DirectoryInfo directoryToInit)
         {
             DirectoryInfo[] directories = directoryToInit.GetDirectories();
             foreach (var directory in directories)
             {
+                if (directory.Attributes.HasFlag(FileAttributes.Hidden))
+                    continue;
                 InitializeHistory(directory);
             }
 
             FileInfo[] files = directoryToInit.GetFiles("*.txt");
-            //if (files == null || files.Length == 0)
-            //    return;
 
             foreach (var file in files)
             {
@@ -161,6 +221,10 @@ namespace Task_05.MyBackupSystem
         #endregion
 
         #region Listener's events handlers
+        /// <summary>
+        /// Process file changing
+        /// </summary>
+        /// <param name="e">Description of an event from FileSystemWatcher</param>
         private void OnListenerChangeHandler(FileSystemEventArgs e)
         {
             if (!_changeHistory.ContainsKey(e.FullPath))
@@ -176,14 +240,19 @@ namespace Task_05.MyBackupSystem
             _changeHistory[e.FullPath].Add(new Change(DateTime.Now, ChangeType.Write, compressedContent));
         }
 
+        /// <summary>
+        /// Process file deleting and renaming
+        /// </summary>
+        /// <param name="e">Description of an event from FileSystemWatcher</param>
         private void OnListenerDeleteHandler(FileSystemEventArgs e)
         {
-            if (e is RenamedEventArgs)
+            RenamedEventArgs eRename = e as RenamedEventArgs;
+            if (eRename != null)
             {
-                if (!_changeHistory.ContainsKey(((RenamedEventArgs)e).OldFullPath))
-                    _changeHistory.Add(((RenamedEventArgs)e).OldFullPath,new List<Change>());
+                if (!_changeHistory.ContainsKey(eRename.OldFullPath))
+                    _changeHistory.Add(eRename.OldFullPath,new List<Change>());
 
-                string oldPath = ((RenamedEventArgs)e).OldFullPath;
+                string oldPath = eRename.OldFullPath;
                 Console.WriteLine(oldPath + " has been deleted.");
                 _changeHistory[oldPath].Add(new Change(DateTime.Now,ChangeType.Delete));
             }
@@ -196,6 +265,10 @@ namespace Task_05.MyBackupSystem
             }
         }
 
+        /// <summary>
+        /// Process file creation and renaming
+        /// </summary>
+        /// <param name="e">Description of an event from FileSystemWatcher</param>
         private void OnListenerCreateHandler(FileSystemEventArgs e)
         {
             if (!_changeHistory.ContainsKey(e.FullPath))
@@ -203,13 +276,15 @@ namespace Task_05.MyBackupSystem
             string content = _fileHandler.GetFileContent(e.FullPath);
             byte[] compressedContent = Compression.CompressString(content);
 
-
             Console.WriteLine(e.FullPath + " has been created.");
             _changeHistory[e.FullPath].Add(new Change(DateTime.Now,ChangeType.Create,compressedContent));
         }
         #endregion
 
         #region Restoring files from backup
+        /// <summary>
+        /// Restore files from history
+        /// </summary>
         public void RestoreFiles()
         {
             Console.WriteLine("Enter the date of restoring:");
