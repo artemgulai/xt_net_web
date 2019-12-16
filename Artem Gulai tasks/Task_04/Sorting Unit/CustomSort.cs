@@ -29,14 +29,18 @@ namespace Task_04.Sorting_Unit
                 throw new ArgumentException("Array is null");
             }
 
+            T[] tempArray = new T[array.Length];
             // new merge sort
             int left = 0;
             int right = array.Length - 1;
-            SplitAndSort(array,comparator,left,right);
+            SplitAndSort(array,tempArray,comparator,left,right);
+
+            for (int i = 0; i < array.Length; i++)
+                array[i] = tempArray[i];
         }
 
         #region Merge sort methods
-        private void SplitAndSort<T>(T[] array,Func<T,T,bool> comparator, int left, int right)
+        private void SplitAndSort<T>(T[] array,T[] tempArray,Func<T,T,bool> comparator, int left, int right)
         {
             // array containing one element is sorted
             if (right - left == 0)
@@ -47,35 +51,35 @@ namespace Task_04.Sorting_Unit
             int mid = (left + right) / 2;
 
             // sort left half
-            SplitAndSort(array,comparator,left,mid);
+            SplitAndSort(array,tempArray,comparator,left,mid);
             // sort right half
-            SplitAndSort(array,comparator,mid + 1,right);
+            SplitAndSort(array,tempArray,comparator,mid + 1,right);
             // merge two halfs
-            Merge(array,comparator,left,mid,right);
+            Merge(array,tempArray,comparator,left,mid,right);
         }
 
-        private void Merge<T>(T[] a,Func<T,T,bool> comparator,int left,int mid,int right)
+        private void Merge<T>(T[] a,T[] tempA, Func<T,T,bool> comparator,int left,int mid,int right)
         {
             int leftPointer = left;
             int rightPointer = mid + 1;
-            T[] temp = new T[right - left + 1];
-            int tempPointer = 0;
+            
+            int tempPointer = left;
 
             while (leftPointer <= mid && rightPointer <= right)
             {
                 if (comparator(a[leftPointer], a[rightPointer]))
-                    temp[tempPointer++] = a[leftPointer++];
+                    tempA[tempPointer++] = a[leftPointer++];
                 else
-                    temp[tempPointer++] = a[rightPointer++];
+                    tempA[tempPointer++] = a[rightPointer++];
             }
 
             while (leftPointer <= mid)
-                temp[tempPointer++] = a[leftPointer++];
+                tempA[tempPointer++] = a[leftPointer++];
             while (rightPointer <= right)
-                temp[tempPointer++] = a[rightPointer++];
+                tempA[tempPointer++] = a[rightPointer++];
 
-            for (int i = 0; i < tempPointer; i++)
-                a[left + i] = temp[i];
+            //for (int i = 0; i < tempPointer; i++)
+            //    a[left + i] = temp[i];
         }
         #endregion
 
@@ -277,7 +281,7 @@ namespace Task_04.Sorting_Unit
             Console.WriteLine("Press enter to start a demonstration.");
             Console.ReadLine();
 
-            var numberOfElements = 10000000;
+            var numberOfElements = 100000;
 
             Console.WriteLine($"Let's create two arrays of {numberOfElements} elements and fill them with random numbers." +
                 "The first one is of ints, the second one is of doubles.");
