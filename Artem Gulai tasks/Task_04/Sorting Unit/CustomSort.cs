@@ -29,12 +29,72 @@ namespace Task_04.Sorting_Unit
                 throw new ArgumentException("Array is null");
             }
 
+            // new merge sort
+            int left = 0;
+            int right = array.Length - 1;
+            SplitAndSort(array,comparator,left,right);
+        }
+
+        #region Merge sort methods
+        private void SplitAndSort<T>(T[] array,Func<T,T,bool> comparator, int left, int right)
+        {
+            // array containing one element is sorted
+            if (right - left == 0)
+            {
+                return;
+            }
+
+            int mid = (left + right) / 2;
+
+            // sort left half
+            SplitAndSort(array,comparator,left,mid);
+            // sort right half
+            SplitAndSort(array,comparator,mid + 1,right);
+            // merge two halfs
+            Merge(array,comparator,left,mid,right);
+        }
+
+        private void Merge<T>(T[] a,Func<T,T,bool> comparator,int left,int mid,int right)
+        {
+            int leftPointer = left;
+            int rightPointer = mid + 1;
+            T[] temp = new T[right - left + 1];
+            int tempPointer = 0;
+
+            while (leftPointer <= mid && rightPointer <= right)
+            {
+                if (comparator(a[leftPointer], a[rightPointer]))
+                    temp[tempPointer++] = a[leftPointer++];
+                else
+                    temp[tempPointer++] = a[rightPointer++];
+            }
+
+            while (leftPointer <= mid)
+                temp[tempPointer++] = a[leftPointer++];
+            while (rightPointer <= right)
+                temp[tempPointer++] = a[rightPointer++];
+
+            for (int i = 0; i < tempPointer; i++)
+                a[left + i] = temp[i];
+        }
+        #endregion
+
+        #region Selection sort
+        /// <summary>
+        /// Selection sort.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array">Array to sort</param>
+        /// <param name="comparator">Comparator providing a method for
+        /// comparing two items.</param>
+        private void SelectionSort<T>(T[] array, Func<T,T,bool> comparator)
+        {
             for (int i = 0; i < array.Length - 1; i++)
             {
                 int changeIndex = i;
                 for (int j = i; j < array.Length; j++)
                 {
-                    if (comparator(array[j], array[changeIndex]))
+                    if (comparator(array[j],array[changeIndex]))
                     {
                         changeIndex = j;
                     }
@@ -58,6 +118,7 @@ namespace Task_04.Sorting_Unit
             var1 = var2;
             var2 = temp;
         }
+        #endregion
 
         /// <summary>
         /// This field is for identification different threads, in which 
@@ -216,11 +277,13 @@ namespace Task_04.Sorting_Unit
             Console.WriteLine("Press enter to start a demonstration.");
             Console.ReadLine();
 
-            Console.WriteLine("Let's create two arrays of 100000 elements and fill them with random numbers." +
+            var numberOfElements = 10000000;
+
+            Console.WriteLine($"Let's create two arrays of {numberOfElements} elements and fill them with random numbers." +
                 "The first one is of ints, the second one is of doubles.");
             
             var sortUnit = new CustomSort();
-            var numberOfElements = 1000;
+            
             sortUnit.OnSortIsFinished += OnSortIsFinishedEventHandler;
 
             var arr1 = new int[numberOfElements];
@@ -282,7 +345,8 @@ namespace Task_04.Sorting_Unit
                 Console.Write($"{arr2[i]:N2}; ");
             }
 
-            Console.WriteLine("Press enter to exit");
+            Console.WriteLine(Environment.NewLine + Environment.NewLine + 
+                "Press enter to exit");
 
             Console.ReadLine();
         }
