@@ -238,6 +238,7 @@ namespace Task_05.MyBackupSystem
                 if (lastChange.Content.SequenceEqual(compressedContent))
                     return;
             _changeHistory[e.FullPath].Add(new Change(DateTime.Now, ChangeType.Write, compressedContent));
+            Console.WriteLine(e.FullPath + " has been changed");
         }
 
         /// <summary>
