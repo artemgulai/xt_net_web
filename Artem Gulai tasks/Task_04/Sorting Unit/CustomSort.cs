@@ -29,15 +29,79 @@ namespace Task_04.Sorting_Unit
                 throw new ArgumentException("Array is null");
             }
 
-            T[] tempArray = new T[array.Length];
             // new merge sort
-            int left = 0;
-            int right = array.Length - 1;
-            SplitAndSort(array,tempArray,comparator,left,right);
+            //T[] tempArray = new T[array.Length];
+            //int left = 0;
+            //int right = array.Length - 1;
+            //SplitAndSort(array,tempArray,comparator,left,right);
 
-            for (int i = 0; i < array.Length; i++)
-                array[i] = tempArray[i];
+            //for (int i = 0; i < array.Length; i++)
+            //    array[i] = tempArray[i];
+
+            // new quick sort
+            QSort(array,0,array.Length - 1,comparator);
         }
+
+        #region Quick sort methods
+        public void QuickSort<T>(T[] a, Func<T,T,bool> comparator)
+        {
+            QSort(a,0,a.Length - 1, comparator);
+        }
+
+        private void QSort<T>(T[] a,int left,int right, Func<T,T,bool> comparator)
+        {
+            if (left - right > 0)
+                return;
+
+            if (right - left == 1)
+                if (!comparator(a[left], a[right]))
+                {
+                    Swap(ref a[left],ref a[right]);
+                    return;
+                }
+
+            bool leftStop = false, rightStop = false;
+            T pivot = a[right];
+            int leftPointer, rightPointer;
+            for (leftPointer = left, rightPointer = right - 1; leftPointer <= rightPointer;)
+            {
+                if (!comparator(a[leftPointer], pivot))
+                    leftStop = true;
+
+                if (comparator(a[rightPointer],pivot))
+                    rightStop = true;
+
+                if (leftStop && rightStop)
+                {
+                    Swap(ref a[leftPointer],ref a[rightPointer]);
+                    leftStop = false;
+                    rightStop = false;
+                }
+
+                if (!leftStop)
+                {
+                    leftPointer++;
+                }
+                if (!rightStop)
+                {
+                    rightPointer--;
+                }
+            }
+
+            int i = left;
+            for (i = left; i < right; i++)
+            {
+                if (!comparator(a[i], a[right]))
+                {
+                    Swap(ref a[i],ref a[right]);
+                    break;
+                }
+            }
+
+            QSort(a,left,i - 1,comparator);
+            QSort(a,i + 1,right,comparator);
+        }
+        #endregion
 
         #region Merge sort methods
         private void SplitAndSort<T>(T[] array,T[] tempArray,Func<T,T,bool> comparator, int left, int right)
@@ -281,7 +345,7 @@ namespace Task_04.Sorting_Unit
             Console.WriteLine("Press enter to start a demonstration.");
             Console.ReadLine();
 
-            var numberOfElements = 100000;
+            var numberOfElements = 10000000;
 
             Console.WriteLine($"Let's create two arrays of {numberOfElements} elements and fill them with random numbers." +
                 "The first one is of ints, the second one is of doubles.");
