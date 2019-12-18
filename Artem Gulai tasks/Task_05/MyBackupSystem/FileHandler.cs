@@ -16,12 +16,24 @@ namespace Task_05.MyBackupSystem
         /// <returns>Content of the text file</returns>
         public string GetFileContent(string path)
         {
-            using (FileStream readFileStream = new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.ReadWrite))
+            int numberOfTries = 0;
+            while (true)
             {
-                using (StreamReader read = new StreamReader(readFileStream, true))
+                try
                 {
-                    string content = read.ReadToEnd();
-                    return content;
+                    using (FileStream readFileStream = new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.ReadWrite))
+                    {
+                        using (StreamReader read = new StreamReader(readFileStream,true))
+                        {
+                            string content = read.ReadToEnd();
+                            return content;
+                        }
+                    }
+                }
+                catch (IOException ex) 
+                {
+                    if (numberOfTries++ == 10)
+                        throw new IOException(ex.Message,ex.InnerException);
                 }
             }
         }

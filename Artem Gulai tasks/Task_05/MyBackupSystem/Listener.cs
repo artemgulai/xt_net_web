@@ -61,9 +61,7 @@ namespace Task_05.MyBackupSystem
         /// </summary>
         private void OnChangeEventHandler(object sender,FileSystemEventArgs args)
         {
-            // sleep is for wating until file is available
-            Thread.Sleep(200);
-                OnWatcherChangeEventRedirector?.Invoke(args);
+            OnWatcherChangeEventRedirector?.Invoke(args);
         }
 
         /// <summary>
@@ -79,8 +77,7 @@ namespace Task_05.MyBackupSystem
         /// </summary>
         private void OnCreateEventHandler(object sender,FileSystemEventArgs args)
         {
-            Thread.Sleep(100);
-            OnWatcherCreateEventRedirector?.Invoke(args);
+            new Thread(() => OnWatcherCreateEventRedirector?.Invoke(args)).Start();
         }
 
         /// <summary>
