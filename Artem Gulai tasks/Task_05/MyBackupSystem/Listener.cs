@@ -11,12 +11,23 @@ namespace Task_05.MyBackupSystem
     sealed class Listener
     {
         private FileSystemWatcher _watcher;
+        private Queue<FileSystemEventArgs> _changeQueue;
+        private Queue<FileSystemEventArgs> _createQueue;
+        private Queue<FileSystemEventArgs> _deleteQueue;
+        private Thread _th;
 
         public Listener(string pathToBackup)
         {
             _watcher = new FileSystemWatcher(pathToBackup,"*.txt");
             SetUpWatcher();
             TurnOnWatcher();
+            _changeQueue = new Queue<FileSystemEventArgs>();
+            _createQueue = new Queue<FileSystemEventArgs>();
+            _deleteQueue = new Queue<FileSystemEventArgs>();
+
+            _th = new Thread(() => EmptyQueues());
+            _th.IsBackground = true;
+            _th.Start();
         }
 
         #region Listener controls
@@ -56,12 +67,37 @@ namespace Task_05.MyBackupSystem
         #endregion
 
         #region _watcher's event handlers
+
+        /// <summary>
+        /// Process event queues
+        /// </summary>
+        private void EmptyQueues()
+        {
+            while (true)
+            {
+                if (_createQueue.Count != 0)
+                {
+                    OnWatcherCreateEventRedirector?.Invoke(_createQueue.Dequeue());
+                }
+
+                if (_changeQueue.Count != 0)
+                {
+                    OnWatcherChangeEventRedirector?.Invoke(_changeQueue.Dequeue());
+                }
+
+                if (_deleteQueue.Count != 0)
+                {
+                    OnWatcherDeleteEventRedirector?.Invoke(_deleteQueue.Dequeue());
+                }
+            }
+        }
+
         /// <summary>
         /// Redirects FileWatcherEvents to subscribers
         /// </summary>
         private void OnChangeEventHandler(object sender,FileSystemEventArgs args)
         {
-            OnWatcherChangeEventRedirector?.Invoke(args);
+            _changeQueue.Enqueue(args);
         }
 
         /// <summary>
@@ -69,7 +105,7 @@ namespace Task_05.MyBackupSystem
         /// </summary>
         private void OnDeleteEventHandler(object sender,FileSystemEventArgs args)
         {
-            OnWatcherDeleteEventRedirector?.Invoke(args);
+            _deleteQueue.Enqueue(args);
         }
 
         /// <summary>
@@ -77,7 +113,7 @@ namespace Task_05.MyBackupSystem
         /// </summary>
         private void OnCreateEventHandler(object sender,FileSystemEventArgs args)
         {
-            new Thread(() => OnWatcherCreateEventRedirector?.Invoke(args)).Start();
+            _createQueue.Enqueue(args);
         }
 
         /// <summary>
