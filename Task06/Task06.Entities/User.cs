@@ -8,35 +8,19 @@ namespace Task06.Entities
 {
     public class User
     {
-        private int _id;
-        private string _name;
-        private DateTime _dateOfBirth;
+        public int Id { get; set; }
 
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get => _name;
-            set => _name = value;
-        }
-
-        public DateTime DateOfBirth
-        {
-            get => _dateOfBirth;
-            set => _dateOfBirth = value;
-        }
+        public DateTime DateOfBirth { get; set; }
 
         public int Age
         {
             get
             {
                 DateTime today = DateTime.Now;
-                int age = today.Year - _dateOfBirth.Year;
-                if (today.AddYears(-age) < _dateOfBirth) age--;
+                int age = today.Year - DateOfBirth.Year;
+                if (today.AddYears(-age) < DateOfBirth) age--;
                 return age;
             }
         }

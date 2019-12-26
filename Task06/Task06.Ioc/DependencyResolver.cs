@@ -17,5 +17,11 @@ namespace Task06.Ioc
 
         private static IUserLogic _userLogic = new UserLogic(_userDao);
         public static IUserLogic UserLogic => _userLogic;
+
+        private static IAwardDao _awardDao = new AwardFileDao();
+        public static IAwardDao AwardDao => _awardDao;
+
+        private static IAwardLogic _awardLogic = new AwardLogic(_awardDao);
+        public static IAwardLogic AwardLogic => _awardLogic;
     }
 }

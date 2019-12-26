@@ -10,10 +10,6 @@ using Task06.Entities;
 
 namespace Task06.DAL
 {
-    // TODO implement these methods
-    /// <summary>
-    /// Dao for storing Users in a text file on HDD.
-    /// </summary>
     public class UserFileDao : IUserDao
     {
         private static int operationNumber = 0;
