@@ -15,6 +15,8 @@ namespace Task06.DAL.Interfaces
 
         IEnumerable<Award> GetAll();
 
+        event Action<Award> DeleteAward;
+
         bool RemoveById(int id);
     }
 }

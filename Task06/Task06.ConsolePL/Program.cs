@@ -68,7 +68,6 @@ namespace Task06.ConsolePL
             Console.WriteLine("Select mode:");
             Console.WriteLine("1. Users mode.");
             Console.WriteLine("2. Awards mode.");
-            Console.WriteLine("3. Users and awards mode.");
             Console.WriteLine("0. Exit.");
         }
         #endregion
@@ -105,18 +104,7 @@ namespace Task06.ConsolePL
                         }
                     case 3:
                         {
-                            IEnumerable<User> users = _userLogic.GetAll();
-                            if (users.Count() == 0)
-                            {
-                                Console.WriteLine("No users.");
-                            }
-                            else
-                            {
-                                foreach (var user in users)
-                                {
-                                    ShowUser(user);
-                                }
-                            }
+                            ShowAllUsers();
                             Console.ReadLine();
                             break;
                         }
@@ -130,6 +118,68 @@ namespace Task06.ConsolePL
                             else
                             {
                                 Console.WriteLine(NO_USER_ID);
+                            }
+                            Console.ReadLine();
+                            break;
+                        }
+                    case 5:
+                        {
+                            ShowAllUsers();
+                            Console.WriteLine("Select User to give Award to.");
+                            User user = _userLogic.GetById(GetId());
+                            if (user == null)
+                            {
+                                Console.WriteLine(NO_USER_ID);
+                                break;
+                            }
+
+                            ShowAllAwards();
+                            Console.WriteLine("Select Award to give to the User.");
+                            Award award = _awardLogic.GetById(GetId());
+                            if (award == null)
+                            {
+                                Console.WriteLine(NO_AWARD_ID);
+                                break;
+                            }
+
+                            if (_userLogic.GiveAward(user.Id,award))
+                            {
+                                Console.WriteLine($"The Award \"{award.Title}\" has been given to the User \"{user.Name}\".");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Can't give the Award \"{award.Title}\" to the User \"{user.Name}\".");
+                            }
+                            Console.ReadLine();
+                            break;
+                        }
+                    case 6:
+                        {
+                            ShowAllUsers();
+                            Console.WriteLine("Select User to take Award from.");
+                            User user = _userLogic.GetById(GetId());
+                            if (user == null)
+                            {
+                                Console.WriteLine(NO_USER_ID);
+                                break;
+                            }
+
+                            ShowAllAwards();
+                            Console.WriteLine("Select Award to take from the User.");
+                            Award award = _awardLogic.GetById(GetId());
+                            if (award == null)
+                            {
+                                Console.WriteLine(NO_AWARD_ID);
+                                break;
+                            }
+
+                            if (_userLogic.TakeAwayAward(user.Id,award))
+                            {
+                                Console.WriteLine($"The Award \"{award.Title}\" has been taken from the User \"{user.Name}\".");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Can't take the Award \"{award.Title}\" from the User \"{user.Name}\".");
                             }
                             Console.ReadLine();
                             break;
@@ -160,6 +210,8 @@ namespace Task06.ConsolePL
             Console.WriteLine("2. Show User with specified ID.");
             Console.WriteLine("3. Show all Users.");
             Console.WriteLine("4. Remove user by specified ID.");
+            Console.WriteLine("5. Give Award to User.");
+            Console.WriteLine("6. Take Award from User.");
             Console.WriteLine("0. Exit User mode.");
         }
 
@@ -172,6 +224,22 @@ namespace Task06.ConsolePL
             else
             {
                 Console.WriteLine(user);
+            }
+        }
+
+        private static void ShowAllUsers()
+        {
+            IEnumerable<User> users = _userLogic.GetAll();
+            if (users.Count() == 0)
+            {
+                Console.WriteLine("No users.");
+            }
+            else
+            {
+                foreach (var user in users)
+                {
+                    ShowUser(user);
+                }
             }
         }
 
@@ -296,6 +364,22 @@ namespace Task06.ConsolePL
             else
             {
                 Console.WriteLine(award);
+            }
+        }
+
+        private static void ShowAllAwards()
+        {
+            IEnumerable<Award> awards = _awardLogic.GetAll();
+            if (awards.Count() == 0)
+            {
+                Console.WriteLine("No users.");
+            }
+            else
+            {
+                foreach (var award in awards)
+                {
+                    ShowAward(award);
+                }
             }
         }
 

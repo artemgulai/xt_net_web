@@ -23,5 +23,10 @@ namespace Task06.Ioc
 
         private static IAwardLogic _awardLogic = new AwardLogic(_awardDao);
         public static IAwardLogic AwardLogic => _awardLogic;
+
+        static DependencyResolver()
+        {
+            _awardDao.DeleteAward += _userDao.OnDeleteAwardHandler;
+        }
     }
 }

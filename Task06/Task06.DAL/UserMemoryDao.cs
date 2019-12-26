@@ -13,7 +13,7 @@ namespace Task06.DAL
     /// <summary>
     /// Dao for storing Users in RAM
     /// </summary>
-    public class UserMemoryDao : IUserDao
+    public class UserMemoryDao // TODO implement interface IUserDao!!!!
     {
         private static readonly Dictionary<int,User> _users = new Dictionary<int,User>();
 

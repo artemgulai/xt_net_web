@@ -12,14 +12,15 @@ namespace Task06.DAL
 {
     public class UserFileDao : IUserDao
     {
+        private static string filePath = @"users.txt";
         private static int operationNumber = 0;
-        private static readonly Dictionary<int,User> _users;
+        private readonly Dictionary<int,User> _users;
 
-        static UserFileDao()
+        public UserFileDao()
         {
-            if (File.Exists(@"users.txt"))
+            if (File.Exists(filePath))
             {
-                using (var streamReader = new StreamReader(File.Open(@"users.txt",FileMode.Open)))
+                using (var streamReader = new StreamReader(File.Open(filePath,FileMode.Open)))
                 {
                     string fileContent = streamReader.ReadLine();
                     _users = JsonConvert.DeserializeObject<Dictionary<int,User>>(fileContent);
@@ -65,13 +66,31 @@ namespace Task06.DAL
             return removeResult;
         }
 
+        public bool GiveAward(int id, Award award)
+        {
+            return _users[id].AddAward(award);
+        }
+
+        public bool TakeAwayAward(int id, Award award)
+        {
+            return _users[id].RemoveAward(award);
+        }
+
+        public void OnDeleteAwardHandler(Award award)
+        {
+            foreach (var user in _users)
+            {
+                user.Value.RemoveAward(award);
+            }
+        }
+
         private void WriteUsers()
         {
-            if (File.Exists(@"users.txt"))
+            if (File.Exists(filePath))
             {
-                File.Delete(@"users.txt");
+                File.Delete(filePath);
             }
-            using (var streamWriter = new StreamWriter(File.Open(@"users.txt",FileMode.OpenOrCreate)))
+            using (var streamWriter = new StreamWriter(File.Open(filePath,FileMode.Create)))
             {
                 streamWriter.Write(JsonConvert.SerializeObject(_users));
             }

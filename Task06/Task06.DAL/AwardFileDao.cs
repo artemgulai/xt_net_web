@@ -13,13 +13,14 @@ namespace Task06.DAL
     public class AwardFileDao : IAwardDao
     {
         private static int operationNumber = 0;
-        private static readonly Dictionary<int,Award> _awards;
+        private readonly Dictionary<int,Award> _awards;
+        private static string filePath = @"awards.txt";
 
-        static AwardFileDao()
+        public AwardFileDao()
         {
-            if (File.Exists("awards.txt"))
+            if (File.Exists(filePath))
             {
-                using (var streamReader = new StreamReader(File.Open("awards.txt",FileMode.Open)))
+                using (var streamReader = new StreamReader(File.Open(filePath,FileMode.Open)))
                 {
                     string fileContent = streamReader.ReadLine();
                     _awards = JsonConvert.DeserializeObject<Dictionary<int,Award>>(fileContent);
@@ -30,6 +31,7 @@ namespace Task06.DAL
                 _awards = new Dictionary<int,Award>();
             }
         }
+
         public Award Add(Award award)
         {
             var lastId = _awards.Keys.Count > 0 ? _awards.Keys.Max() : 0;
@@ -56,21 +58,27 @@ namespace Task06.DAL
 
         public bool RemoveById(int id)
         {
+            Award awardToRemove = _awards[id];
             bool removeResult = _awards.Remove(id);
+            
             if (removeResult)
             {
                 IncrementOperationNumber();
+                DeleteAward?.Invoke(awardToRemove);
             }
+
             return removeResult;
         }
 
+        public event Action<Award> DeleteAward;
+
         private void WriteAwards()
         {
-            if (File.Exists("awards.txt"))
+            if (File.Exists(filePath))
             {
-                File.Delete("awards.txt");
+                File.Delete(filePath);
             }
-            using (var streamWriter = new StreamWriter(File.Open("awards.txt",FileMode.OpenOrCreate)))
+            using (var streamWriter = new StreamWriter(File.Open(filePath,FileMode.Create)))
             {
                 streamWriter.Write(JsonConvert.SerializeObject(_awards));
             }
