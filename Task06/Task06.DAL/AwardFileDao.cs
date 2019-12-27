@@ -10,11 +10,14 @@ using Task06.Entities;
 
 namespace Task06.DAL
 {
+    /// <summary>
+    /// DAO for storing Awards on HDD.
+    /// </summary>
     public class AwardFileDao : IAwardDao
     {
         private static int operationNumber = 0;
         private readonly Dictionary<int,Award> _awards;
-        private static string filePath = @"awards.txt";
+        private static string filePath = @".awards.txt";
 
         public AwardFileDao()
         {
@@ -82,6 +85,7 @@ namespace Task06.DAL
             {
                 streamWriter.Write(JsonConvert.SerializeObject(_awards));
             }
+            File.SetAttributes(filePath,FileAttributes.Hidden);
         }
 
         private void IncrementOperationNumber()

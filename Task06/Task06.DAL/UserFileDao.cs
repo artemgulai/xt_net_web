@@ -10,9 +10,12 @@ using Task06.Entities;
 
 namespace Task06.DAL
 {
+    /// <summary>
+    /// DAO for storing Users on HDD.
+    /// </summary>
     public class UserFileDao : IUserDao
     {
-        private static string filePath = @"users.txt";
+        private static string filePath = @".users.txt";
         private static int operationNumber = 0;
         private readonly Dictionary<int,User> _users;
 
@@ -94,6 +97,7 @@ namespace Task06.DAL
             {
                 streamWriter.Write(JsonConvert.SerializeObject(_users));
             }
+            File.SetAttributes(filePath,FileAttributes.Hidden);
         }
 
         private void IncrementOperationNumber()

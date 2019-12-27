@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AwardFileDao.cs" />
+    <Compile Include="AwardMemoryDao.cs" />
     <Compile Include="UserFileDao.cs" />
     <Compile Include="UserMemoryDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,13 +12,13 @@ namespace Task06.Ioc
 {
     public static class DependencyResolver
     {
-        private static IUserDao _userDao = new UserFileDao();
+        private static IUserDao _userDao = new UserMemoryDao();
         public static IUserDao UserDao => _userDao;
 
         private static IUserLogic _userLogic = new UserLogic(_userDao);
         public static IUserLogic UserLogic => _userLogic;
 
-        private static IAwardDao _awardDao = new AwardFileDao();
+        private static IAwardDao _awardDao = new AwardMemoryDao();
         public static IAwardDao AwardDao => _awardDao;
 
         private static IAwardLogic _awardLogic = new AwardLogic(_awardDao);

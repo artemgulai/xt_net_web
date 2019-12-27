@@ -69,8 +69,8 @@ namespace Task06.Entities
                 {
                     userSB.Append($" {item.Value.Title},");
                 }
+                userSB.Remove(userSB.Length - 1,1);
             }
-            userSB.Remove(userSB.Length - 1,1);
             return userSB.ToString();
         }
     }
