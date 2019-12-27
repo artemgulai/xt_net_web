@@ -14,7 +14,7 @@ namespace Task_01
         /// <returns>1D array of integers</returns>
         public static int[] Generate1DArray()
         {
-            int length = -1;
+            int length;
 
             do
             {
@@ -97,7 +97,8 @@ namespace Task_01
         /// <returns>2D array of integers</returns>
         public static int[,] Generate2DArray()
         {
-            int dim1 = -1, dim2 = -1;
+            int dim1; 
+            int dim2;
             do
             {
                 Console.WriteLine("Enter the length of the first dimension.");
@@ -164,7 +165,9 @@ namespace Task_01
         /// <returns>3D array of integers</returns>
         public static int[,,] Generate3DArray()
         {
-            int dim1 = -1, dim2 = -1, dim3 = -1;
+            int dim1;
+            int dim2; 
+            int dim3;
             do
             {
                 Console.WriteLine("Enter the length of the first dimension.");

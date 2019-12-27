@@ -8,19 +8,18 @@ namespace Task_00
 {
     static class Indices
     {
-        // метод, принимающий массив с размерностями массива и массив с индексами.
-        // при каждом вызове метод преобразует массив с индексами так, чтобы он представлял
-        // собой следующий набор индексов, как во вложенных циклах for.
-        public static bool getNextIndices(int[] arrayLength, int[] arrayIndex, bool printBraces, int levelNumber = 0)
+        /// <summary>
+        /// Method computing the next set of indices of multidimension array (just as in nester for loops)
+        /// </summary>
+        /// <param name="arrayLength">Array conatining dimensions of multidimension array</param>
+        /// <param name="arrayIndex">Array containing indices of multidimension array</param>
+        /// <returns>True if the next set is available, else false.</returns>
+        public static bool getNextIndices(int[] arrayLength, int[] arrayIndex, int levelNumber = 0)
         {
             int thisLevelArrayLength = arrayLength[levelNumber] - 1; // переменная для сравнения индексов
-            // ветка для последнего сравнения
+            // branch for the last comparison
             if (levelNumber == arrayIndex.Length-1)
             {
-                if (printBraces && (arrayIndex[levelNumber] == 0 ))
-                {
-                    Console.Write("{");
-                }
                 if (arrayIndex[levelNumber] < thisLevelArrayLength)
                 {
                     arrayIndex[levelNumber]++;
@@ -33,9 +32,9 @@ namespace Task_00
                 }
             }
 
-            bool flag = getNextIndices(arrayLength,arrayIndex, printBraces, levelNumber + 1);
+            bool flag = getNextIndices(arrayLength,arrayIndex, levelNumber + 1);
 
-            // ветка для промежуточных сравнений
+            // branch for other comparisons
             if ((arrayIndex[levelNumber] < thisLevelArrayLength) && !flag)
             {
                 return false;

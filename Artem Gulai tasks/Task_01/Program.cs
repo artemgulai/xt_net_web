@@ -11,7 +11,7 @@ namespace Task_01
         static void Main(string[] args)
         {
             Console.WriteLine("Task 01. C# BASICS.");
-            var select = -1;
+            int select;
 
             do
             {

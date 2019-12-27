@@ -13,9 +13,10 @@ namespace Task_01
         /// </summary>
         public static void Rectangle_1_1()
         {
-            int a = 0, b = 0;
-            bool flagA = false, flagB = false;
-            while (!flagA)
+            int a; 
+            int b;
+
+            while (true)
             {
                 Console.WriteLine("Enter a:");
                 if (int.TryParse(Console.ReadLine(),out a))
@@ -26,11 +27,12 @@ namespace Task_01
                     }
                     else
                     {
-                        flagA = true;
+                        break;
                     }
                 }
             }
-            while (!flagB)
+
+            while (true)
             {
                 Console.WriteLine("Enter b:");
                 if (int.TryParse(Console.ReadLine(),out b))
@@ -41,7 +43,7 @@ namespace Task_01
                     }
                     else
                     {
-                        flagB = true;
+                        break;
                     }
                 }
             }
@@ -55,7 +57,7 @@ namespace Task_01
         /// </summary>
         public static void Triangle_1_2()
         {
-            int n = 0;
+            int n;
             while (true)
             {
                 Console.WriteLine("Enter N.");
@@ -100,7 +102,7 @@ namespace Task_01
         /// </summary>
         public static void AnotherTriangle_1_3()
         {
-            int n = 0;
+            int n;
             while (true)
             {
                 Console.WriteLine("Enter N.");
@@ -156,7 +158,7 @@ namespace Task_01
         /// </summary>
         public static void XmasTree_1_4()
         {
-            int n = 0;
+            int n;
             while (true)
             {
                 Console.WriteLine("Enter N.");

@@ -8,27 +8,54 @@ namespace Task_00
 {
     class MultiDimArray
     {
-        // создание массива
+        // Array creation
         public static Array ArrayCreation()
         {
-            Console.WriteLine("Введите число N (размерность массива)");
-            int arrayDim = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter N (dimension of array)");
+            int arrayDim;
+            while (true)
+            {
+                while (!int.TryParse(Console.ReadLine(),out arrayDim))
+                {
+                    Console.WriteLine("Wrong number. Try again.");
+                }
+                if (arrayDim < 1)
+                {
+                    Console.WriteLine("Dimension of array should be positive.");
+                    continue;
+                }
+                break;
+            }
 
             int[] arrayLength = new int[arrayDim];
             for (int i = 0; i < arrayDim; i++)
             {
-                Console.WriteLine($"Введите число элементов по {i + 1}-й размерности.");
+                Console.WriteLine($"Enter the number of items in the {i + 1} dimension.");
+                int arrLength;
+                while (true)
+                {
+                    while (!int.TryParse(Console.ReadLine(),out arrLength))
+                    {
+                        Console.WriteLine("Wrong number");
+                    }
+                    if (arrLength < 1)
+                    {
+                        Console.WriteLine("Number of items should be positive.");
+                        continue;
+                    }
+                    break;
+                }
                 arrayLength[i] = int.Parse(Console.ReadLine());
             }
 
-            var array = System.Array.CreateInstance(typeof(int),arrayLength);
-            Random random = new Random(42);
+            var array = Array.CreateInstance(typeof(int),arrayLength);
+            Random random = new Random();
             int[] indices = new int[arrayDim];
 
             do
             {
                 array.SetValue(random.Next(0,100),indices);
-            } while (!Indices.getNextIndices(arrayLength,indices,false));
+            } while (!Indices.getNextIndices(arrayLength,indices));
 
             return array;
         }
@@ -70,7 +97,7 @@ namespace Task_00
                 {
                     previousIndices[i] = nextIndices[i];
                 }
-            } while (!Indices.getNextIndices(arrayLength,nextIndices,false));
+            } while (!Indices.getNextIndices(arrayLength,nextIndices));
             for (int i = 0; i < array.Rank; i++)
             {
                 Console.Write("}");
@@ -79,7 +106,7 @@ namespace Task_00
 
         public static void ArraySorting(Array array)
         {
-            // создаем одномерный массив из элементов многомерного, который будем сортировать
+            // create 1d array containing items from multi-d array to be sorted
             int[] arrayToSort = new int[array.Length];
             int indexOfArrayToSort = 0;
             foreach (int i in array)
@@ -87,7 +114,7 @@ namespace Task_00
                 arrayToSort[indexOfArrayToSort++] = i;
             }
 
-            // сортировка этого одномерного массива
+            // sort 1d array
             for (int i = 0; i < arrayToSort.Length - 1; i++)
             {
                 int min = int.MaxValue;
@@ -108,7 +135,7 @@ namespace Task_00
                 }
             }
 
-            // заполнение исходного многомерного массива элементами по порядку
+            // fulfill multidimensional array with sorted items
             int[] arrayLength = new int[array.Rank];
             int[] indices = new int[array.Rank];
             for (int i = 0; i < array.Rank; i++)
@@ -117,10 +144,10 @@ namespace Task_00
                 indices[i] = 0;
             }
 
-            foreach (int i in arrayToSort)
+            foreach (var item in arrayToSort)
             {
-                array.SetValue(i,indices);
-                Indices.getNextIndices(arrayLength,indices,false);
+                array.SetValue(item,indices);
+                Indices.getNextIndices(arrayLength,indices);
             }
         }
     }
