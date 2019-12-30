@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,16 +10,81 @@ using Task06.Ioc;
 
 namespace Task06.ConsolePL
 {
-    class Program
+    public class Program
     {
-        private static IUserLogic _userLogic = DependencyResolver.UserLogic;
-        private static IAwardLogic _awardLogic = DependencyResolver.AwardLogic;
+        private static IUserLogic _userLogic;// = DependencyResolver.UserLogic;
+        private static IAwardLogic _awardLogic;// = DependencyResolver.AwardLogic;
         private static string NO_USER_ID = "No user with such ID.";
         private static string NO_AWARD_ID = "No award with such ID.";
 
         static void Main(string[] args)
         {
+            SelectDAL();
+            _userLogic = DependencyResolver.UserLogic;
+            _awardLogic = DependencyResolver.AwardLogic;
             Run();
+        }
+
+        private static void SelectDAL()
+        {
+            Console.WriteLine("Select the DAL realization:");
+            Console.WriteLine("1. File on HDD.");
+            Console.WriteLine("2. RAM.");
+            Console.WriteLine("3. Setting in configuration file.");
+
+            for(; ;)
+            {
+                int select;
+                while (!int.TryParse(Console.ReadLine(),out select))
+                {
+                    Console.WriteLine("Wrong input. Try again.");
+                }
+                switch (select)
+                {
+                    case 1:
+                        {
+                            WriteDALSetting("File");
+                            return;
+                        }
+                    case 2:
+                        {
+                            WriteDALSetting("Memory");
+                            return;
+                        }
+                    case 3:
+                        {
+                            return;
+                        }
+                    default: 
+                        {
+                            Console.WriteLine("Wrong number. Try again.");
+                            continue;
+                        }
+                }
+            }
+        }
+
+        private static void WriteDALSetting(string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings["DAL"] == null)
+                {
+                    settings.Add("DAL",value);
+                }
+                else
+                {
+                    settings["DAL"].Value = value;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error writing app settings");
+            }
         }
 
         private static void Run()

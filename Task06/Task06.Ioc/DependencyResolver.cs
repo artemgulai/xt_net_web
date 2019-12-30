@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,21 +13,44 @@ namespace Task06.Ioc
 {
     public static class DependencyResolver
     {
-        private static IUserDao _userDao = new UserMemoryDao();
-        public static IUserDao UserDao => _userDao;
+        public static IUserDao UserDao { get; private set; }
 
-        private static IUserLogic _userLogic = new UserLogic(_userDao);
-        public static IUserLogic UserLogic => _userLogic;
+        public static IUserLogic UserLogic { get; private set; }
 
-        private static IAwardDao _awardDao = new AwardMemoryDao();
-        public static IAwardDao AwardDao => _awardDao;
+        public static IAwardDao AwardDao { get; set; }
 
-        private static IAwardLogic _awardLogic = new AwardLogic(_awardDao);
-        public static IAwardLogic AwardLogic => _awardLogic;
+        public static IAwardLogic AwardLogic { get; set; } 
 
         static DependencyResolver()
         {
-            _awardDao.DeleteAward += _userDao.OnDeleteAwardHandler;
+            var DALConf = ReadSetting("DAL");
+            if (DALConf == "File")
+            {
+                UserDao = new UserFileDao();
+                AwardDao = new AwardFileDao();
+            }
+            else
+            {
+                UserDao = new UserMemoryDao();
+                AwardDao = new AwardMemoryDao();
+            }
+
+            UserLogic = new UserLogic(UserDao);
+            AwardLogic = new AwardLogic(AwardDao);
+            AwardDao.DeleteAward += UserDao.OnDeleteAwardHandler;
+        }
+
+        private static string ReadSetting(string key)
+        {
+            try
+            {
+                var appSettings = ConfigurationManager.AppSettings;
+                return appSettings[key] ?? "Not Found";
+            }
+            catch (ConfigurationErrorsException)
+            {
+                return "Not Found";
+            }
         }
     }
 }
