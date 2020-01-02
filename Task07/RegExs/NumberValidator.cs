@@ -9,9 +9,6 @@ namespace RegExs
 {
     public class NumberValidator
     {
-        // -?\d+(\.\d+)? -- usual notation
-        // -?\d\.\d+[1-9]e-?[1-9](\d+)? -- scientific notation
-
         public static bool IsUsusalNotation(string input)
         {
             Regex regex = new Regex(@"^-?\d+(\.\d+)?$");
@@ -20,8 +17,26 @@ namespace RegExs
 
         public static bool IsScientificNotation(string input)
         {
-            Regex regex = new Regex(@"^-?\d\.\d+[1-9]e-?[1-9](\d+)?$");
+            Regex regex = new Regex(@"^-?[1-9](\.[1-9]|\.\d+[1-9])?e-?[1-9](\d+)?$");
             return regex.IsMatch(input);
+        }
+
+        public static void Demo()
+        {
+            Console.WriteLine("Enter the number.");
+            string number = Console.ReadLine();
+            if (IsUsusalNotation(number))
+            {
+                Console.WriteLine("This is a number in the usual notation.");
+            }
+            else if (IsScientificNotation(number))
+            {
+                Console.WriteLine("This is a number in the normalized scientific notation.");
+            }
+            else
+            {
+                Console.WriteLine("This is not a number in either the usual or the normalized scientific notation.");
+            }
         }
     }
 }

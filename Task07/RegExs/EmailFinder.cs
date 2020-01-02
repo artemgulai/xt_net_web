@@ -11,7 +11,7 @@ namespace RegExs
     {
         public static void FindEmails(string input)
         {
-            Regex regex = new Regex(@"\b[\w.]+@[a-z.]+\b");
+            Regex regex = new Regex(@"\b[\w.]+@[\w]+(\.[\w]+){1,}\b");
             MatchCollection matches = regex.Matches(input);
             if (matches.Count == 0)
             {
@@ -25,7 +25,13 @@ namespace RegExs
                     Console.WriteLine(match.Value);
                 }
             }
-            Console.ReadLine();
+        }
+
+        public static void Demo()
+        {
+            Console.WriteLine("Enter text.");
+            string text = Console.ReadLine();
+            FindEmails(text);
         }
     }
 }

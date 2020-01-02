@@ -14,5 +14,14 @@ namespace RegExs
             Regex regex = new Regex("<.+?>");
             return regex.Replace(input,"_");
         }
+
+        public static void Demo()
+        {
+            Console.WriteLine("Enter the text.");
+            string text = Console.ReadLine();
+
+            Console.WriteLine("Text without tags:");
+            Console.WriteLine(ReplaceTags(text));
+        }
     }
 }
