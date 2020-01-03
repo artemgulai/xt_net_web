@@ -15,6 +15,8 @@ namespace Task06.BLL.Interfaces
 
         IEnumerable<Award> GetAll();
 
+        IEnumerable<Award> GetByIdList(IEnumerable<int> ids);
+
         bool RemoveById(int id);
     }
 }

@@ -208,7 +208,7 @@ namespace Task06.ConsolePL
                                 break;
                             }
 
-                            if (_userLogic.GiveAward(user.Id,award))
+                            if (_userLogic.GiveAward(user.Id,award.Id))
                             {
                                 Console.WriteLine($"The Award \"{award.Title}\" has been given to the User \"{user.Name}\".");
                             }
@@ -239,7 +239,7 @@ namespace Task06.ConsolePL
                                 break;
                             }
 
-                            if (_userLogic.TakeAwayAward(user.Id,award))
+                            if (_userLogic.TakeAwayAward(user.Id,award.Id))
                             {
                                 Console.WriteLine($"The Award \"{award.Title}\" has been taken from the User \"{user.Name}\".");
                             }
@@ -305,6 +305,7 @@ namespace Task06.ConsolePL
                 foreach (var user in users)
                 {
                     ShowUser(user);
+                    ShowUsersAwards(_awardLogic.GetByIdList(user.Awards));
                 }
             }
         }
@@ -466,6 +467,19 @@ namespace Task06.ConsolePL
             }
 
             return new Award() { Title = title };
+        }
+
+        private static void ShowUsersAwards(IEnumerable<Award> awards)
+        {
+            if (awards.Count() != 0)
+            {
+                Console.Write("Awards: ");
+                foreach (var award in awards)
+                {
+                    Console.Write(award.Title + "; ");
+                }
+                Console.WriteLine();
+            }
         }
         #endregion
 

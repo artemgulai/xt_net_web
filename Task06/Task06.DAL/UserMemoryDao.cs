@@ -81,9 +81,9 @@ namespace Task06.DAL
         /// <param name="award">Award to be added.</param>
         /// <returns>True if Award is added.
         /// False if Award cannot be added.</returns>
-        public bool GiveAward(int id,Award award)
+        public bool GiveAward(int id,int awardId)
         {
-            return _users[id].AddAward(award);
+            return _users[id].AddAward(awardId);
         }
 
         /// <summary>
@@ -93,20 +93,20 @@ namespace Task06.DAL
         /// <param name="award">Award to be removed.</param>
         /// <returns>True if Award is removed.
         /// False if Award cannot be removed.</returns>
-        public bool TakeAwayAward(int id,Award award)
+        public bool TakeAwayAward(int id,int awardId)
         {
-            return _users[id].RemoveAward(award);
+            return _users[id].RemoveAward(awardId);
         }
 
         /// <summary>
         /// Removes Award from Users' collection of Awards.
         /// </summary>
         /// <param name="award">Removed Award.</param>
-        public void OnDeleteAwardHandler(Award award)
+        public void OnDeleteAwardHandler(int awardId)
         {
             foreach (var user in _users)
             {
-                user.Value.RemoveAward(award);
+                user.Value.RemoveAward(awardId);
             }
         }
     }

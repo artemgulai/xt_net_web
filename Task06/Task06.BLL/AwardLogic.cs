@@ -28,6 +28,11 @@ namespace Task06.BLL
             return _awardDao.GetAll();
         }
 
+        public IEnumerable<Award> GetByIdList(IEnumerable<int> ids)
+        {
+            return _awardDao.GetByIdList(ids);
+        }
+
         public Award GetById(int id)
         {
             return _awardDao.GetById(id);

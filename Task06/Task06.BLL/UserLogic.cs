@@ -38,14 +38,14 @@ namespace Task06.BLL
             return _userDao.RemoveById(id);
         }
 
-        public bool GiveAward(int id, Award award)
+        public bool GiveAward(int id, int awardId)
         {
-            return _userDao.GiveAward(id, award);
+            return _userDao.GiveAward(id, awardId);
         }
 
-        public bool TakeAwayAward(int id, Award award)
+        public bool TakeAwayAward(int id, int awardId)
         {
-            return _userDao.TakeAwayAward(id, award);
+            return _userDao.TakeAwayAward(id, awardId);
         }
     }
 }

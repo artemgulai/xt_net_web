@@ -8,11 +8,11 @@ namespace Task06.Entities
 {
     public class User
     {
-        private Dictionary<int,Award> _awards;
+        private ISet<int> _awards;
 
         public User()
         {
-            _awards = new Dictionary<int,Award>();
+            _awards = new SortedSet<int>();
         }
 
         public int Id { get; set; }
@@ -21,7 +21,7 @@ namespace Task06.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public Dictionary<int,Award> Awards { 
+        public ISet<int> Awards { 
             get => _awards; 
             set => _awards = value; 
         }
@@ -37,24 +37,14 @@ namespace Task06.Entities
             }
         }
 
-        // TODO change return type to bool?
-        public bool AddAward(Award award)
+        public bool AddAward(int awardId)
         {
-            try
-            {
-                Awards.Add(award.Id,award);
-                return true;
-            }
-            catch (ArgumentException ex)
-            {
-                return false;
-            }
+            return _awards.Add(awardId);
         }
 
-        // TODO change return type to bool?
-        public bool RemoveAward(Award award)
+        public bool RemoveAward(int awardId)
         {
-            return Awards.Remove(award.Id);
+            return _awards.Remove(awardId);
         }
 
         public override string ToString()
@@ -62,15 +52,6 @@ namespace Task06.Entities
             StringBuilder userSB = new StringBuilder();
             userSB.Append($"ID: {Id}. Name: {Name}. Date of birth: {DateOfBirth.ToShortDateString()}. ");
             userSB.Append($"Age: {Age}");
-            if (Awards.Count != 0)
-            {
-                userSB.Append(Environment.NewLine + "Awards:");
-                foreach(var item in Awards)
-                {
-                    userSB.Append($" {item.Value.Title},");
-                }
-                userSB.Remove(userSB.Length - 1,1);
-            }
             return userSB.ToString();
         }
     }

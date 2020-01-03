@@ -59,6 +59,17 @@ namespace Task06.DAL
             return award;
         }
 
+        public IEnumerable<Award> GetByIdList(IEnumerable<int> ids)
+        {
+            var awardsIds = _awards.Where((k) => ids.Contains(k.Key));
+            List<Award> awards = new List<Award>(awardsIds.Count());
+            foreach (var awardId in awardsIds)
+            {
+                awards.Add(awardId.Value);
+            }
+            return awards;
+        }
+
         /// <summary>
         /// Removes Award with specified ID from the collection.
         /// </summary>
@@ -74,7 +85,7 @@ namespace Task06.DAL
 
             if (removeResult)
             {
-                DeleteAward?.Invoke(awardToRemove);
+                DeleteAward?.Invoke(awardToRemove.Id);
             }
 
             return removeResult;
@@ -84,6 +95,6 @@ namespace Task06.DAL
         /// An event being invoked when Award is removed 
         /// from the collection.
         /// </summary>
-        public event Action<Award> DeleteAward;
+        public event Action<int> DeleteAward;
     }
 }

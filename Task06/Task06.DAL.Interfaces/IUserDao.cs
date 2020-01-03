@@ -17,10 +17,10 @@ namespace Task06.DAL.Interfaces
 
         bool RemoveById(int id);
 
-        bool GiveAward(int id, Award award);
+        bool GiveAward(int id, int awardId);
 
-        bool TakeAwayAward(int id, Award award);
+        bool TakeAwayAward(int id, int awardId);
 
-        void OnDeleteAwardHandler(Award award);
+        void OnDeleteAwardHandler(int awardId);
     }
 }
