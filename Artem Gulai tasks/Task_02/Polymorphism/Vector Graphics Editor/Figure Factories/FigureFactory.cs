@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor.Figure_Factories
 {
-    abstract public class FigureFactory
+    internal abstract class FigureFactory
     {
         protected static void ShowColors()
         {

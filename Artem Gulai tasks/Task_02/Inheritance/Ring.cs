@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task_02
 {
-    class Ring : Round
+    internal class Ring : Round
     {
         private double _innerRadius;
 

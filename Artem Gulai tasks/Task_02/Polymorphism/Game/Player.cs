@@ -11,7 +11,7 @@ namespace Task_02.Polymorphism.Game
     /// <summary>
     /// Player class.
     /// </summary>
-    class Player : GameObject, IMovable, IHittable
+    internal class Player : GameObject, IMovable, IHittable
     {
         public int Mana { get; set; }
         public int Speed { get; set; }

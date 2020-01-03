@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// A Line is defined by two points.
     /// </summary>
-    class Line : Figure
+    internal class Line : Figure
     {
         public Line(Point p1, Point p2) : base()
         {

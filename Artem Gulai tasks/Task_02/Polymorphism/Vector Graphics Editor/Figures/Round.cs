@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// Round is defined by its base circle and Fill color.
     /// </summary>
-    class Round : Circle
+    internal class Round : Circle
     {
         public Color FillColor {get; set;}
 

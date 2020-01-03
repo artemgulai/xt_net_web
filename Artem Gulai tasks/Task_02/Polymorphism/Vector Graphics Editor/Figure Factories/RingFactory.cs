@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor.Figure_Factories
 {
-    class RingFactory : FigureFactory
+    internal class RingFactory : FigureFactory
     {
         public static Ring Create()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_00
 {
-    class MultiDimArray
+    public class MultiDimArray
     {
         // Array creation
         public static Array ArrayCreation()

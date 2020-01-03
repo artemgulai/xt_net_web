@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task_02
 {
-    class Triangle
+    internal class Triangle
     {
         private double _a;
         private double _b;

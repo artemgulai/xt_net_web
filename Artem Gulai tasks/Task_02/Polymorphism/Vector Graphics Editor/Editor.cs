@@ -10,7 +10,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// Main class of "Vector Graphics Editor"
     /// </summary>
-    class Editor
+    internal class Editor
     {
         public static void Demo()
         {

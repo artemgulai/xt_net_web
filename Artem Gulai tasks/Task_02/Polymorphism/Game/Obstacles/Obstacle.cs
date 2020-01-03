@@ -11,7 +11,7 @@ namespace Task_02.Polymorphism.Game.Obstacles
     /// Base class for obstacles. An obstacle can "hit" player or monster 
     /// when they smash the obstacle.
     /// </summary>
-    abstract class Obstacle : GameObject, IHittable
+    internal abstract class Obstacle : GameObject, IHittable
     {
         public abstract void Hit(IMovable movable);
     }

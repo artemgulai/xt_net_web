@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_01
 {
-    class CSharpStrings
+    public class CSharpStrings
     {
         public static void AverageStringLength_1_11()
         {

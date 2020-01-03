@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor.Figure_Factories
 {
-    class RectangleFactory : FigureFactory
+    internal class RectangleFactory : FigureFactory
     {
         public static Rectangle Create()
         {

@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// A Circle is defined by a center point and a radius.
     /// </summary>
-    class Circle : Figure
+    internal class Circle : Figure
     {
         protected double _radius;
         public Circle(Point center,double radius) : base()

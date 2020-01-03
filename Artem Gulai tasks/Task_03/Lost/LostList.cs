@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_03.Lost
 {
-    class LostList
+    public static class LostList
     {
         public static void ShowList<T>(List<T> people)
         {

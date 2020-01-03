@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_00
 {
-    static class Indices
+    internal static class Indices
     {
         /// <summary>
         /// Method computing the next set of indices of multidimension array (just as in nester for loops)

@@ -7,7 +7,7 @@ using Task_02.Polymorphism.Game.Interfaces;
 
 namespace Task_02.Polymorphism.Game.Obstacles
 {
-    class Pit : Obstacle
+    internal class Pit : Obstacle
     {
         /// <summary>
         /// Pit kills player and monsters.

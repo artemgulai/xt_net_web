@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_03.DynamicArray
 {
-    class DynamicArrayService
+    internal static class DynamicArrayService
     {
         /// <summary>
         /// Counts the number of items in specified collection

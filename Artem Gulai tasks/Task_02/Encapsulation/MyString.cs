@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_02
 {
-    class MyString
+    public class MyString
     {
         private char[] _myString;
         private StringBuilder _sb;

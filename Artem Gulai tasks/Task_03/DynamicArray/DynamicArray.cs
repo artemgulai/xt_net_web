@@ -8,7 +8,7 @@ namespace Task_03.DynamicArray
     /// <summary>
     /// Generic dynamic array.
     /// </summary>
-    class DynamicArray<T> : IEnumerable<T>, IEnumerable
+    public class DynamicArray<T> : IEnumerable<T>, IEnumerable
     {
         protected T[] _array;
         protected int _length;

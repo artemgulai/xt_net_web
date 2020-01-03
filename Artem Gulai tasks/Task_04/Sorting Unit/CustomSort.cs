@@ -8,7 +8,7 @@ using Task_01;
 
 namespace Task_04.Sorting_Unit
 {
-    class CustomSort
+    public class CustomSort
     {
         /// <summary>
         /// Sorts generic array.
@@ -29,16 +29,6 @@ namespace Task_04.Sorting_Unit
                 throw new ArgumentException("Array is null");
             }
 
-            // new merge sort
-            //T[] tempArray = new T[array.Length];
-            //int left = 0;
-            //int right = array.Length - 1;
-            //SplitAndSort(array,tempArray,comparator,left,right);
-
-            //for (int i = 0; i < array.Length; i++)
-            //    array[i] = tempArray[i];
-
-            // new quick sort
             QSort(array,0,array.Length - 1,comparator);
         }
 
@@ -53,14 +43,14 @@ namespace Task_04.Sorting_Unit
             if (left - right > 0)
                 return;
 
-            if (right - left == 1)
-                if (!comparator(a[left], a[right]))
-                {
-                    Swap(ref a[left],ref a[right]);
-                    return;
-                }
+            if (right - left == 1 && !comparator(a[left],a[right]))
+            {
+                Swap(ref a[left],ref a[right]);
+                return;
+            }
 
-            bool leftStop = false, rightStop = false;
+            bool leftStop = false;
+            bool rightStop = false;
             T pivot = a[right];
             int leftPointer, rightPointer;
             for (leftPointer = left, rightPointer = right - 1; leftPointer <= rightPointer;)
@@ -88,7 +78,7 @@ namespace Task_04.Sorting_Unit
                 }
             }
 
-            int i = left;
+            int i;
             for (i = left; i < right; i++)
             {
                 if (!comparator(a[i], a[right]))

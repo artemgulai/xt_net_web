@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// Ring is defined by Round with one more radius.
     /// </summary>
-    class Ring : Round
+    internal class Ring : Round
     {
         private double _secondRadius;
         public double SecondRadius

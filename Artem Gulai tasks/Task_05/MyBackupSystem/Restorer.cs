@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,9 +11,10 @@ namespace Task_05.MyBackupSystem
 {
     sealed class Restorer
     {
-        private SortedDictionary<string,List<Change>> _changeHistory;
+        //private SortedDictionary<string,List<Change>> _changeHistory;
+        private ConcurrentDictionary<string,List<Change>> _changeHistory;
         private string _pathToBackup;
-        public Restorer(SortedDictionary<string,List<Change>> changeHistory, string pathToBackup)
+        public Restorer(ConcurrentDictionary<string,List<Change>> changeHistory, string pathToBackup)
         {
             _changeHistory = changeHistory;
             _pathToBackup = pathToBackup;

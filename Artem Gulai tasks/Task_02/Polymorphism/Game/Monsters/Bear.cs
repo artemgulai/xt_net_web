@@ -7,7 +7,7 @@ using Task_02.Polymorphism.Game.Interfaces;
 
 namespace Task_02.Polymorphism.Game.Monsters
 {
-    class Bear : Monster
+    internal class Bear : Monster
     {
         public Bear(int speed = 10) : base(speed) { }
     }

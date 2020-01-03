@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// A rectangle is defined by two points (Left top and right bottom points).
     /// </summary>
-    class Rectangle : Figure
+    internal class Rectangle : Figure
     {
         public Color FillColor { set; get; }
         public Point TopLeft { set; get; }

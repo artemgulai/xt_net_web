@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task_05.MyBackupSystem
 {
-    sealed class FileHandler
+    internal sealed class FileHandler
     {
         /// <summary>
         /// Reading content of a text file

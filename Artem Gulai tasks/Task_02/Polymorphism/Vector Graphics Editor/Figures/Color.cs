@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// Enumeration for choosing colors of figures.
     /// </summary>
-    enum Color
+    internal enum Color
     {
         Aqua = 1,
         Gray = 2,

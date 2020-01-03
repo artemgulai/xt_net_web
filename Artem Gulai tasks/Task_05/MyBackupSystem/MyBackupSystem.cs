@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,13 @@ using Newtonsoft.Json;
 
 namespace Task_05.MyBackupSystem
 {
-    sealed class MyBackupSystem
+    public sealed class MyBackupSystem
     {
         private string _pathToBackup;
         private Listener _listener;
         private Restorer _restorer;
-        private SortedDictionary<string,List<Change>> _changeHistory;
+        private ConcurrentDictionary<string, List<Change>> _changeHistory;
+        //private SortedDictionary<string,List<Change>> _changeHistory;
         private FileHandler _fileHandler;
 
         public MyBackupSystem(string pathToBackup)
@@ -146,7 +148,7 @@ namespace Task_05.MyBackupSystem
             {
                 Console.WriteLine("Can't find history of changes.");
                 Console.WriteLine("Create empty history.");
-                _changeHistory = new SortedDictionary<string,List<Change>>();
+                _changeHistory = new ConcurrentDictionary<string,List<Change>>();
                 InitializeHistory(new DirectoryInfo(pathToBackup));
                 return;
             }
@@ -156,13 +158,13 @@ namespace Task_05.MyBackupSystem
             if (string.IsNullOrEmpty(history))
             {
                 Console.WriteLine("History of changes is empty.");
-                _changeHistory = new SortedDictionary<string,List<Change>>();
+                _changeHistory = new ConcurrentDictionary<string,List<Change>>();
                 return;
             }
 
             try
             {
-                _changeHistory = JsonConvert.DeserializeObject<SortedDictionary<string,List<Change>>>(history);
+                _changeHistory = JsonConvert.DeserializeObject<ConcurrentDictionary<string,List<Change>>>(history);
                 Console.WriteLine("History has been loaded.");
             }
             catch (JsonSerializationException ex)
@@ -170,7 +172,7 @@ namespace Task_05.MyBackupSystem
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Can't read history of changes.");
                 Console.WriteLine("Create empty history.");
-                _changeHistory = new SortedDictionary<string,List<Change>>();
+                _changeHistory = new ConcurrentDictionary<string,List<Change>>();
                 InitializeHistory(new DirectoryInfo(pathToBackup));
             }
         }
@@ -195,7 +197,7 @@ namespace Task_05.MyBackupSystem
             {
                 string content = _fileHandler.GetFileContent(file.FullName);
                 byte[] compressedContent = Compression.CompressString(content);
-                _changeHistory.Add(file.FullName,new List<Change>{ new Change(file.CreationTime, ChangeType.Exist, compressedContent)});
+                _changeHistory.TryAdd(file.FullName,new List<Change>{ new Change(file.CreationTime, ChangeType.Exist, compressedContent)});
             }
         }
 
@@ -228,7 +230,7 @@ namespace Task_05.MyBackupSystem
         private void OnListenerChangeHandler(FileSystemEventArgs e)
         {
             if (!_changeHistory.ContainsKey(e.FullPath))
-                _changeHistory.Add(e.FullPath,new List<Change>());
+                _changeHistory.TryAdd(e.FullPath,new List<Change>());
 
             string content = _fileHandler.GetFileContent(e.FullPath);
             byte[] compressedContent = Compression.CompressString(content);
@@ -251,7 +253,7 @@ namespace Task_05.MyBackupSystem
             if (eRename != null)
             {
                 if (!_changeHistory.ContainsKey(eRename.OldFullPath))
-                    _changeHistory.Add(eRename.OldFullPath,new List<Change>());
+                    _changeHistory.TryAdd(eRename.OldFullPath,new List<Change>());
 
                 string oldPath = eRename.OldFullPath;
                 Console.WriteLine(oldPath + " has been deleted.");
@@ -260,7 +262,7 @@ namespace Task_05.MyBackupSystem
             else
             {
                 if (!_changeHistory.ContainsKey(e.FullPath))
-                    _changeHistory.Add(e.FullPath,new List<Change>());
+                    _changeHistory.TryAdd(e.FullPath,new List<Change>());
                 Console.WriteLine(e.FullPath + " has been deleted.");
                 _changeHistory[e.FullPath].Add(new Change(DateTime.Now,ChangeType.Delete));
             }
@@ -273,7 +275,7 @@ namespace Task_05.MyBackupSystem
         private void OnListenerCreateHandler(FileSystemEventArgs e)
         {
             if (!_changeHistory.ContainsKey(e.FullPath))
-                _changeHistory.Add(e.FullPath,new List<Change>());
+                _changeHistory.TryAdd(e.FullPath,new List<Change>());
             string content = _fileHandler.GetFileContent(e.FullPath);
             byte[] compressedContent = Compression.CompressString(content);
 

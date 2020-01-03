@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor.Figure_Factories
 {
-    class CircleFactory : FigureFactory
+    internal class CircleFactory : FigureFactory
     {
         public static Circle Create()
         {

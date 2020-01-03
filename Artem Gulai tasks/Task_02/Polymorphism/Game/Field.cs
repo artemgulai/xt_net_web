@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Game
     /// <summary>
     /// Class defining a game field.
     /// </summary>
-    class Field
+    internal class Field
     {
         private static Field field = null;
 

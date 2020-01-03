@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor
 {
-    class Point
+    internal class Point
     {
         public Point(double x, double y)
         {

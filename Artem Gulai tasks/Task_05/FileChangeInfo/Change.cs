@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Task_05.FileChangeInfo
 {
-    class Change
+    internal class Change
     {
         public DateTime ChangeTime { set; get; }
         public ChangeType ChangeType { set; get; }

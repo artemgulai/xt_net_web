@@ -10,7 +10,7 @@ namespace Task_02.Polymorphism.Game.Monsters
     /// <summary>
     /// Base class for monsters. A monster can move and hit player.
     /// </summary>
-    abstract class Monster : GameObject, IMovable, IHittable
+    internal abstract class Monster : GameObject, IMovable, IHittable
     {
         public Monster(int speed)
         {

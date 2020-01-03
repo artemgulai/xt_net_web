@@ -7,7 +7,7 @@ using Task_02.Polymorphism.Game.Interfaces;
 
 namespace Task_02.Polymorphism.Game.Obstacles
 {
-    class Tree : Obstacle
+    internal class Tree : Obstacle
     {
         /// <summary>
         /// Tree hits player and kills monsters.

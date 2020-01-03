@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_03.DynamicArray
 {
-    class DynamicArrayHardcore<T> : DynamicArray<T>, ICloneable
+    public class DynamicArrayHardcore<T> : DynamicArray<T>, ICloneable
     {
         public DynamicArrayHardcore() : base() { }
 

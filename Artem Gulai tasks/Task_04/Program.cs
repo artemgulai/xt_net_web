@@ -8,7 +8,7 @@ using Task_04.Exts;
 
 namespace Task_04
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {

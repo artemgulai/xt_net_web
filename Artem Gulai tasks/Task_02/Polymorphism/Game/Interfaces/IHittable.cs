@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Game.Interfaces
     /// <summary>
     /// Interface for objects which can hit movables.
     /// </summary>
-    interface IHittable
+    internal interface IHittable
     {
         void Hit(IMovable movable);
     }

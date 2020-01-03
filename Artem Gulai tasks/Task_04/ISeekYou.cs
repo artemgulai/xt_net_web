@@ -7,24 +7,8 @@ using System.Threading.Tasks;
 
 namespace Task_04
 {
-    class ISeekYou
+    public class ISeekYou
     {
-        private static void CheckArray(int[] array)
-        {
-            if (array == null)
-            {
-                throw new ArgumentException("Array is null");
-            }
-        }
-
-        private static void CheckDelegate(Func<int,bool> condition)
-        {
-            if (condition == null)
-            {
-                throw new ArgumentException("Delegate is null");
-            }
-        }
-
         public static IEnumerable<int> GetPositiveItemsDirectSearch(int[] collection)
         {
             CheckArray(collection);
@@ -83,6 +67,22 @@ namespace Task_04
         {
             CheckArray(collection);
             return collection.Where(a => a > 0);
+        }
+
+        private static void CheckArray(int[] array)
+        {
+            if (array == null)
+            {
+                throw new ArgumentException("Array is null");
+            }
+        }
+
+        private static void CheckDelegate(Func<int,bool> condition)
+        {
+            if (condition == null)
+            {
+                throw new ArgumentException("Delegate is null");
+            }
         }
     }
 

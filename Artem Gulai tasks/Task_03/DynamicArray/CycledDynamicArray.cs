@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task_03.DynamicArray
 {
-    class CycledDynamicArray<T> : DynamicArray<T>, IEnumerable<T>
+    public class CycledDynamicArray<T> : DynamicArray<T>, IEnumerable<T>
     {
         public CycledDynamicArray() : base() { }
 

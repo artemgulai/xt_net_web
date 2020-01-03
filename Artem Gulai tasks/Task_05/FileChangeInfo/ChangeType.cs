@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_05.FileChangeInfo
 {
-    enum ChangeType
+    internal enum ChangeType
     {
         Write = 1,
         Create = 2,

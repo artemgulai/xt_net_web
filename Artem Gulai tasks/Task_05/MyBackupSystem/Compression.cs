@@ -11,7 +11,7 @@ namespace Task_05.MyBackupSystem
     /// <summary>
     /// Class for (de)compression string
     /// </summary>
-    static class Compression
+    internal static class Compression
     {
         /// <summary>
         /// Compress string and convert to array of bytes

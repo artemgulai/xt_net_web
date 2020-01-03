@@ -10,7 +10,7 @@ namespace Task_02.Polymorphism.Game
     /// <summary>
     /// Base class for all objects in the Game (player, monsters, obstacles and bonuses).
     /// </summary>
-    abstract class GameObject
+    internal abstract class GameObject
     {
         /// <summary>
         /// Generates GameObject at random position.

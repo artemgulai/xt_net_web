@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Game.Bonuses
     /// <summary>
     /// Apple increase player's health.
     /// </summary>
-    class Apple : Bonus
+    internal class Apple : Bonus
     {
         public override void GiveBonus(Player player) 
         {

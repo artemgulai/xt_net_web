@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_05.MyBackupSystem
 {
-    enum MyBackupMode
+    public enum MyBackupMode
     {
         Exit = 0,
         Listen = 1,

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Task_05.MyBackupSystem
 {
-    sealed class Listener
+    internal sealed class Listener
     {
         private FileSystemWatcher _watcher;
         private Queue<FileSystemEventArgs> _changeQueue;

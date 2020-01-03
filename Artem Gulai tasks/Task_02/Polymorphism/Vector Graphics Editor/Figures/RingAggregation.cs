@@ -9,7 +9,7 @@ namespace Task_02.Polymorphism.Vector_Graphics_Editor
     /// <summary>
     /// Ring (with a little help of aggregation.)
     /// </summary>
-    class RingAggregation : Figure
+    internal class RingAggregation : Figure
     {
         private Circle _innerCircle;
         private Circle _outerCircle;

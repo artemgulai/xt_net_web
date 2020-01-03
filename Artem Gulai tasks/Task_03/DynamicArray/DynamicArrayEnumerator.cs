@@ -10,7 +10,7 @@ namespace Task_03.DynamicArray
     /// <summary>
     /// Custom Enumerator class for DynamicArray
     /// </summary>
-    class DynamicArrayEnumerator<T> : IEnumerator<T>
+    public class DynamicArrayEnumerator<T> : IEnumerator<T>
     {
         private T[] arrayEnum;
         private int position;

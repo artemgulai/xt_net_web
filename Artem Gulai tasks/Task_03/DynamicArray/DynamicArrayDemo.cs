@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_03.DynamicArray
 {
-    class DynamicArrayDemo
+    public class DynamicArrayDemo
     {
         public static void SimpleDemo()
         {

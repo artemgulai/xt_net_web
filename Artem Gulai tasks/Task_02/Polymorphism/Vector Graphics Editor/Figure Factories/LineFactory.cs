@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_02.Polymorphism.Vector_Graphics_Editor.Figure_Factories
 {
-    class LineFactory : FigureFactory
+    internal class LineFactory : FigureFactory
     {
         public static Line Create()
         {

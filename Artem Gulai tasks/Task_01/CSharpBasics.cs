@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_01
 {
-    class CSharpBasics
+    public class CSharpBasics
     {
         /// <summary>
         /// Calculates the area of a rectangle with sides equal to a and b.

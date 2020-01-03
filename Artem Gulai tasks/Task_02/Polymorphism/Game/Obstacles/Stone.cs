@@ -7,7 +7,7 @@ using Task_02.Polymorphism.Game.Interfaces;
 
 namespace Task_02.Polymorphism.Game.Obstacles
 {
-    class Stone : Obstacle
+    internal class Stone : Obstacle
     {
         /// <summary>
         /// Stone hits player and kills monsters.
