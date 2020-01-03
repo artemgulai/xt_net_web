@@ -15,7 +15,7 @@ namespace Task06.DAL
     /// </summary>
     public class UserMemoryDao : IUserDao
     {
-        private readonly Dictionary<int,User> _users;
+        private readonly IDictionary<int,User> _users;
 
         /// <summary>
         /// Creates an empty collection.

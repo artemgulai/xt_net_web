@@ -13,7 +13,7 @@ namespace Task06.DAL
     /// </summary>
     public class AwardMemoryDao : IAwardDao
     {
-        private readonly Dictionary<int,Award> _awards;
+        private readonly IDictionary<int,Award> _awards;
 
         /// <summary>
         /// Creates an empty collection.
@@ -59,6 +59,11 @@ namespace Task06.DAL
             return award;
         }
 
+        /// <summary>
+        /// Gets a collection of Awards with specified IDs
+        /// </summary>
+        /// <param name="ids">A collection of Awards' IDs</param>
+        /// <returns>A collection of Awards</returns>
         public IEnumerable<Award> GetByIdList(IEnumerable<int> ids)
         {
             var awardsIds = _awards.Where((k) => ids.Contains(k.Key));
