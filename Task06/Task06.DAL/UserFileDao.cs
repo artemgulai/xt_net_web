@@ -16,7 +16,7 @@ namespace Task06.DAL
     public class UserFileDao : IUserDao
     {
         private readonly IDictionary<int,User> _users;
-        private static string _filePath = @".users.json";
+        private const string _filePath = @".users.json";
         private static int _operationNumber;
 
         /// <summary>

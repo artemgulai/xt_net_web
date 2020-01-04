@@ -16,7 +16,7 @@ namespace Task06.DAL
     public class AwardFileDao : IAwardDao
     {
         private readonly IDictionary<int,Award> _awards;
-        private static string _filePath = @".awards.json";
+        private const string _filePath = @".awards.json";
         private int _operationNumber;
 
         /// <summary>
