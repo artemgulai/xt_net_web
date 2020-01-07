@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task06.DAL.Interfaces;
 using Task06.Entities;
 
@@ -40,15 +38,6 @@ namespace Task06.DAL
         }
 
         /// <summary>
-        /// Gets all Awards in the collection.
-        /// </summary>
-        /// <returns>The collection of Awards.</returns>
-        public IEnumerable<Award> GetAll()
-        {
-            return _awards.Values;
-        }
-
-        /// <summary>
         /// Gets Award by ID.
         /// </summary>
         /// <param name="id">ID of Award.</param>
@@ -60,19 +49,22 @@ namespace Task06.DAL
         }
 
         /// <summary>
+        /// Gets all Awards in the collection.
+        /// </summary>
+        /// <returns>The collection of Awards.</returns>
+        public IEnumerable<Award> GetAll()
+        {
+            return _awards.Values;
+        }
+
+        /// <summary>
         /// Gets a collection of Awards with specified IDs
         /// </summary>
         /// <param name="ids">A collection of Awards' IDs</param>
         /// <returns>A collection of Awards</returns>
         public IEnumerable<Award> GetByIdList(IEnumerable<int> ids)
         {
-            var awardsIds = _awards.Where((k) => ids.Contains(k.Key));
-            List<Award> awards = new List<Award>(awardsIds.Count());
-            foreach (var awardId in awardsIds)
-            {
-                awards.Add(awardId.Value);
-            }
-            return awards;
+            return _awards.Values.Where(a => ids.Contains(a.Id));
         }
 
         /// <summary>
@@ -85,12 +77,11 @@ namespace Task06.DAL
         /// </returns>
         public bool RemoveById(int id)
         {
-            Award awardToRemove = _awards[id];
             bool removeResult = _awards.Remove(id);
 
             if (removeResult)
             {
-                DeleteAward?.Invoke(awardToRemove.Id);
+                DeleteAward?.Invoke(id);
             }
 
             return removeResult;
@@ -101,5 +92,37 @@ namespace Task06.DAL
         /// from the collection.
         /// </summary>
         public event Action<int> DeleteAward;
+
+        /// <summary>
+        /// Adds User to Award's collection of Users
+        /// </summary>
+        /// <param name="awardId">ID of an Award</param>
+        /// <param name="userId">ID of a User</param>
+        public void OnAddAwardHandler(int awardId,int userId)
+        {
+            _awards[awardId].AddUser(userId);
+        }
+
+        /// <summary>
+        /// Removes User from Award's collection of Users
+        /// </summary>
+        /// <param name="awardId">ID of an Award</param>
+        /// <param name="userId">ID of a User</param>
+        public void OnRemoveAwardHandler(int awardId,int userId)
+        {
+            _awards[awardId].RemoveUser(userId);
+        }
+
+        /// <summary>
+        /// Remove User from all Awards' collection of Users
+        /// </summary>
+        /// <param name="userId"></param>
+        public void OnDeleteUserHandler(int userId)
+        {
+            foreach (var award in _awards)
+            {
+                award.Value.RemoveUser(userId);
+            }
+        }
     }
 }

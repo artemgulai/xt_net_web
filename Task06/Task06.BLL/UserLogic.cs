@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Task06.BLL.Interfaces;
 using Task06.DAL.Interfaces;
 using Task06.Entities;
@@ -26,6 +22,11 @@ namespace Task06.BLL
         public IEnumerable<User> GetAll()
         {
             return _userDao.GetAll();
+        }
+
+        public IEnumerable<User> GetByIdList(IEnumerable<int> ids)
+        {
+            return _userDao.GetByIdList(ids);
         }
 
         public User GetById(int id)

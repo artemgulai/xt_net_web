@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task06.BLL.Interfaces;
 using Task06.Entities;
 using Task06.Ioc;
@@ -12,8 +10,8 @@ namespace Task06.ConsolePL
 {
     public class Program
     {
-        private static IUserLogic _userLogic;// = DependencyResolver.UserLogic;
-        private static IAwardLogic _awardLogic;// = DependencyResolver.AwardLogic;
+        private static IUserLogic _userLogic;
+        private static IAwardLogic _awardLogic;
         private static string NO_USER_ID = "No user with such ID.";
         private static string NO_AWARD_ID = "No award with such ID.";
 
@@ -305,7 +303,7 @@ namespace Task06.ConsolePL
                 foreach (var user in users)
                 {
                     ShowUser(user);
-                    ShowUsersAwards(_awardLogic.GetByIdList(user.Awards));
+                    ShowAwardsOfUser(_awardLogic.GetByIdList(user.Awards));
                 }
             }
         }
@@ -314,7 +312,7 @@ namespace Task06.ConsolePL
         {
             string name;
             DateTime dateOfBirth;
-            
+
             Console.WriteLine("Enter name:");
             while (true)
             {
@@ -328,12 +326,25 @@ namespace Task06.ConsolePL
             }
 
             Console.WriteLine("Enter date of birth in the following format: DD.MM.YYYY:");
-            while (!DateTime.TryParse(Console.ReadLine(), out dateOfBirth))
+            while (!DateTime.TryParse(Console.ReadLine(),out dateOfBirth))
             {
                 Console.WriteLine("Incorrect date format. Try again.");
             }
 
             return new User() { Name = name,DateOfBirth = dateOfBirth };
+        }
+
+        private static void ShowUsersOfAward(IEnumerable<User> users)
+        {
+            if (users.Count() != 0)
+            {
+                Console.Write("Users: ");
+                foreach (var user in users)
+                {
+                    Console.Write(user.Name + "; ");
+                }
+                Console.WriteLine();
+            }
         }
         #endregion
 
@@ -369,18 +380,7 @@ namespace Task06.ConsolePL
                         }
                     case 3:
                         {
-                            IEnumerable<Award> awards = _awardLogic.GetAll();
-                            if (awards.Count() == 0)
-                            {
-                                Console.WriteLine("No awards.");
-                            }
-                            else
-                            {
-                                foreach (var award in awards)
-                                {
-                                    ShowAward(award);
-                                }
-                            }
+                            ShowAllAwards();
                             Console.ReadLine();
                             break;
                         }
@@ -446,6 +446,7 @@ namespace Task06.ConsolePL
                 foreach (var award in awards)
                 {
                     ShowAward(award);
+                    ShowUsersOfAward(_userLogic.GetByIdList(award.Users));
                 }
             }
         }
@@ -469,7 +470,7 @@ namespace Task06.ConsolePL
             return new Award() { Title = title };
         }
 
-        private static void ShowUsersAwards(IEnumerable<Award> awards)
+        private static void ShowAwardsOfUser(IEnumerable<Award> awards)
         {
             if (awards.Count() != 0)
             {

@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task06.Entities
 {
     public class User
     {
-        private ISet<int> _awards;
-
         public User()
         {
-            _awards = new SortedSet<int>();
+            Awards = new SortedSet<int>();
         }
 
         public int Id { get; set; }
@@ -21,10 +17,7 @@ namespace Task06.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public ISet<int> Awards { 
-            get => _awards; 
-            set => _awards = value; 
-        }
+        public ISet<int> Awards { get; }
 
         public int Age
         {
@@ -39,12 +32,12 @@ namespace Task06.Entities
 
         public bool AddAward(int awardId)
         {
-            return _awards.Add(awardId);
+            return Awards.Add(awardId);
         }
 
         public bool RemoveAward(int awardId)
         {
-            return _awards.Remove(awardId);
+            return Awards.Remove(awardId);
         }
 
         public override string ToString()

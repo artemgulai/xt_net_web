@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using Task06.BLL;
 using Task06.BLL.Interfaces;
 using Task06.DAL;
@@ -37,7 +32,12 @@ namespace Task06.Ioc
 
             UserLogic = new UserLogic(UserDao);
             AwardLogic = new AwardLogic(AwardDao);
+            
             AwardDao.DeleteAward += UserDao.OnDeleteAwardHandler;
+            UserDao.DeleteUser += AwardDao.OnDeleteUserHandler;
+
+            UserDao.AddAward += AwardDao.OnAddAwardHandler;
+            UserDao.RemoveAward += AwardDao.OnRemoveAwardHandler;
         }
 
         private static string ReadSetting(string key)

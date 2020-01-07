@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Task06.Entities;
 
 namespace Task06.BLL.Interfaces
@@ -14,6 +10,8 @@ namespace Task06.BLL.Interfaces
         User GetById(int id);
 
         IEnumerable<User> GetAll();
+
+        IEnumerable<User> GetByIdList(IEnumerable<int> ids);
 
         bool RemoveById(int id);
 

@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task06.DAL.Interfaces;
 using Task06.Entities;
-using System.IO;
-using Newtonsoft.Json;
 
 namespace Task06.DAL
 {
@@ -62,6 +58,16 @@ namespace Task06.DAL
         }
 
         /// <summary>
+        /// Gets a collection of Users with specified IDs
+        /// </summary>
+        /// <param name="ids">A collection of Users' IDs</param>
+        /// <returns>A collection of Users</returns>
+        public IEnumerable<User> GetByIdList(IEnumerable<int> ids)
+        {
+            return _users.Values.Where(u => ids.Contains(u.Id));
+        }
+
+        /// <summary>
         /// Removes User with specified ID from the collection.
         /// </summary>
         /// <param name="id">ID od User to be removed.</param>
@@ -71,7 +77,12 @@ namespace Task06.DAL
         /// </returns>
         public bool RemoveById(int id)
         {
-            return _users.Remove(id);
+            bool removeResult = _users.Remove(id);
+            if (removeResult)
+            {
+                DeleteUser?.Invoke(id);
+            }
+            return removeResult;
         }
 
         /// <summary>
@@ -83,7 +94,12 @@ namespace Task06.DAL
         /// False if Award cannot be added.</returns>
         public bool GiveAward(int id,int awardId)
         {
-            return _users[id].AddAward(awardId);
+            bool giveResult = _users[id].AddAward(awardId);
+            if (giveResult)
+            {
+                AddAward?.Invoke(awardId,id);
+            }
+            return giveResult;
         }
 
         /// <summary>
@@ -95,8 +111,28 @@ namespace Task06.DAL
         /// False if Award cannot be removed.</returns>
         public bool TakeAwayAward(int id,int awardId)
         {
-            return _users[id].RemoveAward(awardId);
+            bool takeResult = _users[id].RemoveAward(awardId);
+            if (takeResult)
+            {
+                RemoveAward?.Invoke(awardId,id);
+            }
+            return takeResult;
         }
+
+        /// <summary>
+        /// An event being invoked when Award is given to User
+        /// </summary>
+        public event Action<int,int> AddAward = delegate { };
+
+        /// <summary>
+        /// An event being invoked when Award is taken from User
+        /// </summary>
+        public event Action<int,int> RemoveAward = delegate { };
+
+        /// <summary>
+        /// An event being invoked when User is deleted
+        /// </summary>
+        public event Action<int> DeleteUser = delegate { };
 
         /// <summary>
         /// Removes Award from Users' collection of Awards.
