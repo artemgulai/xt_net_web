@@ -35,9 +35,6 @@ namespace Task06.Ioc
             
             AwardDao.DeleteAward += UserDao.OnDeleteAwardHandler;
             UserDao.DeleteUser += AwardDao.OnDeleteUserHandler;
-
-            UserDao.AddAward += AwardDao.OnAddAwardHandler;
-            UserDao.RemoveAward += AwardDao.OnRemoveAwardHandler;
         }
 
         private static string ReadSetting(string key)

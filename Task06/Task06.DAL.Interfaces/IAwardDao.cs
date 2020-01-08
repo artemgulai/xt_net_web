@@ -17,10 +17,10 @@ namespace Task06.DAL.Interfaces
         bool RemoveById(int id);
 
         event Action<int> DeleteAward;
+
+        void AddUserToAward(int awardId,int userId);
         
-        void OnAddAwardHandler(int awardId,int userId);
-        
-        void OnRemoveAwardHandler(int awardId,int userId);
+        void RemoveUserFromAward(int awardId,int userId);
 
         void OnDeleteUserHandler(int userId);
     }

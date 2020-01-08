@@ -115,13 +115,15 @@ namespace Task06.DAL
         /// False if Award cannot be added.</returns>
         public bool GiveAward(int id, int awardId)
         {
-            bool giveResult = _users[id].AddAward(awardId);
-            if (giveResult)
+            if (_users[id].Awards.Contains(awardId))
             {
-                AddAward?.Invoke(awardId,id);
-                IncrementOperationNumber();
+                return false;
             }
-            return giveResult;
+
+            _users[id].Awards.Add(awardId);
+            AddAward?.Invoke(awardId,id);
+            IncrementOperationNumber();
+            return true;
         }
 
         /// <summary>
@@ -133,7 +135,7 @@ namespace Task06.DAL
         /// False if Award cannot be removed.</returns>
         public bool TakeAwayAward(int id, int awardId)
         {
-            bool takeResult = _users[id].RemoveAward(awardId);
+            bool takeResult = _users[id].Awards.Remove(awardId);
             if (takeResult)
             {
                 RemoveAward?.Invoke(awardId,id);
@@ -165,7 +167,7 @@ namespace Task06.DAL
         {
             foreach (var user in _users)
             {
-                user.Value.RemoveAward(awardId);
+                user.Value.Awards.Remove(awardId);
             }
             WriteUsers();
         }

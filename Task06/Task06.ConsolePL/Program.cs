@@ -150,6 +150,7 @@ namespace Task06.ConsolePL
 
                 switch (selectUser)
                 {
+                    // add new user 
                     case 1:
                         {
                             User user = CreateUser();
@@ -158,6 +159,7 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // get user by id
                     case 2:
                         {
                             int id = GetId();
@@ -166,12 +168,14 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // show all users 
                     case 3:
                         {
                             ShowAllUsers();
                             Console.ReadLine();
                             break;
                         }
+                    // remove user by id
                     case 4:
                         {
                             int id = GetId();
@@ -186,6 +190,7 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // give award to user
                     case 5:
                         {
                             ShowAllUsers();
@@ -208,6 +213,7 @@ namespace Task06.ConsolePL
 
                             if (_userLogic.GiveAward(user.Id,award.Id))
                             {
+                                _awardLogic.AddUserToAward(awardId: award.Id,userId: user.Id);
                                 Console.WriteLine($"The Award \"{award.Title}\" has been given to the User \"{user.Name}\".");
                             }
                             else
@@ -217,6 +223,7 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // take award from user
                     case 6:
                         {
                             ShowAllUsers();
@@ -239,6 +246,7 @@ namespace Task06.ConsolePL
 
                             if (_userLogic.TakeAwayAward(user.Id,award.Id))
                             {
+                                _awardLogic.RemoveUserFromAward(awardId: award.Id,userId: user.Id);
                                 Console.WriteLine($"The Award \"{award.Title}\" has been taken from the User \"{user.Name}\".");
                             }
                             else
@@ -248,6 +256,7 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // exit
                     case 0:
                         break;
                     default:
@@ -288,6 +297,19 @@ namespace Task06.ConsolePL
             else
             {
                 Console.WriteLine(user);
+            }
+        }
+
+        private static void ShowUsersOfAward(IEnumerable<User> users)
+        {
+            if (users.Count() != 0)
+            {
+                Console.Write("Users: ");
+                foreach (var user in users)
+                {
+                    Console.Write(user.Name + "; ");
+                }
+                Console.WriteLine();
             }
         }
 
@@ -333,19 +355,6 @@ namespace Task06.ConsolePL
 
             return new User() { Name = name,DateOfBirth = dateOfBirth };
         }
-
-        private static void ShowUsersOfAward(IEnumerable<User> users)
-        {
-            if (users.Count() != 0)
-            {
-                Console.Write("Users: ");
-                foreach (var user in users)
-                {
-                    Console.Write(user.Name + "; ");
-                }
-                Console.WriteLine();
-            }
-        }
         #endregion
 
         #region Award mode
@@ -362,6 +371,7 @@ namespace Task06.ConsolePL
 
                 switch (selectAward)
                 {
+                    // add new award
                     case 1:
                         {
                             Award award = CreateAward();
@@ -370,6 +380,7 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // get award by id
                     case 2:
                         {
                             int id = GetId();
@@ -378,12 +389,14 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // show all awards
                     case 3:
                         {
                             ShowAllAwards();
                             Console.ReadLine();
                             break;
                         }
+                    // remove award by id
                     case 4:
                         {
                             int id = GetId();
@@ -398,6 +411,7 @@ namespace Task06.ConsolePL
                             Console.ReadLine();
                             break;
                         }
+                    // exit
                     case 0:
                     default:
                         break;

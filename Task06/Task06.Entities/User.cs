@@ -6,18 +6,13 @@ namespace Task06.Entities
 {
     public class User
     {
-        public User()
-        {
-            Awards = new SortedSet<int>();
-        }
-
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 
-        public ISet<int> Awards { get; }
+        public IList<int> Awards { get; } = new List<int>();
 
         public int Age
         {
@@ -28,16 +23,6 @@ namespace Task06.Entities
                 if (today.AddYears(-age) < DateOfBirth) age--;
                 return age;
             }
-        }
-
-        public bool AddAward(int awardId)
-        {
-            return Awards.Add(awardId);
-        }
-
-        public bool RemoveAward(int awardId)
-        {
-            return Awards.Remove(awardId);
         }
 
         public override string ToString()

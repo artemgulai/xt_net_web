@@ -38,5 +38,15 @@ namespace Task06.BLL
         {
             return _awardDao.RemoveById(id);
         }
+
+        public void AddUserToAward(int awardId,int userId)
+        {
+            _awardDao.AddUserToAward(awardId,userId);
+        }
+
+        public void RemoveUserFromAward(int awardId,int userId)
+        {
+            _awardDao.RemoveUserFromAward(awardId,userId);
+        }
     }
 }

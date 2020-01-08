@@ -119,10 +119,10 @@ namespace Task06.DAL
         /// </summary>
         /// <param name="awardId">ID of an Award</param>
         /// <param name="userId">ID of a User</param>
-        public void OnAddAwardHandler(int awardId, int userId)
+        public void AddUserToAward(int awardId, int userId)
         {
             IncrementOperationNumber();
-            _awards[awardId].AddUser(userId);
+            _awards[awardId].Users.Add(userId);
         }
 
         /// <summary>
@@ -130,10 +130,10 @@ namespace Task06.DAL
         /// </summary>
         /// <param name="awardId">ID of an Award</param>
         /// <param name="userId">ID of a User</param>
-        public void OnRemoveAwardHandler(int awardId,int userId)
+        public void RemoveUserFromAward(int awardId,int userId)
         {
             IncrementOperationNumber();
-            _awards[awardId].RemoveUser(userId);
+            _awards[awardId].Users.Remove(userId);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Task06.DAL
         {
             foreach (var award in _awards)
             {
-                award.Value.RemoveUser(userId);
+                award.Value.Users.Remove(userId);
             }
             WriteAwards();
         }
