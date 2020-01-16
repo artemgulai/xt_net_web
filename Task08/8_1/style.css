@@ -1,0 +1,20 @@
+div {
+    box-sizing: content-box;
+    background-color: #f9e497;
+    width: 200px;
+    border: 1px solid black;
+    box-shadow: 5px 5px;
+    border-radius: 10px;
+    color: #880000;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    font-size: 11pt;
+    margin: 10px;
+}
+
+li {
+    margin-top: 5px;
+}
