@@ -1,0 +1,65 @@
+body > div {
+    display: inline-block;
+    position: absolute;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+
+.btn:hover > .underlay {
+    visibility: visible;
+    display: block;
+}
+
+
+.underlay {
+    visibility: hidden;
+    position: relative;
+    box-shadow: gray 0 0 5px 0px;
+}
+
+.edit {
+    left: 90px;
+}
+
+btn:hover > .sub {
+    display: block;
+}
+
+.btn:hover > .top {
+    background-color: white;
+}
+
+.sub {
+    position: absolute;
+    display: none;
+    padding: 5px;
+    width: 100px;
+    background-color: white;
+    color: blue;
+    box-shadow: gray 0 0 5px 0px;
+}
+
+.btn:hover a {
+    color: black;
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    padding-bottom: 4px;
+    cursor: pointer;
+}
+
+p:hover {
+    color: white;
+    background-color: #37abff;
+}
