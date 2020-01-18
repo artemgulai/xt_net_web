@@ -1,0 +1,49 @@
+body {
+    background-color: #333333;
+}
+
+.col {
+    display: inline-block;
+    width: 50px;
+}
+
+.cell {
+    width: 90%;
+    height: 20px;
+    margin: auto;
+    margin-top: 4px;
+}
+
+.top {
+    border-radius: 5px 5px 0 0;
+}
+
+._col1 > .cell {
+    background: linear-gradient(0deg, #fb8c02 45%, #ffcf57 65%);
+    background-attachment: fixed;
+}
+
+._col2 > .cell {
+    background: linear-gradient(0deg, #fb8c02 45%, #ffcf57 50%);
+    background-attachment: fixed;
+}
+
+._col3 > .cell {
+    background: linear-gradient(0deg, #fb8c02 55%, #ffcf57 80%);
+    background-attachment: fixed;
+}
+
+._col4 > .cell {
+    background: linear-gradient(0deg, #fb8c02 60%, #ffcf57 80%);
+    background-attachment: fixed;
+}
+
+._col5 > .cell {
+    background: linear-gradient(0deg, #fb8c02 45%, #ffcf57 65%);
+    background-attachment: fixed;
+}
+
+._col6 > .cell {
+    background: linear-gradient(0deg, #fb8c02 45%, #ffcf57 55%);
+    background-attachment: fixed;
+}
