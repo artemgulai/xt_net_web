@@ -1,0 +1,67 @@
+body {
+    color: blue;
+    cursor: pointer;
+}
+
+body > div {
+    display: inline-block;
+    position: absolute;
+}
+
+.top {
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px 5px 0 0;
+    text-decoration: underline;
+}
+
+
+.btn:hover > .top::after {
+    content: '';
+    top: 0; bottom: 0;
+    right: 0; left: 0;
+    position: absolute;
+    box-shadow: gray 0 0 5px 1px;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.edit {
+    left: 70px;
+}
+
+.btn:hover > .sub {
+    display: block;
+}
+
+.btn:hover > .top {
+    background-color: white;
+    color: black;
+    text-decoration: none;
+}
+
+.sub {
+    position: absolute;
+    display: none;
+    padding: 5px;
+    width: 100px;
+    background-color: white;
+    box-shadow: gray 0 0 5px 1px;
+    top: 18px;
+    z-index: -1;
+}
+
+.btn:hover a {
+    color: black;
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    padding-bottom: 4px;
+}
+
+p:hover {
+    color: white;
+    background-color: #37abff;
+}
