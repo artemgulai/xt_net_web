@@ -23,12 +23,7 @@ body {
     width: 180px;
 }
 
-.virtual {
-    /* background-color: green; */
-    border-right: solid 1px gray;
-}
-
-.cloud {
+.virtual, .cloud {
     border-right: solid 1px gray;
 }
 
