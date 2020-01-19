@@ -3,9 +3,12 @@
     width: 480px;
     height: 40px;
     background-color: white;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
 .step {
+    cursor: pointer;
     position: absolute;
     width: 120px; 
     height: 40px;
@@ -14,38 +17,38 @@
 
 ._1 {
     /* background-color: aqua; */
-    clip-path: polygon(0px 0px, 
-                       116px 0px, 
-                       120px 20px,
-                       116px 40px,
-                       0px 40px);
+    clip-path: polygon(1px 1px, 
+                       116px 1px, 
+                       119px 20px,
+                       116px 39px,
+                       1px 39px);
 }
 
 ._2, ._3 {
     /* background-color: antiquewhite; */
-    clip-path: polygon(0px 0px, 
-                       116px 0px, 
-                       120px 20px,
-                       116px 40px,
-                       0px 40px,
+    clip-path: polygon(1px 1px, 
+                       116px 1px, 
+                       119px 20px,
+                       116px 39px,
+                       1px 39px,
                        4px 20px);
 }
 
 ._2 {
-    left: 120px;
+    left: 118px;
 }
 
 ._3 {
-    left: 240px;
+    left: 236px;
 }
 
 ._4 {
-    left: 360px;
+    left: 354px;
     /* background-color: green; */
-    clip-path: polygon(0px 0px, 
-                       120px 0px, 
-                       120px 40px,
-                       0px 40px,
+    clip-path: polygon(1px 1px, 
+                       119px 1px, 
+                       119px 39px,
+                       1px 39px,
                        4px 20px);
 }
 
@@ -58,4 +61,6 @@
 
 .step:focus {
     background: linear-gradient(#a9df81 0%, #69c725 50% ,#a9df81 100%);
+    color: white;
+    border: none;
 }
