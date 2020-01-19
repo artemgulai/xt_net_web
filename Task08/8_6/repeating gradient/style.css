@@ -1,0 +1,35 @@
+body {
+    background-color: #333333;
+}
+
+.col {
+    display: inline-block;
+    width: 50px;
+    background: repeating-linear-gradient(transparent, transparent 26px, #333333 26px, #333333 30px), linear-gradient(to top, #ff8d02, #ffcf57);
+    border-radius: 10px 10px 0 0;
+    margin-right: 5px;
+}
+
+._col1 {
+    height: 150px;
+}
+
+._col2 {
+    height: 60px;
+}
+
+._col3 {
+    height: 240px;
+}
+
+._col4 {
+    height: 300px;
+}
+
+._col5 {
+    height: 150px;
+}
+
+._col6 {
+    height: 90px;
+}
