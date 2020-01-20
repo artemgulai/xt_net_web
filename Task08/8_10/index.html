@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>VK Settings</title>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="utf-8">
+        <script>
+            function viewDiv(a){
+                document.getElementById(a).style.display = "block";
+            };
+
+            function hideDiv() {
+                var divs = document.getElementsByClassName("content");
+                for (let i = 0; i < divs.length; i++) {
+                    divs[i].style.display = "none";
+                    
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+        </div>
+        <div class="container">
+            <div class="left">
+                het
+            </div>
+
+            <!-- Правая панель переключения разделов блока контента -->
+            <div class="right">
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock" checked class="_common" onclick="hideDiv(); viewDiv('common')"> <span>Общее</span>
+                    </label>
+                </div>
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock" onclick="hideDiv()"> <span>Безопасность</span>
+                    </label>
+                </div>
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock"> <span>Приватность</span>
+                    </label>
+                </div>
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock"> <span>Уведомления</span>
+                    </label>
+                </div>
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock"> <span>Чёрный список</span>
+                    </label>
+                </div>
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock"> <span>Настройки приложений</span>
+                    </label>
+                </div>
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock"> <span>Мобильные сервисы</span>
+                    </label>
+                </div>
+                <div class="btn">
+                    <label>
+                        <input type="radio" name="contentblock"> <span>Платежи, подписки, переводы</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Центральный блок контента,
+            раздел "Общее" -->
+            <div class="content common" id="common">
+                <h1>Общее</h1>
+                <div class="settings">
+                    <div class="setitem sitemenu">
+                        <span>Меню сайта</span>
+                        <span class="sethref">Настроить отображение пунктов меню</span>
+                    </div>
+                    <div class="setitem profile">
+                        <span>Настройки профиля</span>
+                        <span>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="" id=""> Скрывать блок подарков 
+                                </label>
+                                <br>
+                                <label>
+                                    <input type="checkbox" checked="checked"> При открытии профиля показывать мои записи
+                                </label>
+                                <br>
+                                <label>
+                                    <input type="checkbox" checked="checked"> Отключить комментирование записей
+                                </label>
+                                <br>
+                                <label>
+                                    <input type="checkbox" checked="checked"> Специальные возможности
+                                </label>
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="setitem _content">
+                        <span>Настройки контента</span>
+                        <span>
+                            <div>
+                                <label>
+                                    <input type="checkbox" name="" id=""> Автоматически воспроизводить видео
+                                </label>
+                                <br>
+                                <label>
+                                    <input type="checkbox" name="" id=""> Автоматически воспроизводить GIF-анимации
+                                </label>
+                                <br>
+                                <label>
+                                    <input type="checkbox" checked="checked"> Подсказывать стикеры в полях ввода
+                                </label>
+                                <br>
+                                <label>
+                                    <input type="checkbox" name="" id=""> Автоматически отмечать друзей на фотографиях
+                                </label>
+                                <br>
+                                <span class="comsort">
+                                    Сортировка комментариев: <span class="sethref">сначала интересные</span>
+                                </span>
+                                <br>
+                                <span class="sethref"> Посмотреть заблокированные приложения</span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="setitem password">
+                        <span>Пароль</span>
+                        <span>обновлён три года назад</span>
+                        <span class="sethref">Изменить</span>
+                    </div>
+                    <div class="setitem email">
+                        <span>Электронная почта</span>
+                        <span>gu***@gmail.com</span>
+                        <span class="sethref">Изменить</span>
+                    </div>
+                    <div class="setitem phone">
+                        <span>Номер телефона</span>
+                        <span>+7 *** *** ** 49</span>
+                        <span class="sethref">Изменить</span>
+                    </div>
+                    <div class="setitem address">
+                        <span>Адрес страницы</span>
+                        <span><span class="pageprefix">https://vk.com/</span>apgulai</span>
+                        <span class="sethref">Изменить</span>
+                    </div>
+                    <div class="setitem verification">
+                        <span>Верификация</span>
+                        <span>Страница не верифицирована</span>
+                        <span class="sethref">Подать заявку</span>
+                    </div>
+                    <div class="setitem language">
+                        <span>Язык</span>
+                        <span>Русский</span>
+                        <span class="sethref">Изменить</span>
+                    </div>
+                </div>
+                <div class="delete">
+                    Вы можете <span class="sethref">удалить свою страницу
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

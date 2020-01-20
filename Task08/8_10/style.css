@@ -1,0 +1,247 @@
+body {
+    margin: 0;
+    background-color: #edeef0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.container {
+    width: 960px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.header {
+    background-color: #4a76a8;
+    width: 960px;
+    height: 42px;
+    margin: auto;
+}
+
+.left {
+    width: 150px;
+    float: left;
+    background-color: gray;
+}
+
+.content {
+    width: 550px;
+    margin-left: 155px;
+}
+
+h1 {
+    font-size: 11pt;
+    border-radius: 3px 3px 0px 0px;
+}
+
+.delete {
+    font-size: 10pt;
+    text-align: center;
+    border-radius: 0px 0px 3px 3px;
+}
+
+h1, .delete {
+    margin-top: 0;
+    background-color: #fafbfc;
+    font-weight: 100;
+    padding: 15px;
+    border: solid 1px #e3e4e8;
+    margin-bottom: 0;
+}
+
+.common {
+    display: none;
+}
+
+.settings {
+    margin-top: 0;
+    border: solid 1px #e3e4e8;
+    border-right: solid 1px #e3e4e8;
+    border-top: none;
+    border-bottom: none;
+    background-color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 10pt;
+}
+
+.setitem {
+    border-bottom: solid 1px #e3e4e8;
+    position: relative;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.setitem > :first-child, .pageprefix {
+    color: #777777;
+}
+
+.sethref {
+    color: #2a5885;
+    cursor: pointer;
+}
+
+.sethref:hover {
+    text-decoration: underline;
+}
+
+.sitemenu > :nth-child(2) {
+    position: relative;
+    left: 70px;
+}
+
+.profile > :first-child {
+    position: relative;
+    top: -58px;
+}
+
+.profile > :nth-child(2), ._content > :nth-child(2) {
+    position: relative;
+    left: 20px;
+}
+
+.profile > span, ._content span {
+    display: inline-block;
+}
+
+._content > :first-child {
+    position: relative;
+    top: -109px;
+}
+
+.content input {
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.content input:after {
+    content: '';
+    position: relative;
+    display: block;
+    width: 12px;
+    height: 12px;
+    bottom: 0px;
+    left: -4px;
+    background-color: white;
+    border: solid 1px #e3e4e8;
+    border-radius: 3px;
+    visibility: visible;
+}
+
+label, .content input, .content input::after {
+    cursor: pointer;
+}
+
+.content input:checked::after {
+    background-color: #5181b8;
+    border-color: #5181b8;
+    background-image: url(images/checkbox.png);
+    background-size: 12px;
+    background-repeat: no-repeat;
+}
+
+.comsort {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.password > :nth-child(2) {
+    position: relative;
+    left: 98px;
+}
+
+.password, .email, .phone,
+.address, .verification, .language {
+    cursor: pointer;
+}
+
+.password:hover > :last-child,
+.email:hover > :last-child,
+.phone:hover > :last-child,
+.address:hover > :last-child,
+.verification:hover > :last-child,
+.language:hover > :last-child {
+    text-decoration: underline;
+}
+
+.password > :last-child,
+.email > :last-child,
+.phone > :last-child,
+.address > :last-child,
+.verification > :last-child,
+.language > :last-child {
+    float: right;
+}
+
+.email >:nth-child(2) {
+    position: relative;
+    left: 25px;
+}
+
+.phone > :nth-child(2) {
+    position: relative;
+    left: 38px;
+}
+
+.address > :nth-child(2) {
+    position: relative;
+    left: 42px;
+}
+
+.verification > :nth-child(2) {
+    position: relative;
+    left: 58px;
+}
+
+.language > :nth-child(2) {
+    position: relative;
+    left: 112px;
+}
+
+.language {
+    border: none;
+}
+
+
+/* Стиль правой панели навигации */
+
+.right {
+    background-color: #ffffff;
+    border: solid 1px #e3e4e8;
+    border-radius: 3px;
+    width: 230px;
+    float: right;
+    font-size: 10pt;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.btn {
+    position: relative;
+    margin-top: 0px;
+    height: 31px;
+    padding: 0;
+}
+
+.btn span {
+    position: absolute;
+    width: 223px;
+    padding: 8px 0px 8px 5px;
+    border-left: 2px solid transparent;
+    color: #2a5885;
+}
+
+.btn input {
+    position: absolute;
+    display: none;
+}
+
+.btn:hover span {
+    background-color: #f0f2f5;
+}
+
+.btn input:checked + span {
+    background-color: #f0f2f5;
+    border-left: 2px #5181b8 solid;
+    color: black;
+    font-weight: bold;
+}
