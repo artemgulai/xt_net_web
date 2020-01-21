@@ -5,9 +5,11 @@ body {
 }
 
 .container {
+    position: relative;
     width: 960px;
     margin: auto;
     margin-top: 0px;
+    top: -46px
 }
 
 .header {
@@ -441,7 +443,7 @@ label, .content input, .content input::after {
     padding-top: 5px;
     padding-bottom: 5px;
     position: sticky;
-    top: 52px;
+    top: 48px;
 }
 
 .btn {
@@ -624,11 +626,11 @@ label, .content input, .content input::after {
 
 /* стиль левого заполнителя */
 .leftfill {
-    display: block;
-    position: absolute;
-    top: 0px;
+    /* display: inline-block; */
     right: 0;
     height: 42px;
     width: 100%;
     background-color: #4a76a8;
+    position: sticky;
+    top: 0px;
 }
