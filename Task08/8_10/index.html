@@ -13,17 +13,38 @@
                 var divs = document.getElementsByClassName("content");
                 for (let i = 0; i < divs.length; i++) {
                     divs[i].style.display = "none";
-                    
                 }
             }
         </script>
     </head>
     <body>
-        <div class="header">
+        <div class="leftfill">
         </div>
         <div class="container">
+
+            <div class="header">
+                <div class="logo"></div>
+                <div class="search"><input type="text"></div>
+            </div>
+
             <div class="left">
-                het
+                <div>
+                    <span class="menuicon"></span> Моя страница
+                </div>
+                <div><span class="menuicon"></span> Новости</div>
+                <div><span class="menuicon"></span> Сообщения</div>
+                <div><span class="menuicon"></span> Друзья</div>
+                <div><span class="menuicon"></span> Сообщества</div>
+                <div><span class="menuicon"></span> Фотографии</div>
+                <div><span class="menuicon"></span> Музыка</div>
+                <div><span class="menuicon"></span> Видео</div>
+                <div><span class="menuicon"></span> Игры</div>
+                <div class="border"></div>
+                <div><span class="menuicon"></span> VK Pay</div>
+                <div class="border"></div>
+                <div><span class="menuicon"></span> Товары</div>
+                <div><span class="menuicon"></span> Закладки</div>
+                <div><span class="menuicon"></span> Документы</div>
             </div>
 
             <!-- Правая панель переключения разделов блока контента -->
@@ -35,37 +56,12 @@
                 </div>
                 <div class="btn">
                     <label>
-                        <input type="radio" name="contentblock" onclick="hideDiv()"> <span>Безопасность</span>
+                        <input type="radio" name="contentblock" onclick="hideDiv(); viewDiv('confirmation'); viewDiv('security')"> <span>Безопасность</span>
                     </label>
                 </div>
                 <div class="btn">
                     <label>
-                        <input type="radio" name="contentblock"> <span>Приватность</span>
-                    </label>
-                </div>
-                <div class="btn">
-                    <label>
-                        <input type="radio" name="contentblock"> <span>Уведомления</span>
-                    </label>
-                </div>
-                <div class="btn">
-                    <label>
-                        <input type="radio" name="contentblock"> <span>Чёрный список</span>
-                    </label>
-                </div>
-                <div class="btn">
-                    <label>
-                        <input type="radio" name="contentblock"> <span>Настройки приложений</span>
-                    </label>
-                </div>
-                <div class="btn">
-                    <label>
-                        <input type="radio" name="contentblock"> <span>Мобильные сервисы</span>
-                    </label>
-                </div>
-                <div class="btn">
-                    <label>
-                        <input type="radio" name="contentblock"> <span>Платежи, подписки, переводы</span>
+                        <input type="radio" name="contentblock" onclick="hideDiv(); viewDiv('notifications');"> <span>Уведомления</span>
                     </label>
                 </div>
             </div>
@@ -167,6 +163,85 @@
                 </div>
             </div>
 
+            <!-- Центральный блок контента, 
+                раздел "Безопасность" -->
+            <div class="content confirmation" id="confirmation">
+                <h1>Подтверждение входа</h1>
+                <div class="settings">
+                    <div class="setitem seccode">
+                        <span>Способы получить код безопасности</span>
+                        <span>
+                            <ul>
+                                <li>SMS на номер <b>+7 *** *** ** 49</b> <span class="sethref sechref">Изменить</span></li>
+                                <li>Резервные коды <span class="sethref sechref">Показать список</span></li>
+                                <li><span class="graytext">Приложение для генерации кодов</span> <span class="sethref sechref">Включить</span></li>
+                                <li>Пароли приложений <span class="sethref sechref">Настроить</span></li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div class="setitem reset">
+                        <span>Сбросить подтверждение</span>
+                        <span>
+                            <ul>
+                                <li><span class="sethref">с текущего браузера</span></li>
+                                <li><span class="sethref">на остальных устройствах</span></li>
+                            </ul>
+                        </span>
+                    </div>
+
+                    <div class="turnoff">
+                        <button>Отключить подтверждение входа</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content security" id="security">
+                <h1>Безопасность</h1>
+                <div class="settings">
+                    <div class="setitem activity">
+                        <span>Последняя активность</span>
+                        <span>
+                            <ul>
+                                <li>сегодня в 12:25 (Россия, Браузер Chrome)</li>
+                                <li><span class="sethref">Показать историю активности</span></li>
+                                <li><span class="sethref">Завершить все сеансы</span></li>
+                            </ul>
+                        </span>
+                    </div>
+                    <div class="setitem devices">
+                        <span>Привязанные устройства</span>
+                        <span>
+                            <ul>
+                                <li><span class="sethref">5 устройств</span></li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Центральный блок контента, 
+            раздел "Уведомления" -->
+            <div class="content notifications" id="notifications">
+                <h1>Уведомления на сайте</h1>
+                <div class="settings">
+                    <div class="instant">
+                        <label><span>Показывать мгновенные уведомления</span><input type="checkbox"><div class="slider"></div></label>
+                    </div>
+                    <div class="sound">
+                        <label><span>Получать уведомления со звуком</span><input type="checkbox" checked><div class="slider"></div></label>
+                    </div>
+                    <div class="messtext">
+                        <label><span>Показывать текст сообщений</span><input type="checkbox"><div class="slider"></div></label>
+                    </div>
+                    <div class="browser">
+                        <span>Показывать браузерные уведомления</span><span class="sethref">Все</span>
+                    </div>
+                    <div class="community">
+                        <span>Сообщения в сообществах</span><span class="sethref">Настроить</span>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </body>
 </html>
