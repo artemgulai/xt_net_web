@@ -1,8 +1,8 @@
 .counter {
     position: relative;
+    margin: auto;
     width: 480px;
     height: 40px;
-    background-color: white;
     -webkit-user-select: none;
     -moz-user-select: none;
 }
@@ -17,7 +17,6 @@
 }
 
 ._1 {
-    /* background-color: aqua; */
     clip-path: polygon(0px 0px, 
                        110px 0px, 
                        120px 20px,
@@ -26,7 +25,6 @@
 }
 
 ._2, ._3 {
-    /* background-color: antiquewhite; */
     clip-path: polygon(0px 0px, 
                        110px 0px, 
                        120px 20px,
@@ -45,7 +43,6 @@
 
 ._4 {
     left: 360px;
-    /* background-color: green; */
     clip-path: polygon(0px 0px, 
                        120px 0px, 
                        120px 40px,
