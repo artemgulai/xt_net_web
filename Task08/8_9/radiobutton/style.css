@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.step input {
+    display: none;
+}
+
+.step {
+    float: left;
+    width: 100px;
+    text-align: center;
+    height: 40px;
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+
+._1 {
+    clip-path: polygon(0px 0px, 90px 0px, 
+                       100px 20px, 90px 40px, 
+                       0px 40px);
+}
+
+._2, ._3 {
+    clip-path: polygon(0px 0px, 90px 0px, 
+                       100px 20px, 90px 40px, 
+                       0px 40px, 10px 20px);
+}
+
+._4 {
+    clip-path: polygon(0px 0px, 100px 0px, 
+                       100px 40px, 0px 40px, 10px 20px);
+}
+
+input + span {
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    padding-top: 10px;
+    top: -10px;
+    display: block;
+    height: 30px;
+    width: 100px;
+    background: linear-gradient(0deg, rgba(245,245,245,1) 0%, rgba(170,170,170,1) 50%, rgba(245,245,245,1) 100%);
+}
+
+input:checked + span {
+    background: linear-gradient(0deg, rgba(202,246,146,1) 0%, rgba(87,205,0,1) 50%, rgba(202,246,146,1) 100%);
+    color: white;
+}
