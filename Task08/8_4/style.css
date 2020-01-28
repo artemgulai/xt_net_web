@@ -22,8 +22,9 @@ body div {
     width: 50px;
     height: 50px;
     top: 30px;
-    transform: rotate(45deg);
+    transform: rotate(-45deg);
     margin: auto;
+    clip-path: polygon(0px 0px, 50px 0px, 50px 50px);
 }
 
 .on {
