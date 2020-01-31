@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="/script.js">
+        </script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div>
+            <div class="title">Available</div>
+            <select multiple id="left">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+            </select>
+        </div>
+
+        <div>
+            <button onclick="moveAll(document.getElementById('left'),document.getElementById('right'))">>></button> <br>
+
+            <button onclick="moveSome(document.getElementById('left'),document.getElementById('right'))">></button> <br>
+
+            <button onclick="moveSome(document.getElementById('right'),document.getElementById('left'))"><</button> <br>
+
+            <button onclick="moveAll(document.getElementById('right'),document.getElementById('left'))"><<</button>
+        </div>
+
+        <div>
+            <div class="title">Selected</div>
+            <select multiple id="right">
+            </select>
+        </div>
+    </body>
+</html>
