@@ -1,0 +1,27 @@
+.next, .previous {
+    position: relative;
+    width: 100px;
+}
+
+.next {
+    left: 20px;
+}
+
+.start, .stop {
+    position: relative;
+    width: 110px;
+    top: -50px;
+    left: 400px;
+}
+
+.start {
+    left: 420px;
+}
+
+.timer {
+    position: relative;
+    left: 250px;
+    top: -28px;
+    font-size: 14pt;
+    color: blue;
+}

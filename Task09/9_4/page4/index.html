@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Page 4</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <link rel="stylesheet" href="../style.css">
+        <script>
+            function goToPrevious() {
+                window.location.href = "../page3/index.html";
+            }
+            function goToNext() {
+                confirm("Начать сначала?") ? window.location.href = "../page1/index.html" : window.open('','_self').close();
+            }
+        </script>
+
+    </head>
+    <body>
+        <p>Page 4</p>
+    </body>
+    <script src="../addbutton.js"></script>
+    <script src="../timer.js"></script>
+</html>
