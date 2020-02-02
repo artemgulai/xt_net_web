@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Simple Gallery</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>Simple gallery web-page</header>
+        <!-- This block contains a timer and control buttons -->
+        <div class="control">
+            <button class="prev" title="Previous page" onclick="goToPrev()"></button>
+            <button class="pause" title="Pause timer" onclick="pause()"></button>
+            <button class="play" title="Start timer" onclick="play()"></button>
+            <button class="next" title="Next page" onclick=goToNext()></button>
+            <button class="reset" title="Reset timer" onclick="reset()"></button>
+            <div class="timer"></div>
+        </div>
+        
+        <!-- This block contains a web page to be shown to a user -->
+        <iframe class="page" frameborder="0"></iframe>
+        <script src="script.js"></script>
+    </body>
+</html>
