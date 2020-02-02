@@ -1,4 +1,4 @@
-var time = 20;
+var time = 5;
 var timeLeft = time;
 
 function setTimerValue(timer, timeLeft) {

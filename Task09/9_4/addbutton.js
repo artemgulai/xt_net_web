@@ -18,6 +18,7 @@ document.body.prepend(timer);
 
 let button = document.createElement('button');
 button.className = "next"
+button.id = "next";
 button.innerHTML = "Следующая страница";
 button.addEventListener("click", goToNext);
 document.body.prepend(button);
@@ -25,6 +26,7 @@ document.body.prepend(button);
 
 button = document.createElement('button');
 button.className = "previous";
+button.id = "previous";
 button.innerHTML = "Предыдущая страница";
 button.addEventListener("click", goToPrevious);
 document.body.prepend(button);
