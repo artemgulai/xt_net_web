@@ -34,5 +34,37 @@
             <select multiple id="right">
             </select>
         </div>
+
+        <div>
+            <button onclick="moveAll(document.getElementById('right'),document.getElementById('backup'))">>></button> <br>
+
+            <button onclick="moveSome(document.getElementById('right'),document.getElementById('backup'))">></button> <br>
+
+            <button onclick="moveSome(document.getElementById('backup'),document.getElementById('right'))"><</button> <br>
+
+            <button onclick="moveAll(document.getElementById('backup'),document.getElementById('right'))"><<</button>
+        </div>
+
+        <div>
+            <div class="title">Backup</div>
+            <select multiple id="backup">
+            </select>
+        </div>
+
+        <div>
+            <button onclick="moveAll(document.getElementById('backup'),document.getElementById('backup2'))">>></button> <br>
+
+            <button onclick="moveSome(document.getElementById('backup'),document.getElementById('backup2'))">></button> <br>
+
+            <button onclick="moveSome(document.getElementById('backup2'),document.getElementById('backup'))"><</button> <br>
+
+            <button onclick="moveAll(document.getElementById('backup2'),document.getElementById('backup'))"><<</button>
+        </div>
+
+        <div>
+            <div class="title">One more backup</div>
+            <select multiple id="backup2">
+            </select>
+        </div>
     </body>
 </html>
