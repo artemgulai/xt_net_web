@@ -11,7 +11,7 @@ namespace Task06.MyDB.DataBase
 {
     public class DataBase
     {
-        private static string _dirPath = @"database";
+        private static string _dirPath = Path.Combine("C:/UsersAndAwardsApp","database");
         private static string _usersFile = @".users.json";
         private static string _awardsFile = @".awards.json";
         private static string _userAwardLinkFile = @".userAwardLink.json";
@@ -84,10 +84,18 @@ namespace Task06.MyDB.DataBase
             File.SetAttributes(path,FileAttributes.Hidden);
         }
 
-        ~DataBase()
+        public void SaveUsers()
         {
             Write(Path.Combine(_dirPath,_usersFile),_users.Values.ToList());
+        }
+
+        public void SaveAwards()
+        {
             Write(Path.Combine(_dirPath,_awardsFile),_awards.Values.ToList());
+        }
+
+        public void SaveUserAwardLinks()
+        {
             Write(Path.Combine(_dirPath,_userAwardLinkFile),_userAwardLink);
         }
     }

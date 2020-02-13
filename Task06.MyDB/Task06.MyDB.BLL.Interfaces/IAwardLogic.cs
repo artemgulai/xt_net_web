@@ -17,6 +17,10 @@ namespace Task06.MyDB.BLL.Interfaces
 
         IEnumerable<Award> GetAwardsByUserId(int userId);
 
+        bool Update(Award award);
+
         bool RemoveById(int id);
+
+        void RemoveAll();
     }
 }

@@ -47,5 +47,15 @@ namespace Task06.MyDB.BLL
         {
             return _userDao.TakeAward(userId,awardId);
         }
+
+        public void RemoveAll()
+        {
+            _userDao.RemoveAll();
+        }
+
+        public bool Update(User user)
+        {
+            return _userDao.Update(user);
+        }
     }
 }

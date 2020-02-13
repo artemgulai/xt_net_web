@@ -27,7 +27,7 @@ namespace Task06.MyDB.Entities
         public override string ToString()
         {
             StringBuilder userSB = new StringBuilder();
-            userSB.Append($"ID: {Id}. Name: {Name}. Date of birth: {DateOfBirth.ToShortDateString()}. ");
+            userSB.Append($"ID: {Id}. Name: {Name}. Date of birth: {DateOfBirth.ToString("dd.MM.yyyy",new System.Globalization.CultureInfo("ru-RU"))}. ");
             userSB.Append($"Age: {Age}");
             return userSB.ToString();
         }

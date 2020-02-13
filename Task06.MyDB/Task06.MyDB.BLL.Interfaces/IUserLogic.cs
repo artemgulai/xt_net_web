@@ -15,10 +15,14 @@ namespace Task06.MyDB.BLL.Interfaces
 
         IEnumerable<User> GetAll();
 
+        bool Update(User user);
+
         bool RemoveById(int id);
 
         bool GiveAward(int userId,int awardId);
 
         bool TakeAward(int userId,int awardId);
+
+        void RemoveAll();
     }
 }

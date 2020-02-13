@@ -13,10 +13,14 @@ namespace Task06.MyDB.DAL.Interfaces
 
         Award GetById(int id);
 
+        bool Update(Award award);
+
         IEnumerable<Award> GetAll();
 
         IEnumerable<Award> GetAwardsByUserId(int userId);
 
         bool RemoveById(int id);
+
+        void RemoveAll();
     }
 }

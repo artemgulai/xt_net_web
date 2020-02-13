@@ -1,0 +1,35 @@
+﻿@using Task10.WebPL.Models;
+@{
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    var userService = new UserService();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="list main-container">
+        <ul class="list-group list-group-flush">
+            @{
+                var users = userService.GetAllUsers();
+
+                if (!users.Any())
+                {
+                    <li class="list-group-item mybg">
+                        No Users in DB.
+                    </li>
+                }
+
+                foreach (var user in users)
+                {
+                    <li class="list-group-item mybg">
+                        @userService.ShowUserAndAwards(user)
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    @RenderBody()
+</body>
+</html>

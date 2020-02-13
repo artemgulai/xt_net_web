@@ -1,0 +1,44 @@
+﻿@using Task10.WebPL.Models;
+@{
+    Page.Title = "Remove User";
+    Layout = "~/Layouts/_UsersLayout.cshtml";
+    var userService = new UserService();
+}
+
+    <div class="main-container">
+        @if (userService.GetAllUsers().Any())
+        {
+            <hr class="my-2" />
+            <div class="remove-form">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="number" class="form-control" name="id" id="id" min="1" placeholder="ID of a User to remove" required>
+                        <small id="emailHelp" class="form-text text-muted">Minimal value is 1</small>
+                    </div>
+                    <div class="text-center"><button type="submit" class="btn btn-info">Submit</button></div>
+                </form>
+            </div>
+        }
+
+        @{
+            if (IsPost)
+            {
+                int id = int.Parse(Request.Form["id"]);
+
+                <br />
+                if (userService.RemoveUser(id))
+                {
+                    <div class="alert alert-success add-form" role="alert">
+                        User has been removed.
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning add-form" role="alert">
+                        User with ID @id has not been found.
+                    </div>
+                }
+            }
+        }
+    </div>

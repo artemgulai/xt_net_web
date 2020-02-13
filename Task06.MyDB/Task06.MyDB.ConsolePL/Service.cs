@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,8 +48,11 @@ namespace Task06.MyDB.ConsolePL
                 break;
             }
 
+
+
+            CultureInfo cultureInfo = new CultureInfo("ru-RU");
             Console.WriteLine("Enter date of birth in the following format: DD.MM.YYYY:");
-            while (!DateTime.TryParse(Console.ReadLine(),out dateOfBirth))
+            while (!DateTime.TryParseExact(Console.ReadLine(), "dd.MM.yyyy", cultureInfo, DateTimeStyles.AllowWhiteSpaces, out dateOfBirth))
             {
                 Console.WriteLine("Incorrect date format. Try again.");
             }

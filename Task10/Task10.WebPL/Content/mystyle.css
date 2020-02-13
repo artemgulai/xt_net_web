@@ -1,0 +1,23 @@
+﻿.mybg {
+    background-color: #e9ecef;
+}
+
+.list {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.main-container {
+    width: 250px;
+    margin: 10px;
+}
+
+.reward-container {
+    width: 540px;
+}
+
+#give-award-form {
+    clear: both;
+    margin-left: 10px;
+}

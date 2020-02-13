@@ -19,6 +19,7 @@ namespace Task06.MyDB.DAL
             var nextId = awards.Count != 0 ? awards.Keys.Max() + 1 : 1;
             award.Id = nextId;
             awards.Add(nextId,award);
+            _db.SaveAwards();
             return award;
         }
 
@@ -30,12 +31,20 @@ namespace Task06.MyDB.DAL
         public IEnumerable<Award> GetAwardsByUserId(int userId)
         {
             var awardIds = _db.UserAwardLink.Where(ual => ual.UserId == userId).Select(ual => ual.AwardId);
-
-            //var awardIds = from award in _db.UserAwardLink
-            //               where award.UserId == userId
-            //               select award.AwardId;
-
             return _db.Awards.Values.Where(a => awardIds.Contains(a.Id));
+        }
+
+        public bool Update(Award award)
+        {
+            var awards = _db.Awards;
+            if (!awards.ContainsKey(award.Id))
+            {
+                return false;
+            }
+
+            awards[award.Id] = award;
+            _db.SaveAwards();
+            return true;
         }
 
         public Award GetById(int id)
@@ -52,8 +61,18 @@ namespace Task06.MyDB.DAL
             {
                 var userAwardLink = _db.UserAwardLink;
                 userAwardLink.RemoveAll(ual => ual.AwardId == id);
+                _db.SaveAwards();
+                _db.SaveUserAwardLinks();
             }
             return removeResult;
+        }
+
+        public void RemoveAll()
+        {
+            _db.Awards.Clear();
+            _db.UserAwardLink.Clear();
+            _db.SaveAwards();
+            _db.SaveUserAwardLinks();
         }
     }
 }

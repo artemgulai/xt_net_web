@@ -1,0 +1,101 @@
+﻿@using Task10.WebPL.Models;
+
+@{
+    Page.Title = "Give Award";
+    Layout = "~/Layouts/_UserAwardLayout.cshtml";
+    var awardService = new AwardService();
+    var userService = new UserService();
+}
+
+@{
+    var users = userService.GetAllUsers();
+    var ifUsersExist = users.Any();
+    var ifAwardsExist = awardService.GetAllAwards().Any();
+}
+
+    <div class="reward-container">
+        @if (!ifUsersExist)
+        {
+            <div class="alert alert-success add-form" role="alert">
+                No Users in DB. Add Users first.
+            </div>
+        }
+        else if (!ifAwardsExist)
+        {
+            <div class="alert alert-success add-form" role="alert">
+                No Awards in DB. Add Awards first.
+            </div>
+        }
+
+        @if (ifUsersExist && ifAwardsExist)
+        {
+            <div class="list main-container float-left">
+                <ul class="list-group list-group-flush">
+                    @{
+                            users = userService.GetAllUsers();
+                            foreach (var user in users)
+                            {
+                            <li class="list-group-item mybg">
+                                @userService.ShowUserAndAwards(user)
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+
+            <div class="list main-container float-right">
+                <ul class="list-group list-group-flush">
+                    @{
+                        var awards = awardService.GetAllAwards();
+                        foreach (var award in awards)
+                        {
+                            <li class="list-group-item mybg">
+                                @award.ToString()
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+
+            <div class="give-form" id="give-award-form">
+                <form method="post">
+                    <div class="form-group row">
+                        <div class="col">
+                            <label for="id">ID of a User to be given Award</label>
+                            <input type="number" class="form-control" name="user-id" min="1" placeholder="ID of a User to be given Award" required>
+                            <small id="emailHelp" class="form-text text-muted">Minimal value is 1</small>
+                        </div>
+                        <div class="col">
+                            <label for="id">ID of an Award to be given to User</label>
+                            <input type="number" class="form-control" name="award-id" min="1" placeholder="ID of an Award to be given to User" required>
+                            <small id="emailHelp" class="form-text text-muted">Minimal value is 1</small>
+                        </div>
+                    </div>
+                    <div class="text-center"><button class="btn btn-info" type="submit">Submit</button></div>
+                </form>
+            </div>
+
+            if (IsPost)
+            {
+                <br class="my-2"/>
+                var userId = int.Parse(Request.Form["user-id"]);
+                var awardId = int.Parse(Request.Form["award-id"]);
+
+                            <p>СДЕЛАТЬ ЧТОБ СПИСКИ ОБНОВЛЯЛИЬ ПРИ САБМИТЕ</p>
+                if (userService.GiveAward(userId,awardId))
+                {
+                    <div class="alert alert-success add-form" role="alert">
+                        Award has been given to User
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger add-form" role="alert">
+                        Award cannot be given to User
+                    </div>
+                }
+            }
+        }
+
+
+    </div>
