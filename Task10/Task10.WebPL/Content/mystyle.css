@@ -13,6 +13,11 @@
     margin: 10px;
 }
 
+.main-container img {
+    position: relative;
+    width: 100%;
+}
+
 .reward-container {
     width: 540px;
 }

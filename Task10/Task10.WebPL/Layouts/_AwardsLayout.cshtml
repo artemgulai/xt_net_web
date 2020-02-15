@@ -22,9 +22,10 @@
 
                 foreach (var award in awards)
                 {
-                    <li class="list-group-item mybg">
-                        @award.ToString()
-                    </li>
+        <li class="list-group-item mybg">
+            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(award.AwardImage))">
+            @award.ToString()
+        </li>
                 }
             }
         </ul>

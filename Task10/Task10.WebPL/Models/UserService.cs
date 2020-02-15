@@ -50,12 +50,20 @@ namespace Task10.WebPL.Models
             return MvcHtmlString.Create(_sb.ToString());
         }
 
-        public String AddUser(string name, DateTime dateOfBirth)
+        public String AddUser(string name, DateTime dateOfBirth, byte[] image = null)
         {
-            var user = _userLogic.Add(new User { 
+            var user = new User
+            {
                 Name = name,
-                DateOfBirth = dateOfBirth
-            });
+                DateOfBirth = dateOfBirth,
+            };
+
+            if (image != null)
+            {
+                user.UserImage = image;
+            }
+
+            user = _userLogic.Add(user);
 
             return $"User has been added to DB. ID = {user.Id}";
         }

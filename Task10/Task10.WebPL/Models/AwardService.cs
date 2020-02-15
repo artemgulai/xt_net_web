@@ -28,12 +28,16 @@ namespace Task10.WebPL.Models
             return _awardLogic.GetAll();
         }
 
-        public String AddAward(string title)
+        public String AddAward(string title, byte[] image = null)
         {
-            var award = _awardLogic.Add(new Award
+            var award = new Award { Title = title };
+
+            if (image != null)
             {
-                Title = title
-            });
+                award.AwardImage = image;
+            }
+
+            award = _awardLogic.Add(award);
 
             return $"Award has been added to DB. ID = {award.Id}";
         }

@@ -1,5 +1,6 @@
 ﻿@using System.Globalization;
 @using Task10.WebPL.Models;
+@using System.Linq;
 @{
     Page.Title = "Add User";
     Layout = "~/Layouts/_MainLayout.cshtml";
@@ -8,7 +9,7 @@
 
     <div class="main-container">
         <div class="add-form">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="Name">Name</label>
                     <input type="text" class="form-control" name="name" id="Name" placeholder="User's name" required>
@@ -17,6 +18,10 @@
                 <div class="form-group">
                     <label for="date">Date of birth</label>
                     <input type="date" class="form-control" name="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control" name="image" id="image" accept=".jpg">
                 </div>
                 <div class="text-center"><button type="submit" class="btn btn-info">Submit</button></div>
             </form>
@@ -27,10 +32,22 @@
             {
                 string name = Request.Form["name"];
                 DateTime dateOfBirth = DateTime.Parse(Request.Form["date"],new CultureInfo("ru-RU"));
+                HttpPostedFileBase file = Request.Files.Count != 0 ? Request.Files[0] : null;
+                byte[] bytes = null;
+
+                if (file.ContentLength != 0)
+                {
+                    bytes = new byte[file.ContentLength];
+                    file.InputStream.Read(bytes,0,bytes.Length);
+                }
+                else
+                {
+                    bytes = File.ReadAllBytes(@"C:\UsersAndAwardsApp\user.jpg");
+                }
 
                 <br />
                 <div class="alert alert-success add-form" role="alert">
-                    @userService.AddUser(name,dateOfBirth);
+                    @userService.AddUser(name,dateOfBirth, bytes);
                 </div>
             }
         }

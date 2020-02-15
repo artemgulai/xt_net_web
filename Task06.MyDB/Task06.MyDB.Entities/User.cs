@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Task06.MyDB.Entities
 {
@@ -12,6 +15,7 @@ namespace Task06.MyDB.Entities
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
         public List<int> Awards { get; set; } = new List<int>();
+        public byte[] UserImage { get; set; }
 
         public int Age
         {
