@@ -1,0 +1,18 @@
+﻿@using Task10.WebPL.Models;
+@{
+    Page.Title = "Success";
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    var awardService = new AwardService();
+}
+
+<div class="main-container">
+    <div class="alert alert-info">All awards has been removed.</div>
+    <div class="text-center"><button class="btn btn-info" onclick="goHome();">Go home</button></div>
+</div>
+
+<script>
+    @{awardService.RemoveAll();}
+    function goHome() {
+        location.href = "/index.cshtml";
+    }
+</script>

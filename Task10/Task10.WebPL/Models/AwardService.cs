@@ -47,5 +47,15 @@ namespace Task10.WebPL.Models
         {
             _awardLogic.RemoveAll();
         }
+
+        public Award GetAwardById(int id)
+        {
+            return _awardLogic.GetById(id);
+        }
+
+        public bool UpdateAward(Award award)
+        {
+            return _awardLogic.Update(award);
+        }
     }
 }

@@ -31,8 +31,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="~/Pages/ShowUsers.cshtml">Show all Users in DB</a>
                         <a class="dropdown-item" href="~/Pages/AddUser.cshtml">Add User to DB</a>
+                        <a class="dropdown-item" href="~/Pages/ChangeUser.cshtml">Change User in DB</a>
                         <a class="dropdown-item" href="~/Pages/RemoveUser.cshtml">Remove User with specified ID</a>
-                        <a class="dropdown-item" href="@{userService.RemoveAll();}">Remove all Users</a>
+                        <a class="dropdown-item" href="~/Pages/RemoveAllUsers.cshtml">Remove all Users</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -42,8 +43,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="~/Pages/ShowAwards.cshtml">Show all Awards in DB</a>
                         <a class="dropdown-item" href="~/Pages/AddAward.cshtml">Add Award to DB</a>
+                        <a class="dropdown-item" href="~/Pages/ChangeAward.cshtml">Change Award in DB</a>
                         <a class="dropdown-item" href="~/Pages/RemoveAward.cshtml">Remove Award with specified ID</a>
-                        <a class="dropdown-item" href="@{awardService.RemoveAll();}">Remove all Awards</a>
+                        <a class="dropdown-item" href="~/Pages/RemoveAllAwards.cshtml">Remove all Awards</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -58,9 +60,11 @@
             </ul>
         </div>
     </nav>
+
+    @RenderBody()
+
     
-        @RenderBody()
-    
+
     <script src="~/Scripts/jquery-3.0.0.js"></script>
     <script src="~/Scripts/popper.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>

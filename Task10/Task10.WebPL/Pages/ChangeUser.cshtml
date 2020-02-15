@@ -1,0 +1,70 @@
+﻿@using Task10.WebPL.Models;
+@using System.Globalization;
+@{
+    Page.Title = "Change User";
+    Layout = "~/Layouts/_UsersLayout.cshtml";
+    var userService = new UserService();
+}
+
+<div class="main-container">
+    @if (userService.GetAllUsers().Any())
+    {
+        <hr class="my-2" />
+        <div class="change-form">
+            <form method="post">
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="number" class="form-control" name="id" id="id" min="1" placeholder="ID of a User to change" required>
+                    <small id="emailHelp" class="form-text text-muted">Minimal value is 1</small>
+                    <label for="name">New name</label>
+                    <input type="text" id="name" class="form-control" name="name" placeholder="New User's name">
+                    <label for="dateofbirth">New date of birth</label>
+                    <input type="date" id="dateofbirth" class="form-control" name="dateofbirth" placeholder="New User's date of birth">
+                </div>
+                <div class="text-center"><button type="submit" class="btn btn-info">Submit</button></div>
+            </form>
+        </div>
+    }
+
+    @{
+        if (IsPost)
+        {
+            int id = int.Parse(Request.Form["id"]);
+
+            var user = userService.GetUserById(id);
+            if (user == null)
+            {
+        <div class="alert alert-warning add-form" role="alert">
+            User with ID @id has not been found.
+        </div>
+                return;
+            }
+
+            string name = Request.Form["name"];
+            if (name != null && !string.IsNullOrWhiteSpace(name))
+            {
+                user.Name = name;
+            }
+
+            DateTime dateOfBirth;
+            if (DateTime.TryParse(Request.Form["dateofbirth"],out dateOfBirth))
+            {
+                user.DateOfBirth = dateOfBirth;
+            }
+
+            <br />
+                       if (userService.UpdateUser(user))
+                        {
+                <div class="alert alert-success add-form" role="alert">
+                    User has been changed.
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning add-form" role="alert">
+                    User cannot be changed.
+                </div>
+            }
+        }
+    }
+</div>

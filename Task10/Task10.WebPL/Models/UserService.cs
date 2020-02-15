@@ -79,5 +79,15 @@ namespace Task10.WebPL.Models
         {
             _userLogic.RemoveAll();
         }
+
+        public User GetUserById(int id)
+        {
+            return _userLogic.GetById(id);
+        }
+
+        public bool UpdateUser(User user)
+        {
+            return _userLogic.Update(user);
+        }
     }
 }
