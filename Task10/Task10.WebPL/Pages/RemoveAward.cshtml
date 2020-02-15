@@ -15,11 +15,19 @@
                         <label for="id">ID</label>
                         <input type="number" class="form-control" name="id" id="id" min="1" placeholder="ID of an Award to remove" required>
                         <small id="emailHelp" class="form-text text-muted">Minimal value is 1</small>
+                        <label for="forall"><input type="checkbox" id="forall" name="forall" value="" onchange="enableSubmission();"/> Delete for all Users?</label>
                     </div>
-                    <div class="text-center"><button type="submit" class="btn btn-info">Submit</button></div>
+                    <div class="text-center"><button type="submit" id="submit" class="btn btn-info" disabled>Submit</button></div>
                 </form>
             </div>
         }
+
+        <script>
+            function enableSubmission() {
+                var button = document.getElementById('submit');
+                button.disabled = !button.disabled;
+            }
+        </script>
 
         @{
             if (IsPost)
