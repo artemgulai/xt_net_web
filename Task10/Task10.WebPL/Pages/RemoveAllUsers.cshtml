@@ -2,8 +2,9 @@
 @{
     Page.Title = "Success";
     Layout = "~/Layouts/_MainLayout.cshtml";
-    var userService = new UserService();
 }
+
+@{UserService.RemoveAll();}
 
 <div class="main-container">
     <div class="alert alert-info">All users has been removed.</div>
@@ -11,7 +12,6 @@
 </div>
 
 <script>
-    @{userService.RemoveAll();}
     function goHome() {
         location.href = "/index.cshtml";
     }

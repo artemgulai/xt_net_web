@@ -19,10 +19,46 @@
 }
 
 .reward-container {
-    width: 540px;
+    min-width: 800px;
+    width: 100%;
 }
 
 #give-award-form {
     clear: both;
     margin-left: 10px;
+}
+
+#jumbo {
+    margin-bottom: 0;
+    padding: 1em 2em;
+}
+
+.btn-auth {
+    margin: 0 5px;
+}
+
+#authusername {
+    cursor: default;
+}
+
+.userimage {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.add-remove-users,
+.add-remove-awards {
+    position: relative;
+    margin: 10px 5px;
+}
+
+.alert-center {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.submit-button {
+    margin: 0 0 10px 0;
 }

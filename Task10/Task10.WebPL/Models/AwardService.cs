@@ -10,25 +10,25 @@ using System.Web.Mvc;
 
 namespace Task10.WebPL.Models
 {
-    public class AwardService
+    public static class AwardService
     {
-        private IAwardLogic _awardLogic;
-        private StringBuilder _sb;
-        IEnumerable<Award> _awards;
+        private static IAwardLogic _awardLogic;
+        private static StringBuilder _sb;
+        private static IEnumerable<Award> _awards;
 
-        public AwardService()
+        static AwardService()
         {
             _awardLogic = Task06.MyDB.IoC.DependencyResolver.AwardLogic;
             _sb = new StringBuilder();
             _awards = _awardLogic.GetAll();
         }
 
-        public IEnumerable<Award> GetAllAwards()
+        public static IEnumerable<Award> GetAllAwards()
         {
             return _awardLogic.GetAll();
         }
 
-        public String AddAward(string title, byte[] image = null)
+        public static string AddAward(string title, byte[] image = null)
         {
             var award = new Award { Title = title };
 
@@ -42,22 +42,22 @@ namespace Task10.WebPL.Models
             return $"Award has been added to DB. ID = {award.Id}";
         }
 
-        public bool RemoveAward(int id)
+        public static bool RemoveAward(int id)
         {
             return _awardLogic.RemoveById(id);
         }
 
-        public void RemoveAll()
+        public static void RemoveAll()
         {
             _awardLogic.RemoveAll();
         }
 
-        public Award GetAwardById(int id)
+        public static Award GetAwardById(int id)
         {
             return _awardLogic.GetById(id);
         }
 
-        public bool UpdateAward(Award award)
+        public static bool UpdateAward(Award award)
         {
             return _awardLogic.Update(award);
         }

@@ -14,9 +14,13 @@ namespace Task06.MyDB.IoC
     {
         private static IUserDao _userDao = new UserDao();
         private static IAwardDao _awardDao = new AwardDao();
+        private static IAuthUserDao _authUserDao = new AuthUserDao();
         private static IUserLogic _userLogic = new UserLogic(_userDao);
         private static IAwardLogic _awardLogic = new AwardLogic(_awardDao);
+        private static IAuthUserLogic _authUserLogic = new AuthUserLogic(_authUserDao);
+        
         public static IUserLogic UserLogic => _userLogic;
         public static IAwardLogic AwardLogic => _awardLogic;
+        public static IAuthUserLogic AuthUserLogic => _authUserLogic;
     }
 }

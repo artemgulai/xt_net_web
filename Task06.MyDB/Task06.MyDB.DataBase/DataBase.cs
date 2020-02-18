@@ -15,11 +15,13 @@ namespace Task06.MyDB.DataBase
         private static string _usersFile = @".users.json";
         private static string _awardsFile = @".awards.json";
         private static string _userAwardLinkFile = @".userAwardLink.json";
+        private static string _authUsersFile = @".auth.json";
 
         private static DataBase _inst;
         private static Dictionary<int,User> _users;
         private static Dictionary<int,Award> _awards;
         private static List<UserAwardLink> _userAwardLink;
+        private static Dictionary<string, AuthUser> _authUsers;
 
         private DataBase()
         {
@@ -42,6 +44,33 @@ namespace Task06.MyDB.DataBase
             }
 
             _userAwardLink = ReadOrCreate<UserAwardLink>(Path.Combine(_dirPath,_userAwardLinkFile));
+
+            _authUsers = new Dictionary<string, AuthUser>();
+            //_authUsers.Add("admin",new AuthUser
+            //{
+            //    Login = "admin",
+            //    Password = "admin",
+            //    Roles = new HashSet<string> { "ADMIN" }
+            //});
+            //_authUsers.Add("user",new AuthUser
+            //{
+            //    Login = "user",
+            //    Password = "user",
+            //    Roles = new HashSet<string> { "USER" }
+            //});
+            foreach (var authUser in ReadOrCreate<AuthUser>(Path.Combine(_dirPath,_authUsersFile)))
+            {
+                _authUsers.Add(authUser.Login,authUser);
+            }
+            if (!_authUsers.ContainsKey("admin"))
+            {
+                _authUsers.Add("admin",new AuthUser
+                {
+                    Login = "admin",
+                    Password = "admin",
+                    Roles = new HashSet<string> { "ADMIN" }
+                });
+            }
         }
 
         public static DataBase Inst
@@ -54,6 +83,8 @@ namespace Task06.MyDB.DataBase
         public Dictionary<int,User> Users => _users;
         public Dictionary<int,Award> Awards => _awards;
         public List<UserAwardLink> UserAwardLink => _userAwardLink;
+
+        public Dictionary<string,AuthUser> AuthUsers => _authUsers; 
 
         private List<T> ReadOrCreate<T>(string path)
         {
@@ -97,6 +128,11 @@ namespace Task06.MyDB.DataBase
         public void SaveUserAwardLinks()
         {
             Write(Path.Combine(_dirPath,_userAwardLinkFile),_userAwardLink);
+        }
+
+        public void saveAuthUsers()
+        {
+            Write(Path.Combine(_dirPath,_authUsersFile),_authUsers.Values.ToList());
         }
     }
 }

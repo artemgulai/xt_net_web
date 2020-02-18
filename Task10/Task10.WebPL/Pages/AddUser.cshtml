@@ -4,7 +4,7 @@
 @{
     Page.Title = "Add User";
     Layout = "~/Layouts/_MainLayout.cshtml";
-    var userService = new UserService();
+    //var userService = new UserService();
 }
 
     <div class="main-container">
@@ -47,7 +47,7 @@
 
                 <br />
                 <div class="alert alert-success add-form" role="alert">
-                    @userService.AddUser(name,dateOfBirth, bytes);
+                    @UserService.AddUser(name,dateOfBirth, bytes);
                 </div>
             }
         }

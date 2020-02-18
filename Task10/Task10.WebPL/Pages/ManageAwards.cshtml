@@ -1,0 +1,78 @@
+﻿@using Task10.WebPL.Models;
+
+@{
+    Page.Title = "Award management";
+    Layout = "~/Layouts/_MainLayout.cshtml";
+
+    var id = int.Parse(Request["id"]);
+    var user = UserService.GetUserById(id);
+    if (user == null)
+    {
+    <div class="main-container">
+        <div class="alert-center">
+            <div class="alert alert-danger">User not found.</div>
+
+            <a class="btn btn-danger" href="/index.cshtml">Go home</a>
+        </div>
+    </div>
+        return;
+    }
+
+    var userAwards = UserService.GetUserAwards(user);
+    var awards = AwardService.GetAllAwards();
+}
+
+<div class="reward-container">
+    <div class="alert-center">
+        <div class="alert alert-info main-container">
+            ID = @user.Id.  Name = @user.Name.
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Management
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var award in userAwards)
+            {
+                <tr>
+                    <td>
+                        @award.Title
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" onclick="takeAward(@user.Id, @award.Id)">Take award</button>
+                    </td>
+                </tr>
+            }
+            @foreach (var award in awards.Except(userAwards))
+            {
+                <tr>
+                    <td>
+                        @award.Title
+                    </td>
+                    <td>
+                        <button class="btn btn-info" onclick="giveAward(@user.Id, @award.Id)">Give award</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function giveAward(userId, awardId) {
+        $.post("" + "/Pages/GiveAward.cshtml", { userid: userId, awardid: awardId }, () => location.reload());
+    }
+
+    function takeAward(userId, awardId) {
+        $.post("" + "/Pages/TakeAward.cshtml", { userid: userId, awardid: awardId }, () => location.reload());
+    }
+</script>

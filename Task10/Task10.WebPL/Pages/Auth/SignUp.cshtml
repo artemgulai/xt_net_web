@@ -1,0 +1,50 @@
+﻿@using Task10.WebPL.Models;
+@{
+    Layout = "~/Layouts/_MainLayout.cshtml";
+}
+
+<div class="login-form main-container alert-center">
+
+    <div class="alert alert-dark">New user registration</div>
+
+    <form action="#">
+        <div class="form-group">
+            <label for="Name">Login:</label>
+            <input type="text" class="form-control" name="login" id="login" placeholder="Login" required>
+        </div>
+        <div class="form-group">
+            <label for="Name">Password:</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <label for="Name">Repeat password:</label>
+            <input type="password" class="form-control" name="repeat-password" id="repeat-password" placeholder="Repeat password" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" formmethod="post" class="btn btn-info">Sign up</button>
+        </div>
+    </form>
+</div>
+
+@{
+    if (IsPost)
+    {
+        string login = Request.Form["login"];
+        string password = Request.Form["password"];
+        string repeatPassword = Request.Form["repeat-password"];
+
+        if (password != repeatPassword)
+        {
+            <div class="alert alert-danger main-container">Passwords don't match</div>
+            return;
+        }
+
+        if (new AuthUserService().RegisterUser(login,password))
+        {
+            FormsAuthentication.SetAuthCookie(login,true);
+            <div class="alert alert-info">User has been registered</div>
+        }
+
+        Response.Redirect("~/index.cshtml");
+    }
+}

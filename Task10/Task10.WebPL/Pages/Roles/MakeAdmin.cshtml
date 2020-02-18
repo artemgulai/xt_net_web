@@ -1,0 +1,8 @@
+﻿@using Task10.WebPL.Models;
+@{ 
+    if(IsAjax)
+    {
+        var login = Request["login"];
+        new AuthUserService().GiveRole(login,"ADMIN");
+    }
+}

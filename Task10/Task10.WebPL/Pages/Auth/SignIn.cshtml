@@ -1,0 +1,45 @@
+﻿@using Task10.WebPL.Models;
+@{
+    Layout = "~/Layouts/_MainLayout.cshtml";
+}
+
+<div class="login-form main-container alert-center">
+    <form action="#">
+        <div class="form-group">
+            <label for="Name">Login:</label>
+            <input type="text" class="form-control" name="login" id="login" placeholder="Login" required>
+            <small id="emailHelp" class="form-text text-muted">Empty login is not allowed</small>
+        </div>
+        <div class="form-group">
+            <label for="Name">Password:</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            <small id="emailHelp" class="form-text text-muted">Empty password is not allowed</small>
+        </div>
+        <div class="text-center submit-button">
+            <button type="submit" formmethod="post" class="btn btn-info">Sign in</button>
+        </div>
+    </form>
+</div>
+
+@{
+    if (IsPost)
+    {
+        string login = Request.Form["login"];
+        string password = Request.Form["password"];
+
+        if (new AuthUserService().CheckLoginPassword(login,password))
+        {
+            FormsAuthentication.SetAuthCookie(login,true);
+            Response.Redirect("~/Pages/ShowUsers.cshtml");
+        }
+        else
+        {
+            <div class="alert-center">
+                <div class="alert alert-warning">
+                    Wrong login or password.
+                </div>
+            </div>
+        }
+
+    }
+}

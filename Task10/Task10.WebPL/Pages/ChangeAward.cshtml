@@ -1,50 +1,50 @@
 ﻿@using Task10.WebPL.Models;
+@using System.Globalization;
 @{
-    Page.Title = "Remove Award";
-    Layout = "~/Layouts/_AwardsLayout.cshtml";
-    var awardService = new AwardService();
+    Page.Title = "Change Award";
+    Layout = "~/Layouts/_MainLayout.cshtml";
 }
 
     <div class="main-container">
-        @if (awardService.GetAllAwards().Any())
-        {
-            <hr class="my-2" />
-            <div class="change-form">
-                <form method="post">
-                    <div class="form-group">
-                        <label for="id">ID</label>
-                        <input type="number" class="form-control" name="id" id="id" min="1" placeholder="ID of an Award to change" required>
-                        <small id="emailHelp" class="form-text text-muted">Minimal value is 1</small>
-                        <label for="title">New name</label>
-                        <input type="text" id="title" class="form-control" name="title" placeholder="New Award's title">
-                    </div>
-                    <div class="text-center"><button type="submit" class="btn btn-info">Submit</button></div>
-                </form>
-            </div>
-        }
+        <div class="change-form">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">New title</label>
+                    <input type="text" id="title" class="form-control" name="title" placeholder="Award's new title">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control" name="image" id="image" accept=".jpg">
+                </div>
+                <div class="text-center"><button type="submit" class="btn btn-info">Submit</button></div>
+            </form>
+        </div>
 
         @{
+            var id = int.Parse(Request["id"]);
+
             if (IsPost)
             {
-                int id = int.Parse(Request.Form["id"]);
-
-                var award = awardService.GetAwardById(id);
-                if (award == null)
-                {
-                    <div class="alert alert-warning add-form" role="alert">
-                        Award with ID @id has not been found.
-                    </div>
-                    return;
-                }
+                var award = AwardService.GetAwardById(id);
 
                 string title = Request.Form["title"];
-                if (title != null && !string.IsNullOrWhiteSpace(title))
+                if (!string.IsNullOrWhiteSpace(title))
                 {
                     award.Title = title;
                 }
 
+                HttpPostedFileBase file = Request.Files.Count != 0 ? Request.Files[0] : null;
+                byte[] bytes = null;
+
+                if (file.ContentLength != 0)
+                {
+                    bytes = new byte[file.ContentLength];
+                    file.InputStream.Read(bytes,0,bytes.Length);
+                    award.AwardImage = bytes;
+                }
+
                 <br />
-                if (awardService.UpdateAward(award))
+                if (AwardService.UpdateAward(award))
                 {
                     <div class="alert alert-success add-form" role="alert">
                         Award has been changed.
@@ -56,6 +56,9 @@
                         Award cannot be changed.
                     </div>
                 }
+                <div class="text-center">
+                    <a class="btn btn-info" href="~/Pages/ShowAwards.cshtml">Back to Awards list</a>
+                </div>
             }
         }
     </div>

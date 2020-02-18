@@ -2,7 +2,6 @@
 @using System.Drawing;
 @{
     Layout = "~/Layouts/_MainLayout.cshtml";
-    var userService = new UserService();
 }
 
 <!DOCTYPE html>
@@ -10,28 +9,91 @@
 <head>
 </head>
 <body>
-    <div class="list main-container">
-        <ul class="list-group list-group-flush">
-            @{
-                var users = userService.GetAllUsers();
+    <a name="top"></a>
+    <div class="reward-container">
 
-                if (!users.Any())
-                {
-                    <li class="list-group-item mybg">
-                        No Users in DB.
-                    </li>
-                }
+        @if (User.IsInRole("ADMIN"))
+        {
+            <div class="text-center">
+                <div class="add-remove-users">
+                    <a class="btn btn-info" href="~/Pages/AddUser.cshtml">Add User</a>
+                    <a class="btn btn-info" href="~/Pages/RemoveAllUsers.cshtml">Remove all Users</a>
+                </div>
+            </div>
 
-                foreach (var user in users)
-                {
-        <li class="list-group-item mybg">
-            <img src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(user.UserImage))">
-            @userService.ShowUserAndAwards(user)
-        </li>
-                }
+            <hr class="my-2" />
+        }
+
+        @{var users = UserService.GetAllUsers(); }
+        @if (!users.Any())
+        {
+            <div class="alert-center">
+                <div class="alert alert-warning center-block">No Users in DB</div>
+            </div>
+            @RenderBody()
+            return;
+        }
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Date of birth</th>
+                    <th>Age</th>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <th>Awards</th>
+                    }
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <th>Management</th>
+                    }
+                </tr>
+            </thead>
+            @foreach (var user in users)
+            {
+                <tr>
+                    <td><img class="userimage" src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(user.UserImage))"></td>
+                    <td>@user.Name</td>
+                    <td>@user.DateOfBirth.ToString("dd.MM.yyyy")</td>
+                    <td>@user.Age</td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>@UserService.ShowUserAwards(user)</td>
+                    }
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <td>
+                            <button class="btn btn-info" onclick="changeUser('@user.Id');">Change User</button> <br />
+                            <button class="btn btn-info" onclick="manageAwards('@user.Id');">Manage Awards</button> <br />
+                            <button class="btn btn-info" onclick="deleteUser('@user.Id');">Remove User</button>
+                        </td>
+                    }
+                </tr>
             }
-        </ul>
+        </table>
     </div>
+
     @RenderBody()
+
+    <div class="text-center">
+        <a href="#top" class="btn btn-info">To top</a>
+    </div>
+
+    <script>
+        function deleteUser(id) {
+            $.post("" + "/Pages/RemoveUser.cshtml", { id: id }, () => location.reload());
+        }
+
+        function changeUser(id) {
+            location.href = "" + "/Pages/ChangeUser?id=" + id;
+        }
+
+        function manageAwards(id) {
+            location.href = "" + "/Pages/ManageAwards?id=" + id;
+        }
+    </script>
 </body>
+
 </html>

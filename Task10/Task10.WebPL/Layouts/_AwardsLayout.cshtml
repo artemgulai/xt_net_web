@@ -1,7 +1,6 @@
 ﻿@using Task10.WebPL.Models;
 @{
     Layout = "~/Layouts/_MainLayout.cshtml";
-    var awardService = new AwardService();
 }
 
 <!DOCTYPE html>
@@ -9,27 +8,73 @@
 <head>
 </head>
 <body>
-    <div class="list main-container">
-        <ul class="list-group list-group-flush">
-            @{
-                var awards = awardService.GetAllAwards();
-                if (!awards.Any())
-                {
-                    <li class="list-group-item mybg">
-                        No Awards in DB.
-                    </li>
-                }
+    <a name="top"></a>
+    <div class="reward-container">
+        @if (User.IsInRole("ADMIN"))
+        {
+            <div class="text-center">
+                <div class="add-remove-awards">
+                    <a class="btn btn-info" href="~/Pages/AddAward.cshtml">Add Award</a>
+                    <a class="btn btn-info" href="~/Pages/RemoveAllAwards.cshtml">Remove all Awards</a>
+                </div>
+            </div>
 
-                foreach (var award in awards)
-                {
-        <li class="list-group-item mybg">
-            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(award.AwardImage))">
-            @award.ToString()
-        </li>
-                }
+            <hr class="my-2" />
+        }
+
+        @{
+            var awards = AwardService.GetAllAwards();
+            if (!awards.Any())
+            {
+                <div class="alert-center">
+                    <div class="alert alert-warning center-block">No Awards in DB</div>
+                </div>
+                @RenderBody()
+                return;
             }
-        </ul>
+        }
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Picture</th>
+                    <th>Title</th>
+                    <th>Management</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var award in awards)
+                {
+                    <tr>
+                        <td><img class="userimage" src="@String.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(award.AwardImage))"></td>
+                        <td>@award.Title</td>
+                        <td>
+                            <button class="btn btn-info" onclick="changeAward(@award.Id);">Change Award</button> <br />
+                            <button class="btn btn-info" onclick="deleteAward(@award.Id);">Remove Award</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
     </div>
+
     @RenderBody()
+
+    <div class="text-center">
+        <a href="#top" class="btn btn-info">To top</a>
+    </div>
+
+    <script>
+        function deleteAward(id) {
+            if (confirm('Delete the Award for all Users?')) {
+                $.post("" + "/Pages/RemoveAward.cshtml", { id: id }, () => location.reload());
+            }
+        }
+
+        function changeAward(id) {
+            location.href = "" + "/Pages/ChangeAward?id=" + id;
+        }
+    </script>
 </body>
 </html>

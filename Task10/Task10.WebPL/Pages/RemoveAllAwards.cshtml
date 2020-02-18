@@ -2,8 +2,9 @@
 @{
     Page.Title = "Success";
     Layout = "~/Layouts/_MainLayout.cshtml";
-    var awardService = new AwardService();
 }
+
+@{AwardService.RemoveAll();}
 
 <div class="main-container">
     <div class="alert alert-info">All awards has been removed.</div>
@@ -11,7 +12,6 @@
 </div>
 
 <script>
-    @{awardService.RemoveAll();}
     function goHome() {
         location.href = "/index.cshtml";
     }

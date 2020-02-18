@@ -1,8 +1,5 @@
 ﻿@using Task10.WebPL.Models;
-@{ 
-    var userService = new UserService();
-    var awardService = new AwardService();
-}
+@using System.Web.Mvc;
 
 <!DOCTYPE html>
 <html>
@@ -24,40 +21,34 @@
                     <a class="nav-link" href="~/index.cshtml">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="~/Pages/ShowUsers.cshtml" role="button">
                         Users
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="~/Pages/ShowUsers.cshtml">Show all Users in DB</a>
-                        <a class="dropdown-item" href="~/Pages/AddUser.cshtml">Add User to DB</a>
-                        <a class="dropdown-item" href="~/Pages/ChangeUser.cshtml">Change User in DB</a>
-                        <a class="dropdown-item" href="~/Pages/RemoveUser.cshtml">Remove User with specified ID</a>
-                        <a class="dropdown-item" href="~/Pages/RemoveAllUsers.cshtml">Remove all Users</a>
-                    </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Awards
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="~/Pages/ShowAwards.cshtml">Show all Awards in DB</a>
-                        <a class="dropdown-item" href="~/Pages/AddAward.cshtml">Add Award to DB</a>
-                        <a class="dropdown-item" href="~/Pages/ChangeAward.cshtml">Change Award in DB</a>
-                        <a class="dropdown-item" href="~/Pages/RemoveAward.cshtml">Remove Award with specified ID</a>
-                        <a class="dropdown-item" href="~/Pages/RemoveAllAwards.cshtml">Remove all Awards</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Users and their Awards
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="~/Pages/GiveAward.cshtml">Give Award to User</a>
-                        <a class="dropdown-item" href="~/Pages/TakeAward.cshtml">Take Award from User</a>
-                    </div>
-                </li>
+                @if (User.IsInRole("ADMIN"))
+                {
+            <li class="nav-item">
+                <a class="nav-link" href="~/Pages/ShowAwards.cshtml" role="button">
+                    Awards
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/Pages/Roles/RoleManagement.cshtml" role="button">
+                    Role management
+                </a>
+            </li>
+                }
             </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+        <div class="btn alert-primary" id="authusername">@User.Identity.Name </div>
+                <button class="btn btn-danger btn-auth" onclick="logout();">Sign out</button>
+            }
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <button class="btn btn-danger btn-auth" onclick="signin();">Sign in</button>
+                <button class="btn btn-danger btn-auth" onclick="signup();">Sign up</button>
+            }
         </div>
     </nav>
 
@@ -68,4 +59,17 @@
     <script src="~/Scripts/jquery-3.0.0.js"></script>
     <script src="~/Scripts/popper.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <script>
+        function logout() {
+            location.href = "" +  "/Pages/Auth/SignOut.cshtml";
+        }
+
+        function signup() {
+            location.href = "" + "/Pages/Auth/SignUp.cshtml";
+        }
+
+        function signin() {
+            location.href = "" + "/Pages/Auth/SignIn.cshtml";
+        }
+    </script>
 </body></html>

@@ -3,7 +3,6 @@
 @{
     Page.Title = "Add Award";
     Layout = "~/Layouts/_MainLayout.cshtml";
-    var awardService = new AwardService();
 }
 
 <div class="main-container">
@@ -42,7 +41,7 @@
 
         <br />
         <div class="alert alert-success add-form" role="alert">
-            @awardService.AddAward(title,bytes);
+            @AwardService.AddAward(title,bytes);
         </div>
     }
 }

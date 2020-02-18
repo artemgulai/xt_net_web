@@ -1,0 +1,47 @@
+﻿@using Task10.WebPL.Models;
+
+@{
+    Page.Title = "Give Role";
+    Layout = "~/Layouts/_MainLayout.cshtml";
+    var authUserService = new AuthUserService();
+}
+
+    <div class="reward-container">
+        <table class="table">
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Change role</th>
+            </tr>
+            @foreach (var user in authUserService.GetAll())
+            {
+                if (user.Login == User.Identity.Name)
+                {
+                    continue;
+                }
+                <tr>
+                    <td>@user.Login</td>
+                    @if (user.Roles.Contains("ADMIN"))
+                    {
+                        <td>Admin</td>
+                        <td><button class="btn btn-info" onclick="makeNotAdmin('@user.Login')" value="@user.Login" id="makeNotAdmin">Make not admin</button></td>
+                    }
+                    else
+                    {
+                        <td>Not Admin</td>
+                        <td><button class="btn btn-info" onclick="makeAdmin('@user.Login')" value="@user.Login" id="makeAdmin">Make admin</button></td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+
+    <script>
+        function makeAdmin(username) {
+            $.post("" + "/Pages/Roles/MakeAdmin.cshtml", { login: username }, () => location.reload());
+        }
+
+        function makeNotAdmin(username) {
+            $.post("" + "/Pages/Roles/MakeNotAdmin.cshtml", { login: username }, () => location.reload());
+        }
+    </script>
