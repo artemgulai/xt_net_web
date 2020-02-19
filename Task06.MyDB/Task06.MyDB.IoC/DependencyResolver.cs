@@ -7,14 +7,15 @@ using Task06.MyDB.BLL;
 using Task06.MyDB.BLL.Interfaces;
 using Task06.MyDB.DAL;
 using Task06.MyDB.DAL.Interfaces;
+using Task11.Sql.DAL;
 
 namespace Task06.MyDB.IoC
 {
     public class DependencyResolver
     {
-        private static IUserDao _userDao = new UserDao();
-        private static IAwardDao _awardDao = new AwardDao();
-        private static IAuthUserDao _authUserDao = new AuthUserDao();
+        private static IUserDao _userDao = new Task11.Sql.DAL.UserDao();
+        private static IAwardDao _awardDao = new Task06.MyDB.DAL.AwardDao();
+        private static IAuthUserDao _authUserDao = new Task06.MyDB.DAL.AuthUserDao();
         private static IUserLogic _userLogic = new UserLogic(_userDao);
         private static IAwardLogic _awardLogic = new AwardLogic(_awardDao);
         private static IAuthUserLogic _authUserLogic = new AuthUserLogic(_authUserDao);
