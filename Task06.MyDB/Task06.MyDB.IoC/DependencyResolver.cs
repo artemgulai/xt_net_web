@@ -14,8 +14,8 @@ namespace Task06.MyDB.IoC
     public class DependencyResolver
     {
         private static IUserDao _userDao = new Task11.Sql.DAL.UserDao();
-        private static IAwardDao _awardDao = new Task06.MyDB.DAL.AwardDao();
-        private static IAuthUserDao _authUserDao = new Task06.MyDB.DAL.AuthUserDao();
+        private static IAwardDao _awardDao = new Task11.Sql.DAL.AwardDao();
+        private static IAuthUserDao _authUserDao = new Task11.Sql.DAL.AuthUserDao();
         private static IUserLogic _userLogic = new UserLogic(_userDao);
         private static IAwardLogic _awardLogic = new AwardLogic(_awardDao);
         private static IAuthUserLogic _authUserLogic = new AuthUserLogic(_authUserDao);

@@ -1,5 +1,7 @@
 use master;
+
 drop database if exists task11;
+
 create database task11;
 
 use task11;
@@ -9,13 +11,13 @@ create table users (
 	Id int primary key identity(1,1),
 	Name nvarchar(50) not null,
 	DateOfBirth date not null,
-	UserImage varbinary(MAX)
+	UserImage nvarchar(MAX) not null
 );
 
 create table awards (
 	Id int primary key identity(1,1),
 	Title nvarchar(50) not null,
-	AwardImage varbinary(MAX)
+	AwardImage nvarchar(MAX) not null
 );
 
 create table users_awards (
@@ -45,3 +47,9 @@ create table auth_users_roles (
 	constraint FK_AuthUserId foreign key (AuthUserId) references auth_users(Id) on delete cascade,
 	constraint FK_RoleId foreign key (RoleId) references roles(Id) on delete cascade
 );
+
+insert into auth_users(Login, Password) values ('admin','admin');
+
+insert into roles (Name) values ('USER');
+
+insert into auth_users_roles (AuthUserId, RoleId) values (1,1);

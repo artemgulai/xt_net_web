@@ -18,5 +18,22 @@ namespace Task06.MyDB.Entities
         {
             return $"ID: {Id}. Title: {Title}.";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+                return true;
+
+            Award that = obj as Award;
+
+            if (that == null)
+                return false;
+
+            if (this.Id != that.Id ||
+                this.Title != that.Title)
+                return false;
+
+            return true;
+        }
     }
 }

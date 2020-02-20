@@ -52,7 +52,7 @@
                     </td>
                 </tr>
             }
-            @foreach (var award in awards.Except(userAwards))
+            @foreach (var award in awards.Where(a => !userAwards.Contains(a)))
             {
                 <tr>
                     <td>
